@@ -1,5 +1,7 @@
 package latice.model;
 
+import java.util.ArrayList;
+
 public class Joueur {
 	private final String nom;
 	private Integer points;
@@ -19,11 +21,26 @@ public class Joueur {
 	}
 	
 	public void piocher(Rack rack, Pioche pioche) {  //remplir la list rack à parti de la liste pioche jusqu'à rack.nombredetuille = 5// 
-		//TODO
+		int placevide;
+		if (pioche.getTaille() < (5 - rack.getTaille()))
+			for (placevide=pioche.getTaille();placevide>0;placevide--) {
+				rack.add(pioche.remove(1));
+			}
+		else {
+			for (placevide= (5 - rack.getTaille());placevide>0;placevide--) {
+				rack.add(pioche.remove(1));
+			}
+		}
 	}
 	
 	public void echangerRack() {
 		//TODO
+		/*créer list temporaire
+		 * la replir avec le rack en le vidant
+		 * piocher()
+		 * vider la list temporaire dans la pioche
+		 * poiche.melanger()
+		 */
 	}
 	
 	public Integer jouer(Rack rack, Tuile tuile, Case emplacement) {

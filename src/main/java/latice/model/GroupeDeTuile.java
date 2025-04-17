@@ -10,9 +10,15 @@ public abstract class GroupeDeTuile {
 	}
 
 	public Integer getTaille() {
-		//TODO ajouter le code pour avoir la taille
-		return 0;
+		return tuiles.size();
 	}
 	
+	public void add(Tuile tuile) {
+		tuiles.add(tuile);
+	}
 	
+	public Tuile remove(int ind) {
+		Tuile tuile = tuiles.remove(ind);
+		return tuile;
+	}
 }
