@@ -8,4 +8,12 @@ public class Tuile {
 		this.couleur = couleur;
 		this.forme = forme;
 	}
+
+	public Couleur getCouleur() {
+		return couleur;
+	}
+
+	public Forme getForme() {
+		return forme;
+	}
 }
