@@ -25,7 +25,7 @@ public class Joueur {
 		//TODO
 	}
 	
-	public Integer jouer(Rack rack, Tuile tuile, Case case) {
+	public Integer jouer(Rack rack, Tuile tuile, Case emplacement) {
 		//TODO
 	}
 	
