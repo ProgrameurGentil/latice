@@ -4,11 +4,13 @@ public class Case {
 	private Integer colonne;
 	private Integer ligne;
 	private final Type type;
+	private Tuile tuile;
 	
-	public Case(Integer colonne, Integer ligne, Type type) {
+	public Case(Integer colonne, Integer ligne, Type type, Tuile tuile) {
 		this.colonne = colonne;
 		this.ligne = ligne;
 		this.type = type;
+		this.tuile = tuile;
 	}
 
 	public Integer getColonne() {
