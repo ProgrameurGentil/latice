@@ -15,7 +15,7 @@ public class LaticeApplicationConsole {
 		System.out.println("-- Et par Adam                                     --");
 		System.out.println(LINE_BAR);
 		
-		ArrayList<Tuile> TouteLesTuile = new ArrayList<Tuile>();
+		/*ArrayList<Tuile> TouteLesTuile = new ArrayList<Tuile>();
 		for (int count=0;count<2;count++) {
 			for (Couleur couleur : Couleur.values()) {
 				for (Forme forme : Forme.values()) {
@@ -23,12 +23,14 @@ public class LaticeApplicationConsole {
 				}
 	        }
 		}
-//		int x=0;
-//		for (Tuile tuile : TouteLesTuile) {
-//			System.out.println(tuile);
-//			x++;			
-//		}
-//		System.out.println(x);
+		int x=0;
+		for (Tuile tuile : TouteLesTuile) {
+			System.out.println(tuile);
+			x++;			
+		}
+		System.out.println(x);
+		*/
+
 	}
 
 }
