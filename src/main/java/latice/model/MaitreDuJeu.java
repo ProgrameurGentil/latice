@@ -40,6 +40,15 @@ public class MaitreDuJeu {
 		demiTuiles1 = new ArrayList<Tuile>(tuiles.subList(0, taille/2));
 		demiTuiles2 = new ArrayList<Tuile>(tuiles.subList(taille/2, taille));
 	}
-
+	
+	
+	public ArrayList<Tuile> piocher5Tuiles(ArrayList<Tuile> pioche) {
+		Integer taille = pioche.size();
+		ArrayList<Tuile> rack = new ArrayList<>(pioche.subList(0, Math.min(5, pioche.size())));
+		for (int i = 0; i < 5 && pioche.size()>0; i++) {
+            pioche.remove(0);
+        }
+	    return rack;
+	}
 }
 
