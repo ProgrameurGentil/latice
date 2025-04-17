@@ -9,6 +9,11 @@ public class Tuile {
 		this.forme = forme;
 	}
 
+	@Override
+	public String toString() {
+		return forme+" de couleur "+couleur;
+	}
+
 	public Couleur getCouleur() {
 		return couleur;
 	}
