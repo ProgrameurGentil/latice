@@ -18,7 +18,7 @@ public class Joueur {
 		this.pioche = pioche;
 	}
 	
-	public void piocher(Rack rack, Pioche pioche) {
+	public void piocher(Rack rack, Pioche pioche)  //remplir la list rack à parti de la liste pioche jusqu'à rack.nombredetuille = 5// {
 		//TODO
 	}
 	
