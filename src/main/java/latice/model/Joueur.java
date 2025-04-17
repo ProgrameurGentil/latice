@@ -22,7 +22,7 @@ public class Joueur {
 		//TODO
 	}
 	
-	public void echangerRack(Rack rack, Pioche pioche) {
+	public void echangerRack() {
 		//TODO
 	}
 	

@@ -34,5 +34,12 @@ public class MaitreDuJeu {
 		Collections.shuffle(tuiles);
 		return tuiles;
 	}
+	
+	public void diviserTuilesEnDeux(ArrayList<Tuile> tuiles, ArrayList<Tuile> demiTuiles1, ArrayList<Tuile> demiTuiles2) {
+		Integer taille = tuiles.size();
+		demiTuiles1 = new ArrayList<Tuile>(tuiles.subList(0, taille/2));
+		demiTuiles2 = new ArrayList<Tuile>(tuiles.subList(taille/2, taille));
+	}
+
 }
 
