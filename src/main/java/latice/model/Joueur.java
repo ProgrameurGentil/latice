@@ -7,7 +7,6 @@ public class Joueur {
 	private Integer nbTuilesPosees;
 	private Rack rack;
 	private Pioche pioche;
-
 	
 	public Joueur(String nom, Integer points, Integer actionsRestante, Integer nbTuilesPosees, Rack rack,
 			Pioche pioche) {
