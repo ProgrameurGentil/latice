@@ -47,7 +47,7 @@ public class MaitreDuJeu {
 		for (int i = 0; i < 5 && pioche.size()>0; i++) {
             pioche.remove(0);
         }
-	    return rack;
+	    return rack; 
 	}
 }
 

@@ -1,6 +1,7 @@
 package latice;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -46,9 +47,14 @@ public class TestGestionDesTuiles {
 		assertEquals(listeDeTuiles1.get(2), listeDeTuilesDeVerif.get(2));
 		assertEquals(listeDeTuiles1.get(3), listeDeTuilesDeVerif.get(3));
 		assertEquals(listeDeTuiles1.get(4), listeDeTuilesDeVerif.get(4));
+	}
+	
+	@Test
+	public void melangerUnePiche() {
+		ArrayList<Tuile> tuilesMelange = listeDeTuiles;
+		maitre.melangerTuiles(listeDeTuiles);
 		
-		
-		//assertEquals(listeDeTuiles1, listeDeTuilesDeVerif);
-		//assertTrue(listeDeTuiles1.equals(listeDeTuilesDeVerif));
+		assertEquals(tuilesMelange.size(), listeDeTuiles.size());
+		assertFalse( listeDeTuiles.get(0).equals(tuilesMelange.get(0)) && listeDeTuiles.get(1).equals(tuilesMelange.get(1)) );
 	}
 }
