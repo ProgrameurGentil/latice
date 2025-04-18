@@ -30,9 +30,9 @@ public class MaitreDuJeu {
 		return touteLesTuile;
 	}
 	
-	public ArrayList<Tuile> melangerTuiles(ArrayList<Tuile> tuiles){
+	public void melangerTuiles(ArrayList<Tuile> tuiles){
 		Collections.shuffle(tuiles);
-		return tuiles;
+		//return tuiles; //pas obligatoire
 	}
 	
 	public void diviserTuilesEnDeux(ArrayList<Tuile> tuiles, ArrayList<Tuile> demiTuiles1, ArrayList<Tuile> demiTuiles2) {
@@ -40,7 +40,6 @@ public class MaitreDuJeu {
 		demiTuiles1.addAll(tuiles.subList(0, taille/2));
 		demiTuiles2.addAll(tuiles.subList(taille/2, taille));
 	}
-	
 	
 	public ArrayList<Tuile> piocher5Tuiles(ArrayList<Tuile> pioche) {
 		Integer taille = pioche.size();
