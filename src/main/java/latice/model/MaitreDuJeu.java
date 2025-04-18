@@ -40,12 +40,13 @@ public class MaitreDuJeu {
 		demiTuiles1.addAll(tuiles.subList(0, taille/2));
 		demiTuiles2.addAll(tuiles.subList(taille/2, taille));
 	}
-	
-	public ArrayList<Tuile> piocher5Tuiles(ArrayList<Tuile> pioche) {
+
+	public ArrayList<Tuile> piocher5Tuiles(ArrayList<Tuile> pioche, ArrayList<Tuile> rack) {
+
 		Integer taille = pioche.size();
-		ArrayList<Tuile> rack = new ArrayList<>(pioche.subList(0, Math.min(5, pioche.size())));
-		for (int i = 0; i < 5 && pioche.size()>0; i++) {
-            pioche.remove(0);
+		for (int i = 0; i < 5 && taille>0 && rack.size() < 5; i++) {
+            rack.add(pioche.remove(0));
+            taille = pioche.size();
         }
 	    return rack; 
 	}
