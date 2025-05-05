@@ -1,5 +1,7 @@
 package latice.model;
 
+import java.util.ArrayList;
+
 public class Joueur {
 	private final String nom;
 	private Integer points;
@@ -17,6 +19,10 @@ public class Joueur {
 		this.rack = rack;
 		this.pioche = pioche;
 	}
+//	public Joueur(String nom, Pioche pioche) {
+//		Joueur(this.nom, 0, 0, 0, Rack(new ArrayList<Tuile>()), this.pioche);
+//	}
+	
 	
 	public void piocher(Rack rack, Pioche pioche) {  //remplir la list rack à parti de la liste pioche jusqu'à rack.nombredetuille = 5// 
 		//TODO
