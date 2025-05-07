@@ -6,7 +6,7 @@ import java.util.Collections;
 public abstract class GroupeDeTuile {
 	protected ArrayList<Tuile> tuiles;
 
-	protected GroupeDeTuile(ArrayList<Tuile> tuiles) {
+	public GroupeDeTuile(ArrayList<Tuile> tuiles) {
 		this.tuiles = tuiles;
 	}
 
@@ -16,7 +16,7 @@ public abstract class GroupeDeTuile {
 	
 	public Tuile enlever(Integer indice) {
 		Tuile tuile = this.tuiles.get(indice);
-		this.tuiles.remove(indice);
+		this.tuiles.remove((int) indice);
 		return tuile;
 	}
 	
