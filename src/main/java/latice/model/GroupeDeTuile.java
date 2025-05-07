@@ -10,25 +10,25 @@ public abstract class GroupeDeTuile {
 		this.tuiles = tuiles;
 	}
 
-	protected Integer taille() {
+	public Integer taille() {
 		return this.tuiles.size();
 	}
 	
-	protected Tuile enlever(Integer indice) {
+	public Tuile enlever(Integer indice) {
 		Tuile tuile = this.tuiles.get(indice);
 		this.tuiles.remove(indice);
 		return tuile;
 	}
 	
-	protected void ajouter(Tuile tuile) {
+	public void ajouter(Tuile tuile) {
 		this.tuiles.add(tuile);
 	}
 	
-	protected void melanger() {
+	public void melanger() {
 		Collections.shuffle(this.tuiles);
 	}
 	
-	protected Tuile obtenirValeur(Integer indice) {
+	public Tuile obtenirValeur(Integer indice) {
 		return this.tuiles.get(indice);
 	}
 

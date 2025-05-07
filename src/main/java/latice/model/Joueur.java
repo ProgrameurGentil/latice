@@ -46,4 +46,28 @@ public class Joueur {
 		//TODO
 		return 0;
 	}
+
+	public Integer getPoints() {
+		return points;
+	}
+
+	public void setPoints(Integer points) {
+		this.points = points;
+	}
+
+	public Rack getRack() {
+		return rack;
+	}
+
+	public void setRack(Rack rack) {
+		this.rack = rack;
+	}
+
+	public Pioche getPioche() {
+		return pioche;
+	}
+
+	public void setPioche(Pioche pioche) {
+		this.pioche = pioche;
+	}
 }

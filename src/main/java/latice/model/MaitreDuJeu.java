@@ -5,7 +5,6 @@ import java.util.Collections;
 
 public class MaitreDuJeu {
 	private Integer nb_tours;
-	public ArrayList<Joueur> listeJoueurs;
 	
 	public Boolean gagner(Joueur joueur) {
 		//TODO fonction qui retourne un boolean en si le joueur mit en parametre est gagnant
