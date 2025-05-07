@@ -1,6 +1,7 @@
 package latice;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,11 +20,13 @@ public class LaticeJeuxEssais {
 		} else {
 			System.out.println("tout ne va pas bien n°1  :  "+ touteLesTuile.size() +" != 72");
 		}
-		// test création des pioche
-		leMaitre.diviserTuilesEnDeux(touteLesTuile, null);
-		
+		// test création des joueur + liste de joueur
+		Joueur joueur1 = new Joueur("Premier");
+		Joueur joueur2 = new Joueur("Second");
+		ArrayList<Joueur> listeJoueurs = new ArrayList<>(Arrays.asList(joueur1, joueur2));
+		// test création des pioche		
+		leMaitre.diviserTuilesEnDeux(touteLesTuile, listeJoueurs);	
 		// test création des rack
-		Joueur joueur1 = new Joueur("premier", pioche1);
 		
 		//test remplisage des rack
 		
