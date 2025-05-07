@@ -9,8 +9,8 @@ public class Pioche extends GroupeDeTuile{
 		super(tuiles);
 	}
 
-	public ArrayList<Tuile> melange(Tuile tuile) {
-		//TODO
-		return null;
+	public Pioche() {
+		this(new ArrayList<Tuile>());
 	}
+	
 }

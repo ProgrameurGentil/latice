@@ -8,7 +8,7 @@ public class Joueur {
 	private Integer actionsRestante;
 	private Integer nbTuilesPosees;
 	private Rack rack;
-	private Pioche pioche;
+	public Pioche pioche;
 	
 	public Joueur(String nom, Integer points, Integer actionsRestante, Integer nbTuilesPosees, Rack rack,
 			Pioche pioche) {
@@ -20,7 +20,7 @@ public class Joueur {
 		this.pioche = pioche;
 	}
 	public Joueur(String nom) {
-		this(nom, 0, 0, 0, new Rack(), new Pioche(new ArrayList<Tuile>()));
+		this(nom, 0, 0, 0, new Rack(), new Pioche());
 	}
 		
 	public void echangerRack(Integer nbTuiles) {
