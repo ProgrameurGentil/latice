@@ -19,10 +19,11 @@ public class Joueur {
 		this.rack = rack;
 		this.pioche = pioche;
 	}
+	
 	public Joueur(String nom) {
 		this(nom, 0, 0, 0, new Rack(), new Pioche());
 	}
-		
+
 	public void echangerRack(Integer nbTuiles) {
 		//TODO echange de tuile dans le rack du joueur
 	}

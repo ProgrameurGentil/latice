@@ -8,22 +8,23 @@ public class MaitreDuJeu {
 	public ArrayList<Joueur> listeJoueurs;
 	
 	public Boolean gagner(Joueur joueur) {
-		//TODO
+		//TODO fonction qui retourne un boolean en si le joueur mit en parametre est gagnant
 		return null;
 	}
 	public void lancerTour() {
-		//TODO
+		//TODO fonction qui lance un tour
 	}
 	public Joueur aQuiLeTour() {
-		//TODO
+		//TODO fonction qui retourne le joueur qui doit jouer
 		return null;	
 	}
 	
 	public ArrayList<Tuile> initTuiles() {
 		ArrayList<Tuile> touteLesTuile = new ArrayList<Tuile>();
-		for (int count=0;count<2;count++) {
-			for (Couleur couleur : Couleur.values()) {
-				for (Forme forme : Forme.values()) {
+		
+		for (Couleur couleur : Couleur.values()) {
+			for (Forme forme : Forme.values()) {
+				for (int count=0;count<2;count++) {
 					touteLesTuile.add(new Tuile(couleur, forme));
 				}
 	        }
@@ -31,9 +32,8 @@ public class MaitreDuJeu {
 		return touteLesTuile;
 	}
 	
-	public void melangerTuiles(ArrayList<Tuile> tuiles){
-		Collections.shuffle(tuiles);
-		//return tuiles; //pas obligatoire
+	public void melangerTuiles(GroupeDeTuile tuiles){
+		tuiles.melanger();
 	}
 	
 	public void diviserTuilesEnDeux(ArrayList<Tuile> tuiles, ArrayList<Joueur> listeJoueurs) {
@@ -48,18 +48,19 @@ public class MaitreDuJeu {
 			demiTuiles.addAll(tuiles.subList(debutDePioche, finDePioche));
 			debutDePioche = finDePioche;
 			nb_decoupage++;
-			joueur.pioche = new Pioche(demiTuiles);
+			joueur.pioche = new Pioche(demiTuiles); // TODO
  		}
 	}
 
-	public ArrayList<Tuile> piocher5Tuiles(ArrayList<Tuile> pioche, ArrayList<Tuile> rack) {
+	public void piocher5Tuiles(Pioche pioche, Rack rack) {
 
-		Integer taille = pioche.size();
-		for (int i = 0; i < 5 && taille>0 && rack.size() < 5; i++) {
-            rack.add(pioche.remove(0));
-            taille = pioche.size();
-        }
-	    return rack; 
+		Integer taille = pioche.taille();
+		Integer i = 0;
+		while (i < 5 && taille > 0 && rack.taille() < 5) {
+			rack.ajouter(pioche.enlever(0));
+            taille--;
+            i++;
+		}
 	}
 }
 
