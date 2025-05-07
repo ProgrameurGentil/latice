@@ -61,5 +61,26 @@ public class MaitreDuJeu {
             i++;
 		}
 	}
+	
+	public PlateauDeCase InitPlateauCase() {
+		PlateauDeCase plateau = new PlateauDeCase();
+		int i;
+		int j;
+		String nom;
+		Position position;
+		for (i=0;i<Constantes.COLUMNS;i++) {
+			for (j=0;j<Constantes.ROWS;j++) {
+				position = new Position(i,j);
+				plateau.cases().put(position, new Case(Type.NORMAL, null));
+			}
+		}
+		
+		for (Position positionSun : Constantes.POSITION_SOLEIL) {
+			plateau.cases().replace(positionSun, new Case(Type.SOLEIL, null));
+		}
+		plateau.cases().replace(Constantes.middle, new Case(Type.LUNE, null));
+		
+		return plateau;
+	}
 }
 

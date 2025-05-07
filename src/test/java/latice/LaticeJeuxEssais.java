@@ -6,13 +6,32 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import latice.model.Tuile;
+import latice.model.Type;
+import latice.model.Case;
+import latice.model.Constantes;
 import latice.model.Joueur;
 import latice.model.MaitreDuJeu;
+import latice.model.Plateau;
+import latice.model.PlateauDeCase;
+import latice.model.Position;
 
 public class LaticeJeuxEssais {
 	public static void main(String[] args) {
-	    // test initialisation des tuiles	
+		// test création des joueur + liste de joueur
 		MaitreDuJeu leMaitre = new MaitreDuJeu();
+		Joueur joueur1 = new Joueur("Premier");
+		Joueur joueur2 = new Joueur("Second");
+		ArrayList<Joueur> listeJoueurs = new ArrayList<>(Arrays.asList(joueur1, joueur2)); 
+				
+		Position end = new Position(0, 0);
+		Position start = new Position(Constantes.COLUMNS - 1, Constantes.ROWS - 1);
+		Plateau plateau = new Plateau(joueur1, joueur2);
+		
+		
+		PlateauDeCase plateauDeCase = new PlateauDeCase();
+		plateauDeCase = leMaitre.InitPlateauCase();
+		
+	    // test initialisation des tuiles	
 		ArrayList<Tuile> touteLesTuile = new ArrayList<Tuile>();
 		touteLesTuile = leMaitre.initTuiles();
 		
@@ -21,11 +40,6 @@ public class LaticeJeuxEssais {
 		} else {
 			System.out.println("tout ne va pas bien n°1  :  "+ touteLesTuile.size() +" != 72");
 		}
-		
-		// test création des joueur + liste de joueur
-		Joueur joueur1 = new Joueur("Premier");
-		Joueur joueur2 = new Joueur("Second");
-		ArrayList<Joueur> listeJoueurs = new ArrayList<>(Arrays.asList(joueur1, joueur2));
 		
 		if ( listeJoueurs.size() == 2) {
 			System.out.println("tout va bien n°2  :  "+ listeJoueurs.size() +" = 2");
@@ -45,5 +59,22 @@ public class LaticeJeuxEssais {
 		
 		//test remplisage des rack
 		
+		//plateau
+		int i;
+		int j;
+		String nom;
+		String ligne;
+		Case caseDePlus;
+		Type typeDePLus;
+		for (i=0;i<9;i++) {
+			ligne = "";
+			for (j=0;i<9;i++) {
+				caseDePlus = plateauDeCase.caseAt(new Position(i,j));
+				typeDePLus = caseDePlus.getType();
+				nom = typeDePLus.toString();
+				ligne = ligne+" "+nom;
+			}
+			System.out.println(ligne);
+		}
 	}
 }
