@@ -48,7 +48,7 @@ public class MaitreDuJeu {
 			demiTuiles.addAll(tuiles.subList(debutDePioche, finDePioche));
 			debutDePioche = finDePioche;
 			nb_decoupage++;
-			joueur.pioche = new Pioche(demiTuiles); // TODO
+			joueur.pioche = new Pioche(demiTuiles);
  		}
 	}
 
