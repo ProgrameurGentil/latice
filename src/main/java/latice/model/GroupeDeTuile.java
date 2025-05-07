@@ -27,4 +27,14 @@ public abstract class GroupeDeTuile {
 	public void melanger() {
 		Collections.shuffle(this.tuiles);
 	}
+	
+	public Tuile obtenirValeur(Integer indice) {
+		return this.tuiles.get(indice);
+	}
+
+	@Override
+	public String toString() {
+		return "GroupeDeTuile [tuiles=" + tuiles + "]";
+	}
+	
 }
