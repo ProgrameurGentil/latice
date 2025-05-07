@@ -6,12 +6,11 @@ public class Rack extends GroupeDeTuile {
 
 	public Rack(ArrayList<Tuile> tuiles) {
 		super(tuiles);
-		// TODO Auto-generated constructor stub
+		// Auto-generated constructor stub
 	}
 	
-//	public Rack() {
-//		//ArrayList<Tuile> rack = new ArrayList<Tuile>();
-//		Rack(new ArrayList<Tuile>());
-//	}
+	public Rack() {
+		this(new ArrayList<Tuile>());
+	}
 
 }

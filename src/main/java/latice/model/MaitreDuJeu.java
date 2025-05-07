@@ -5,6 +5,7 @@ import java.util.Collections;
 
 public class MaitreDuJeu {
 	private Integer nb_tours;
+	public ArrayList<Joueur> listeJoueurs;
 	
 	public Boolean gagner(Joueur joueur) {
 		//TODO
@@ -35,10 +36,20 @@ public class MaitreDuJeu {
 		//return tuiles; //pas obligatoire
 	}
 	
-	public void diviserTuilesEnDeux(ArrayList<Tuile> tuiles, ArrayList<Tuile> demiTuiles1, ArrayList<Tuile> demiTuiles2) {
+	public void diviserTuilesEnDeux(ArrayList<Tuile> tuiles, ArrayList<Joueur> listeJoueurs) {
+		ArrayList<Tuile> demiTuiles = new ArrayList<Tuile>();
 		Integer taille = tuiles.size();
-		demiTuiles1.addAll(tuiles.subList(0, taille/2));
-		demiTuiles2.addAll(tuiles.subList(taille/2, taille));
+		Integer dividende = listeJoueurs.size();
+		Integer debutDePioche = 0;
+		Integer nb_decoupage = 0;
+		Integer finDePioche;
+ 		for (Joueur joueur : listeJoueurs){ 
+			finDePioche = (taille/dividende) * nb_decoupage;
+			demiTuiles.addAll(tuiles.subList(debutDePioche, finDePioche));
+			debutDePioche = finDePioche;
+			nb_decoupage++;
+			joueur.pioche = new Pioche(demiTuiles);
+ 		}
 	}
 
 	public ArrayList<Tuile> piocher5Tuiles(ArrayList<Tuile> pioche, ArrayList<Tuile> rack) {
