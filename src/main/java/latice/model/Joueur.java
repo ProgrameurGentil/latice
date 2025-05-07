@@ -14,26 +14,21 @@ public class Joueur {
 			Pioche pioche) {
 		this.nom = nom;
 		this.points = points;
-		this.actionsRestante = actionsRestante;
+		this.actionsRestante = actionsRestante; //
 		this.nbTuilesPosees = nbTuilesPosees;
 		this.rack = rack;
 		this.pioche = pioche;
 	}
-
 	public Joueur(String nom) {
 		this(nom, 0, 0, 0, new Rack(), new Pioche(new ArrayList<Tuile>()));
 	}
-	
-	public void piocher(Rack rack, Pioche pioche) {  //remplir la list rack à parti de la liste pioche jusqu'à rack.nombredetuille = 5// 
-		//TODO
-	}
-	
-	public void echangerRack() {
-		//TODO
+		
+	public void echangerRack(Integer nbTuiles) {
+		//TODO echange de tuile dans le rack du joueur
 	}
 	
 	public Integer jouer(Rack rack, Tuile tuile, Case emplacement) {
-		//TODO
+		//TODO joueur un tour
 		return 0;
 	}
 	
