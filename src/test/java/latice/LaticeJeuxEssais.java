@@ -2,18 +2,37 @@ package latice;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import latice.model.Tuile;
+import latice.model.Type;
+import latice.model.Case;
+import latice.model.Constantes;
 import latice.model.Joueur;
 import latice.model.MaitreDuJeu;
+import latice.model.PlateauTuiles;
+import latice.model.PlateauDeCase;
+import latice.model.Position;
 
 public class LaticeJeuxEssais {
 	public static void main(String[] args) {
-	    // test initialisation des tuiles	
+		// test création des joueur + liste de joueur
 		MaitreDuJeu leMaitre = new MaitreDuJeu();
-		ArrayList<Tuile> touteLesTuile = new ArrayList<Tuile>();
+		Joueur joueur1 = new Joueur("Premier");
+		Joueur joueur2 = new Joueur("Second");
+		ArrayList<Joueur> listeJoueurs = new ArrayList<>(Arrays.asList(joueur1, joueur2)); 
+				
+		Position end = new Position(0, 0);
+		Position start = new Position(Constantes.COLONNES - 1, Constantes.LIGNES - 1);
+		PlateauTuiles plateauTuiles = new PlateauTuiles(joueur1, joueur2);
+		
+		
+		PlateauDeCase plateauDeCase = leMaitre.initPlateauCase();
+		
+	    // test initialisation des tuiles	
+		List<Tuile> touteLesTuile = new ArrayList<Tuile>();
 		touteLesTuile = leMaitre.initTuiles();
 		
 		if ( touteLesTuile.size() == 72) {
@@ -21,11 +40,6 @@ public class LaticeJeuxEssais {
 		} else {
 			System.out.println("tout ne va pas bien n°1  :  "+ touteLesTuile.size() +" != 72");
 		}
-		
-		// test création des joueur + liste de joueur
-		Joueur joueur1 = new Joueur("Premier");
-		Joueur joueur2 = new Joueur("Second");
-		ArrayList<Joueur> listeJoueurs = new ArrayList<>(Arrays.asList(joueur1, joueur2));
 		
 		if ( listeJoueurs.size() == 2) {
 			System.out.println("tout va bien n°2  :  "+ listeJoueurs.size() +" = 2");
@@ -45,5 +59,7 @@ public class LaticeJeuxEssais {
 		
 		//test remplisage des rack
 		
+		//plateau
+		plateauDeCase.toString();
 	}
 }

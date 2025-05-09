@@ -1,6 +1,7 @@
 package latice.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class MaitreDuJeu {
 	}
 	
 	public List<Tuile> initTuiles() {
-		ArrayList<Tuile> touteLesTuile = new ArrayList<Tuile>();
+		List<Tuile> touteLesTuile = new ArrayList<Tuile>();
 		
 		for (Couleur couleur : Couleur.values()) {
 			for (Forme forme : Forme.values()) {
@@ -36,9 +37,8 @@ public class MaitreDuJeu {
 		tuiles.melanger();
 	}
 	
-	
-	public void diviserTuilesEnDeux(List<Tuile> tuiles, List<Joueur> listeJoueurs) {
-	    Collections.shuffle(tuiles);
+	public void diviserTuilesEnDeux(List<Tuile> tuiles, List<Joueur> listeJoueurs) {	
+ 		Collections.shuffle(tuiles);
 	    int taille = tuiles.size();
 	    int dividende = listeJoueurs.size();
 	    int debutDePioche = 0;
@@ -62,6 +62,31 @@ public class MaitreDuJeu {
 			tailleRack++;
             i++;
 		}
+	}
+	
+	public PlateauDeCase initPlateauCase() {
+		PlateauDeCase plateau = new PlateauDeCase();
+		
+		int i;
+		int j;
+		Position position;
+		for (i=0;i<Constantes.COLONNES;i++) {
+			for (j=0;j<Constantes.LIGNES;j++) {
+				position = new Position(i,j);
+				plateau.cases().put(position, new Case(Type.NORMAL));
+				boolean res = plateau.cases().containsKey(position);
+				if(res) {
+					String ss = "e";
+				}
+			}
+		}
+		
+		for (Position positionSun : Constantes.POSITION_SOLEIL) {
+			plateau.cases().replace(positionSun, new Case(Type.SOLEIL, null));
+		}
+	plateau.cases().replace(Constantes.CENTRE, new Case(Type.LUNE, null));
+		
+		return plateau;
 	}
 }
 
