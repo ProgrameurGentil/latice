@@ -2,6 +2,7 @@ package latice.application;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import latice.model.Joueur;
 import latice.model.MaitreDuJeu;
@@ -17,7 +18,7 @@ public class LaticeJeuxEssais {
 		
 		MaitreDuJeu maitreDuJeu = new MaitreDuJeu();
 		
-		ArrayList<Tuile> touteLesTuile = new ArrayList<Tuile>();
+		List<Tuile> touteLesTuile = new ArrayList<Tuile>();
 		touteLesTuile = maitreDuJeu.initTuiles();
 		
 		System.out.println("Nb total de tuiles : " + touteLesTuile.size());

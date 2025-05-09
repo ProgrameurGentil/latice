@@ -2,6 +2,7 @@ package latice.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class MaitreDuJeu {
 	private Integer nb_tours;
@@ -13,12 +14,12 @@ public class MaitreDuJeu {
 	public void lancerTour() {
 		//TODO fonction qui lance un tour
 	}
-	public Joueur aQuiLeTour() {
+	public Joueur quelJoueurDoitJouer() {
 		//TODO fonction qui retourne le joueur qui doit jouer
 		return null;	
 	}
 	
-	public ArrayList<Tuile> initTuiles() {
+	public List<Tuile> initTuiles() {
 		ArrayList<Tuile> touteLesTuile = new ArrayList<Tuile>();
 		
 		for (Couleur couleur : Couleur.values()) {
@@ -26,7 +27,7 @@ public class MaitreDuJeu {
 				for (int count=0;count<2;count++) {
 					touteLesTuile.add(new Tuile(couleur, forme));
 				}
-	        }
+	        } 
 		}
 		return touteLesTuile;
 	}
@@ -36,7 +37,7 @@ public class MaitreDuJeu {
 	}
 	
 	
-	public void diviserTuilesEnDeux(ArrayList<Tuile> tuiles, ArrayList<Joueur> listeJoueurs) {
+	public void diviserTuilesEnDeux(List<Tuile> tuiles, List<Joueur> listeJoueurs) {
 	    Collections.shuffle(tuiles);
 	    int taille = tuiles.size();
 	    int dividende = listeJoueurs.size();

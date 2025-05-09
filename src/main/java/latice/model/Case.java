@@ -15,7 +15,7 @@ public class Case {
 		return type;
 	}
 	
-	public Boolean estOccupé() {
+	public Boolean estOccupe() {
 		//TODO
 		return true;
 	}
