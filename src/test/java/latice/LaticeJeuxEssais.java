@@ -2,6 +2,7 @@ package latice;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +32,7 @@ public class LaticeJeuxEssais {
 		PlateauDeCase plateauDeCase = leMaitre.initPlateauCase();
 		
 	    // test initialisation des tuiles	
-		ArrayList<Tuile> touteLesTuile = new ArrayList<Tuile>();
+		List<Tuile> touteLesTuile = new ArrayList<Tuile>();
 		touteLesTuile = leMaitre.initTuiles();
 		
 		if ( touteLesTuile.size() == 72) {

@@ -38,7 +38,7 @@ public class Case {
 		return "erreur";
 	}
 	
-	public Boolean estOccupé() {
+	public Boolean estOccupe() {
 		//TODO
 		return true;
 	}

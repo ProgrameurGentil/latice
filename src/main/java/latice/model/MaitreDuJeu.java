@@ -1,6 +1,7 @@
 package latice.model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Collections;
 
 public class MaitreDuJeu {
@@ -13,13 +14,13 @@ public class MaitreDuJeu {
 	public void lancerTour() {
 		//TODO fonction qui lance un tour
 	}
-	public Joueur aQuiLeTour() {
+	public Joueur quelJoueurDoitJouer() {
 		//TODO fonction qui retourne le joueur qui doit jouer
 		return null;	
 	}
 	
-	public ArrayList<Tuile> initTuiles() {
-		ArrayList<Tuile> touteLesTuile = new ArrayList<Tuile>();
+	public List<Tuile> initTuiles() {
+		List<Tuile> touteLesTuile = new ArrayList<Tuile>();
 		
 		for (Couleur couleur : Couleur.values()) {
 			for (Forme forme : Forme.values()) {
@@ -35,29 +36,29 @@ public class MaitreDuJeu {
 		tuiles.melanger();
 	}
 	
-	public void diviserTuilesEnDeux(ArrayList<Tuile> tuiles, ArrayList<Joueur> listeJoueurs) {
-		ArrayList<Tuile> demiTuiles = new ArrayList<Tuile>();
-		Integer taille = tuiles.size();
-		Integer dividende = listeJoueurs.size();
-		Integer debutDePioche = 0;
-		Integer nb_decoupage = 0;
-		Integer finDePioche;
- 		for (Joueur joueur : listeJoueurs){ 
-			finDePioche = (taille/dividende) * nb_decoupage;
-			demiTuiles.addAll(tuiles.subList(debutDePioche, finDePioche));
-			debutDePioche = finDePioche;
-			nb_decoupage++;
-			joueur.pioche = new Pioche(demiTuiles);
- 		}
+	public void diviserTuilesEnDeux(List<Tuile> tuiles, List<Joueur> listeJoueurs) {	
+ 		Collections.shuffle(tuiles);
+	    int taille = tuiles.size();
+	    int dividende = listeJoueurs.size();
+	    int debutDePioche = 0;
+
+	    for (int i = 0; i < listeJoueurs.size(); i++) {
+	        int finDePioche = debutDePioche + (taille / dividende);
+	        ArrayList<Tuile> piocheJoueur = new ArrayList<>(tuiles.subList(debutDePioche, finDePioche));
+	        listeJoueurs.get(i).setPioche(new Pioche(piocheJoueur));
+	        debutDePioche = finDePioche;
+	    }
 	}
 
 	public void piocher5Tuiles(Pioche pioche, Rack rack) {
 
-		Integer taille = pioche.taille();
+		Integer taillePioche = pioche.taille();
+		Integer tailleRack = rack.taille();
 		Integer i = 0;
-		while (i < 5 && taille > 0 && rack.taille() < 5) {
-			rack.ajouter(pioche.enlever(0));
-            taille--;
+		while (i < 5 && taillePioche > 0 && tailleRack < 5) {
+			rack.ajouter(pioche.enlever(0)); // peut avoir une erreur si le l'indice n'est pas trouvé
+			taillePioche--;
+			tailleRack++;
             i++;
 		}
 	}
