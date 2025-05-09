@@ -24,6 +24,20 @@ public class Case {
 		return type;
 	}
 	
+	public String getSmallerType() {
+		Type type = getType();
+		if (type == Type.LUNE) {
+			return "L";
+		}
+		if  (type == Type.NORMAL) {
+			return "N";
+		}
+		if  (type == Type.SOLEIL) {
+			return "S";
+		}
+		return "erreur";
+	}
+	
 	public Boolean estOccupé() {
 		//TODO
 		return true;

@@ -80,9 +80,9 @@ public class MaitreDuJeu {
 		}
 		
 		for (Position positionSun : Constantes.POSITION_SOLEIL) {
-			//plateau.cases().replace(positionSun, new Case(Type.SOLEIL, null));
+			plateau.cases().replace(positionSun, new Case(Type.SOLEIL, null));
 		}
-	//	plateau.cases().replace(Constantes.CENTRE, new Case(Type.LUNE, null));
+	plateau.cases().replace(Constantes.CENTRE, new Case(Type.LUNE, null));
 		
 		return plateau;
 	}

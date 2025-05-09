@@ -45,16 +45,12 @@ public class PlateauDeCase {
 		String nom;
 		String ligne;
 		Case caseDePlus;
-		Type typeDePLus;
 		String result = "";
 		for (i=0;i<9;i++) {
 			ligne = "";
-			for (j=0;i<9;i++) {
+			for (j=0;j<9;j++) {
 				caseDePlus = this.caseAPosition(new Position(i,j));
-				Set<Position> listPos = this.cases.keySet();
-				boolean res = listPos.contains(new Position(0, 0));
-				typeDePLus = caseDePlus.getType();
-				nom = typeDePLus.toString();
+				nom = caseDePlus.getSmallerType();
 				ligne = ligne+" "+nom;
 			}
 			System.out.println(ligne);
