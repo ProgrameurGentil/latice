@@ -62,23 +62,27 @@ public class MaitreDuJeu {
 		}
 	}
 	
-	public PlateauDeCase InitPlateauCase() {
+	public PlateauDeCase initPlateauCase() {
 		PlateauDeCase plateau = new PlateauDeCase();
+		
 		int i;
 		int j;
-		String nom;
 		Position position;
-		for (i=0;i<Constantes.COLUMNS;i++) {
-			for (j=0;j<Constantes.ROWS;j++) {
+		for (i=0;i<Constantes.COLONNES;i++) {
+			for (j=0;j<Constantes.LIGNES;j++) {
 				position = new Position(i,j);
-				plateau.cases().put(position, new Case(Type.NORMAL, null));
+				plateau.cases().put(position, new Case(Type.NORMAL));
+				boolean res = plateau.cases().containsKey(position);
+				if(res) {
+					String ss = "e";
+				}
 			}
 		}
 		
 		for (Position positionSun : Constantes.POSITION_SOLEIL) {
-			plateau.cases().replace(positionSun, new Case(Type.SOLEIL, null));
+			//plateau.cases().replace(positionSun, new Case(Type.SOLEIL, null));
 		}
-		plateau.cases().replace(Constantes.middle, new Case(Type.LUNE, null));
+	//	plateau.cases().replace(Constantes.CENTRE, new Case(Type.LUNE, null));
 		
 		return plateau;
 	}

@@ -2,6 +2,7 @@ package latice.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class PlateauDeCase {
 	private final Map<Position, Case> cases;
@@ -14,33 +15,51 @@ public class PlateauDeCase {
 		return cases;
 	}
 	
-	public boolean put(Position position, Case caseDePlus) {
-		if(cases.putIfAbsent(position, caseDePlus) == null) {
+	public boolean poser(Position position, Case caseDePlus) {
+		if(cases.putIfAbsent(position, caseDePlus).equals(Constantes.caseDefault)) {
 			return true;
 		}
 		return false;
 	}
 	
-	public boolean isCaseAt(Position position) {
+	public boolean siCaseIci(Position position) {
 		return cases.containsKey(position);
 	}
 
-	public boolean isEmpty() {
+	public boolean siCaseEstVide() {
 		return cases.isEmpty();
 	}
 
-	public Case caseAt(Position position) {
+	public Case caseAPosition(Position position) {
 		return cases.get(position);
 	}
 
-	public Case TurnToSun(Position position) {
+	public Case mettreEnCaseSoleil(Position position) {
 		return null;
 		// TODO : one line instruction : see in javadoc ;-;
 	}
-
-	public String toAscii() {
-		return "";
-		// TODO
+	
+	public String toString() {
+		int i;
+		int j;
+		String nom;
+		String ligne;
+		Case caseDePlus;
+		Type typeDePLus;
+		String result = "";
+		for (i=0;i<9;i++) {
+			ligne = "";
+			for (j=0;i<9;i++) {
+				caseDePlus = this.caseAPosition(new Position(i,j));
+				Set<Position> listPos = this.cases.keySet();
+				boolean res = listPos.contains(new Position(0, 0));
+				typeDePLus = caseDePlus.getType();
+				nom = typeDePLus.toString();
+				ligne = ligne+" "+nom;
+			}
+			System.out.println(ligne);
+		}
+		return result;
 	}
 }
 

@@ -11,7 +11,7 @@ import latice.model.Case;
 import latice.model.Constantes;
 import latice.model.Joueur;
 import latice.model.MaitreDuJeu;
-import latice.model.Plateau;
+import latice.model.PlateauTuiles;
 import latice.model.PlateauDeCase;
 import latice.model.Position;
 
@@ -24,12 +24,11 @@ public class LaticeJeuxEssais {
 		ArrayList<Joueur> listeJoueurs = new ArrayList<>(Arrays.asList(joueur1, joueur2)); 
 				
 		Position end = new Position(0, 0);
-		Position start = new Position(Constantes.COLUMNS - 1, Constantes.ROWS - 1);
-		Plateau plateau = new Plateau(joueur1, joueur2);
+		Position start = new Position(Constantes.COLONNES - 1, Constantes.LIGNES - 1);
+		PlateauTuiles plateauTuiles = new PlateauTuiles(joueur1, joueur2);
 		
 		
-		PlateauDeCase plateauDeCase = new PlateauDeCase();
-		plateauDeCase = leMaitre.InitPlateauCase();
+		PlateauDeCase plateauDeCase = leMaitre.initPlateauCase();
 		
 	    // test initialisation des tuiles	
 		ArrayList<Tuile> touteLesTuile = new ArrayList<Tuile>();
@@ -60,21 +59,6 @@ public class LaticeJeuxEssais {
 		//test remplisage des rack
 		
 		//plateau
-		int i;
-		int j;
-		String nom;
-		String ligne;
-		Case caseDePlus;
-		Type typeDePLus;
-		for (i=0;i<9;i++) {
-			ligne = "";
-			for (j=0;i<9;i++) {
-				caseDePlus = plateauDeCase.caseAt(new Position(i,j));
-				typeDePLus = caseDePlus.getType();
-				nom = typeDePLus.toString();
-				ligne = ligne+" "+nom;
-			}
-			System.out.println(ligne);
-		}
+		plateauDeCase.toString();
 	}
 }
