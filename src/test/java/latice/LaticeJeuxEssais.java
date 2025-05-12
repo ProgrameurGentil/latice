@@ -4,17 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
-import latice.model.Tuile;
-import latice.model.Type;
-import latice.model.Case;
 import latice.model.Constantes;
 import latice.model.Joueur;
 import latice.model.MaitreDuJeu;
-import latice.model.PlateauTuiles;
 import latice.model.PlateauDeCase;
+import latice.model.PlateauTuiles;
 import latice.model.Position;
+import latice.model.Tuile;
 
 public class LaticeJeuxEssais {
 	public static void main(String[] args) {

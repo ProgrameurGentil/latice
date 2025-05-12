@@ -16,7 +16,7 @@ public class PlateauDeCase {
 	}
 	
 	public boolean poser(Position position, Case caseDePlus) {
-		if(cases.putIfAbsent(position, caseDePlus).equals(Constantes.caseDefault)) {
+		if (cases.putIfAbsent(position, caseDePlus).equals(Constantes.caseDefault)) {
 			return true;
 		}
 		return false;
