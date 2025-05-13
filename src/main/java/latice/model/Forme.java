@@ -3,8 +3,8 @@ package latice.model;
 public enum Forme {
 	FLEUR,
 	PLUME,
-	DOPHIN,
+	DAUPHIN,
 	TORTUE,
 	OISEAU,
-	GECKO
+	LEZARD
 }

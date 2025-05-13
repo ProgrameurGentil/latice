@@ -13,18 +13,19 @@ import latice.model.*;
 public class TestGestionDesTuiles {
 	MaitreDuJeu maitre = new MaitreDuJeu();
 	GroupeDeTuile listeDeTuiles = new GroupeDeTuile(new ArrayList<Tuile>());
+	ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>();
 	
 	@BeforeEach
 	public void ajouterDesElementDansLaListePourFaireLesTests() {
-		listeDeTuiles.ajouter(new Tuile(Couleur.BLEU, Forme.DOPHIN));
+		listeDeTuiles.ajouter(new Tuile(Couleur.BLEU, Forme.DAUPHIN));
 		listeDeTuiles.ajouter(new Tuile(Couleur.BLEU, Forme.FLEUR));
-		listeDeTuiles.ajouter(new Tuile(Couleur.ROUGE, Forme.DOPHIN));
+		listeDeTuiles.ajouter(new Tuile(Couleur.ROUGE, Forme.DAUPHIN));
 		listeDeTuiles.ajouter(new Tuile(Couleur.ROUGE, Forme.FLEUR));
-		listeDeTuiles.ajouter(new Tuile(Couleur.VERT, Forme.DOPHIN));
+		listeDeTuiles.ajouter(new Tuile(Couleur.VERT, Forme.DAUPHIN));
 		listeDeTuiles.ajouter(new Tuile(Couleur.VERT, Forme.FLEUR));
-		listeDeTuiles.ajouter(new Tuile(Couleur.GRIS, Forme.DOPHIN));
+		listeDeTuiles.ajouter(new Tuile(Couleur.GRIS, Forme.DAUPHIN));
 		listeDeTuiles.ajouter(new Tuile(Couleur.GRIS, Forme.FLEUR));
-		listeDeTuiles.ajouter(new Tuile(Couleur.JAUNE, Forme.DOPHIN));
+		listeDeTuiles.ajouter(new Tuile(Couleur.JAUNE, Forme.DAUPHIN));
 		listeDeTuiles.ajouter(new Tuile(Couleur.JAUNE, Forme.FLEUR));
 	}
 	@Test
@@ -32,21 +33,21 @@ public class TestGestionDesTuiles {
 		GroupeDeTuile listeDeTuiles1 = new GroupeDeTuile(new ArrayList<Tuile>());
 		
 		GroupeDeTuile listeDeTuilesDeVerif = new GroupeDeTuile(new ArrayList<Tuile>());
-		listeDeTuilesDeVerif.ajouter(new Tuile(Couleur.BLEU, Forme.DOPHIN));
+		listeDeTuilesDeVerif.ajouter(new Tuile(Couleur.BLEU, Forme.DAUPHIN));
 		listeDeTuilesDeVerif.ajouter(new Tuile(Couleur.BLEU, Forme.FLEUR));
-		listeDeTuilesDeVerif.ajouter(new Tuile(Couleur.ROUGE, Forme.DOPHIN));
+		listeDeTuilesDeVerif.ajouter(new Tuile(Couleur.ROUGE, Forme.DAUPHIN));
 		listeDeTuilesDeVerif.ajouter(new Tuile(Couleur.ROUGE, Forme.FLEUR));
-		listeDeTuilesDeVerif.ajouter(new Tuile(Couleur.VERT, Forme.DOPHIN));
+		listeDeTuilesDeVerif.ajouter(new Tuile(Couleur.VERT, Forme.DAUPHIN));
 		
 		maitre.diviserTuilesEnDeux(listeDeTuiles, listeDeTuiles1, new ArrayList<Tuile>());
 		System.out.println(listeDeTuiles1);
 		System.out.println(listeDeTuilesDeVerif);
 		
-		assertEquals(listeDeTuiles1.get(0), listeDeTuilesDeVerif.get(0));
-		assertEquals(listeDeTuiles1.get(1), listeDeTuilesDeVerif.get(1));
-		assertEquals(listeDeTuiles1.get(2), listeDeTuilesDeVerif.get(2));
-		assertEquals(listeDeTuiles1.get(3), listeDeTuilesDeVerif.get(3));
-		assertEquals(listeDeTuiles1.get(4), listeDeTuilesDeVerif.get(4));
+		assertEquals(listeDeTuiles1.obtenirValeur(0), listeDeTuilesDeVerif.obtenirValeur(0));
+		assertEquals(listeDeTuiles1.obtenirValeur(1), listeDeTuilesDeVerif.obtenirValeur(1));
+		assertEquals(listeDeTuiles1.obtenirValeur(2), listeDeTuilesDeVerif.obtenirValeur(2));
+		assertEquals(listeDeTuiles1.obtenirValeur(3), listeDeTuilesDeVerif.obtenirValeur(3));
+		assertEquals(listeDeTuiles1.obtenirValeur(4), listeDeTuilesDeVerif.obtenirValeur(4));
 	}
 	
 	/*
