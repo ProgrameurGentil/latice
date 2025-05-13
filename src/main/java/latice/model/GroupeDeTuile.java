@@ -3,7 +3,7 @@ package latice.model;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public abstract class GroupeDeTuile {
+public class GroupeDeTuile {
 	protected ArrayList<Tuile> tuiles;
 
 	public GroupeDeTuile(ArrayList<Tuile> tuiles) {

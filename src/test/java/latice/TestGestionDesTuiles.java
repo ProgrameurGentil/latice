@@ -12,31 +12,31 @@ import latice.model.*;
 
 public class TestGestionDesTuiles {
 	MaitreDuJeu maitre = new MaitreDuJeu();
-	ArrayList<Tuile> listeDeTuiles = new ArrayList<Tuile>();
+	GroupeDeTuile listeDeTuiles = new GroupeDeTuile(new ArrayList<Tuile>());
 	
 	@BeforeEach
 	public void ajouterDesElementDansLaListePourFaireLesTests() {
-		listeDeTuiles.add(new Tuile(Couleur.BLEU, Forme.DOPHIN));
-		listeDeTuiles.add(new Tuile(Couleur.BLEU, Forme.FLEUR));
-		listeDeTuiles.add(new Tuile(Couleur.ROUGE, Forme.DOPHIN));
-		listeDeTuiles.add(new Tuile(Couleur.ROUGE, Forme.FLEUR));
-		listeDeTuiles.add(new Tuile(Couleur.VERT, Forme.DOPHIN));
-		listeDeTuiles.add(new Tuile(Couleur.VERT, Forme.FLEUR));
-		listeDeTuiles.add(new Tuile(Couleur.GRIS, Forme.DOPHIN));
-		listeDeTuiles.add(new Tuile(Couleur.GRIS, Forme.FLEUR));
-		listeDeTuiles.add(new Tuile(Couleur.JAUNE, Forme.DOPHIN));
-		listeDeTuiles.add(new Tuile(Couleur.JAUNE, Forme.FLEUR));
+		listeDeTuiles.ajouter(new Tuile(Couleur.BLEU, Forme.DOPHIN));
+		listeDeTuiles.ajouter(new Tuile(Couleur.BLEU, Forme.FLEUR));
+		listeDeTuiles.ajouter(new Tuile(Couleur.ROUGE, Forme.DOPHIN));
+		listeDeTuiles.ajouter(new Tuile(Couleur.ROUGE, Forme.FLEUR));
+		listeDeTuiles.ajouter(new Tuile(Couleur.VERT, Forme.DOPHIN));
+		listeDeTuiles.ajouter(new Tuile(Couleur.VERT, Forme.FLEUR));
+		listeDeTuiles.ajouter(new Tuile(Couleur.GRIS, Forme.DOPHIN));
+		listeDeTuiles.ajouter(new Tuile(Couleur.GRIS, Forme.FLEUR));
+		listeDeTuiles.ajouter(new Tuile(Couleur.JAUNE, Forme.DOPHIN));
+		listeDeTuiles.ajouter(new Tuile(Couleur.JAUNE, Forme.FLEUR));
 	}
 	@Test
 	public void diviserUneListeDeTuillesEnDeuxEtAvoirUneSeparationJuste() {
-		ArrayList<Tuile> listeDeTuiles1 = new ArrayList<Tuile>();
+		GroupeDeTuile listeDeTuiles1 = new GroupeDeTuile(new ArrayList<Tuile>());
 		
-		ArrayList<Tuile> listeDeTuilesDeVerif = new ArrayList<Tuile>();
-		listeDeTuilesDeVerif.add(new Tuile(Couleur.BLEU, Forme.DOPHIN));
-		listeDeTuilesDeVerif.add(new Tuile(Couleur.BLEU, Forme.FLEUR));
-		listeDeTuilesDeVerif.add(new Tuile(Couleur.ROUGE, Forme.DOPHIN));
-		listeDeTuilesDeVerif.add(new Tuile(Couleur.ROUGE, Forme.FLEUR));
-		listeDeTuilesDeVerif.add(new Tuile(Couleur.VERT, Forme.DOPHIN));
+		GroupeDeTuile listeDeTuilesDeVerif = new GroupeDeTuile(new ArrayList<Tuile>());
+		listeDeTuilesDeVerif.ajouter(new Tuile(Couleur.BLEU, Forme.DOPHIN));
+		listeDeTuilesDeVerif.ajouter(new Tuile(Couleur.BLEU, Forme.FLEUR));
+		listeDeTuilesDeVerif.ajouter(new Tuile(Couleur.ROUGE, Forme.DOPHIN));
+		listeDeTuilesDeVerif.ajouter(new Tuile(Couleur.ROUGE, Forme.FLEUR));
+		listeDeTuilesDeVerif.ajouter(new Tuile(Couleur.VERT, Forme.DOPHIN));
 		
 		maitre.diviserTuilesEnDeux(listeDeTuiles, listeDeTuiles1, new ArrayList<Tuile>());
 		System.out.println(listeDeTuiles1);
