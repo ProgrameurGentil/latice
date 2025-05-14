@@ -20,7 +20,7 @@ public class MaitreDuJeu {
 		return null;	
 	}
 	
-	public List<Tuile> initTuiles() {
+	public List<Tuile> initTuiles() { // devrait retrourner une pioche
 		List<Tuile> touteLesTuile = new ArrayList<Tuile>();
 		
 		for (Couleur couleur : Couleur.values()) {
@@ -33,11 +33,11 @@ public class MaitreDuJeu {
 		return touteLesTuile;
 	}
 	
-	public void melangerTuiles(GroupeDeTuile tuiles){
+	public void melangerTuiles(GroupeDeTuile tuiles){ // se trouve deja dans la classe Groupe de tuiles
 		tuiles.melanger();
 	}
 	
-	public void diviserTuilesEnDeux(List<Tuile> tuiles, List<Joueur> listeJoueurs) {	
+	public void diviserTuilesEnDeux(List<Tuile> tuiles, List<Joueur> listeJoueurs) { // le nom ne va pas
  		Collections.shuffle(tuiles);
 	    int taille = tuiles.size();
 	    int dividende = listeJoueurs.size();
@@ -51,11 +51,11 @@ public class MaitreDuJeu {
 	    }
 	}
 
-	public void piocher5Tuiles(Pioche pioche, Rack rack) {
+	public void piocher5Tuiles(Pioche pioche, Rack rack) { // devrai etre dans la class rack
 
 		Integer taillePioche = pioche.taille();
 		Integer tailleRack = rack.taille();
-		Integer i = 0;
+		Integer i = 0;//
 		while (i < 5 && taillePioche > 0 && tailleRack < 5) {
 			rack.ajouter(pioche.enlever(0)); // peut avoir une erreur si le l'indice n'est pas trouvé
 			taillePioche--;
@@ -64,7 +64,7 @@ public class MaitreDuJeu {
 		}
 	}
 	
-	public PlateauDeCase initPlateauCase() {
+	public PlateauDeCase initPlateauCase() { // il y a un truc qui va pas mais je ne sais plus quoi
 		PlateauDeCase plateau = new PlateauDeCase();
 		
 		int i;
@@ -74,10 +74,6 @@ public class MaitreDuJeu {
 			for (j=0;j<Constantes.LIGNES;j++) {
 				position = new Position(i,j);
 				plateau.cases().put(position, new Case(Type.NORMAL));
-				boolean res = plateau.cases().containsKey(position);
-				if(res) {
-					String ss = "e";
-				}
 			}
 		}
 		

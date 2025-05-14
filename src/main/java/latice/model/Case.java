@@ -6,6 +6,7 @@ public class Case {
 	private final Type type;
 	private Tuile tuile;
 	
+	
 	public Case( Type type, Tuile tuile) {
 		this.type = type;
 		this.tuile = tuile;
