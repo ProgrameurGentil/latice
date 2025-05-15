@@ -25,7 +25,7 @@ public class LaticeJeuxEssais {
 		
 		ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>( 
 											Arrays.asList(new Joueur("Joueur 1"), new Joueur("Joueur 2")));
-		maitreDuJeu.diviserTuilesEnDeux(touteLesTuile, listeJoueur);
+		maitreDuJeu.diviseEtRepartiLesTuilesEnPioches(touteLesTuile, listeJoueur);
 		
 		System.out.println(LINE_BAR);
 		System.out.println("Taille du rack du joueur 1 : " + listeJoueur.get(0).pioche.taille());

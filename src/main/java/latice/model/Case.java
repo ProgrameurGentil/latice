@@ -4,28 +4,22 @@ import java.util.Objects;
 
 public class Case {
 	private final Type type;
-	private Tuile tuile;
 	
-	
-	public Case( Type type, Tuile tuile) {
-		this.type = type;
-		this.tuile = tuile;
-	}
 	
 	public Case( Type type) {
 		this.type = type;
-		this.tuile = null;
 	}
 	
+	
 	public Case() {
-		this(Type.NORMAL, null);
+		this(Type.NORMAL);
 	}
 	
 	public Type getType() {
 		return type;
 	}
 	
-	public String getSmallerType() {
+	public String ecrireCaseEnUneLettre() {
 		Type type = getType();
 		if (type == Type.LUNE) {
 			return "L";
@@ -40,13 +34,13 @@ public class Case {
 	}
 	
 	public Boolean estOccupe() {
-		//TODO
+		//TODO récuper et comparer les deux plateaux (tuile et case) à l'aide de la position de la case
 		return true;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(tuile, type);
+		return Objects.hash(type);
 	}
 
 	@Override
@@ -58,9 +52,8 @@ public class Case {
 		if (getClass() != obj.getClass())
 			return false;
 		Case other = (Case) obj;
-		return Objects.equals(tuile, other.tuile) && type == other.type;
+		return type == other.type;
 	}
-	
 	
 	
 }

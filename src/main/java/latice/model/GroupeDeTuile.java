@@ -2,12 +2,13 @@ package latice.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class GroupeDeTuile {
-	protected ArrayList<Tuile> tuiles;
+	protected List<Tuile> tuiles;
 
-	public GroupeDeTuile(ArrayList<Tuile> tuiles) {
-		this.tuiles = tuiles;
+	public GroupeDeTuile(List<Tuile> touteLesTuileList) {
+		this.tuiles = touteLesTuileList;
 	}
 
 	public Integer taille() {
@@ -28,7 +29,7 @@ public class GroupeDeTuile {
 		Collections.shuffle(this.tuiles);
 	}
 	
-	public Tuile obtenirValeur(Integer indice) { // nom ne va pas
+	public Tuile obtenirLaTuilleAIndice(Integer indice) {
 		return this.tuiles.get(indice);
 	}
 

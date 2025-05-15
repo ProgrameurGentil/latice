@@ -16,7 +16,7 @@ public class PlateauDeCase {
 	}
 	
 	public boolean poser(Position position, Case caseDePlus) {
-		if (cases.putIfAbsent(position, caseDePlus).equals(Constantes.caseDefault)) {
+		if (cases.putIfAbsent(position, caseDePlus).equals(Constantes.CASENORMALE)) {
 			return true;
 		}
 		return false;
@@ -50,7 +50,7 @@ public class PlateauDeCase {
 			ligne = "";
 			for (j=0;j<9;j++) {
 				caseDePlus = this.caseAPosition(new Position(i,j));
-				nom = caseDePlus.getSmallerType();
+				nom = caseDePlus.ecrireCaseEnUneLettre();
 				ligne = ligne+" "+nom;
 			}
 			System.out.println(ligne);

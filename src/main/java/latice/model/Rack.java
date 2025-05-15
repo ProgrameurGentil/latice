@@ -1,18 +1,19 @@
 package latice.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Rack extends GroupeDeTuile {
 
 	private static final String LINE_BAR = "+--------------+";
 
-	public Rack(ArrayList<Tuile> tuiles) {
+	public Rack(List<Tuile> tuiles) {
 		super(tuiles);
 		// Auto-generated constructor stub
 	}
 	
 	public Rack() {
-		this(new ArrayList<Tuile>());
+		this((List) new ArrayList<Tuile>());
 	}
 
 	public void afficher() {

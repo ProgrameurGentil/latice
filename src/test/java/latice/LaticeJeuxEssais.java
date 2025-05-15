@@ -44,7 +44,7 @@ public class LaticeJeuxEssais {
 		}
 		
 		// test création des pioche		
-		leMaitre.diviserTuilesEnDeux(touteLesTuile, listeJoueurs);	
+		leMaitre.diviseEtRepartiLesTuilesEnPioches(touteLesTuile, listeJoueurs);	
 		if ( joueur1.pioche.taille() == 36 && joueur2.pioche.taille() == 36) {
 			System.out.println("tout va bien n°3  :  "+ joueur1.pioche.taille() +" = 36 et "+ joueur2.pioche.taille() +" = 36");
 		} else {

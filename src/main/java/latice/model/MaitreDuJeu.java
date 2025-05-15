@@ -20,24 +20,21 @@ public class MaitreDuJeu {
 		return null;	
 	}
 	
-	public List<Tuile> initTuiles() { // devrait retrourner une pioche
-		List<Tuile> touteLesTuile = new ArrayList<Tuile>();
+	public Pioche initTuiles() {
+		List<Tuile> touteLesTuileList = new ArrayList<Tuile>();
 		
 		for (Couleur couleur : Couleur.values()) {
 			for (Forme forme : Forme.values()) {
 				for (int count=0;count<2;count++) {
-					touteLesTuile.add(new Tuile(couleur, forme));
+					touteLesTuileList.add(new Tuile(couleur, forme));
 				}
 	        } 
 		}
-		return touteLesTuile;
+		Pioche touteLesTuilePioche = new Pioche(touteLesTuileList);
+		return touteLesTuilePioche;
 	}
 	
-	public void melangerTuiles(GroupeDeTuile tuiles){ // se trouve deja dans la classe Groupe de tuiles
-		tuiles.melanger();
-	}
-	
-	public void diviserTuilesEnDeux(List<Tuile> tuiles, List<Joueur> listeJoueurs) { // le nom ne va pas
+	public void diviseEtRepartiLesTuilesEnPioches(List<Tuile> tuiles, List<Joueur> listeJoueurs) { // le nom ne va pas
  		Collections.shuffle(tuiles);
 	    int taille = tuiles.size();
 	    int dividende = listeJoueurs.size();
@@ -64,7 +61,7 @@ public class MaitreDuJeu {
 		}
 	}
 	
-	public PlateauDeCase initPlateauCase() { // il y a un truc qui va pas mais je ne sais plus quoi
+	public PlateauDeCase initPlateauCase() { // il y a un truc qui va pas mais je ne sais plus quoi-HENZO || ca va dans plateaudecase -ADAM
 		PlateauDeCase plateau = new PlateauDeCase();
 		
 		int i;
@@ -78,9 +75,9 @@ public class MaitreDuJeu {
 		}
 		
 		for (Position positionSun : Constantes.POSITION_SOLEIL) {
-			plateau.cases().replace(positionSun, new Case(Type.SOLEIL, null));
+			plateau.cases().replace(positionSun, new Case(Type.SOLEIL));
 		}
-	plateau.cases().replace(Constantes.CENTRE, new Case(Type.LUNE, null));
+	plateau.cases().replace(Constantes.CENTRE, new Case(Type.LUNE));
 		
 		return plateau;
 	}
