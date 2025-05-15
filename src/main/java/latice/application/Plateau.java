@@ -2,7 +2,9 @@ package latice.application;
 
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,12 +16,15 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import latice.model.Rack;
+import latice.model.Tuile;
 
 public class Plateau extends Application{
 	 private static final int colonnes = 9;
@@ -78,15 +83,44 @@ public class Plateau extends Application{
 	                new BackgroundSize(
 	                        558, 558, false, false, true, false));
 	        plateau.setBackground(new Background(background));
+	        
 	        root.setCenter(plateau);
+	        
+	        Image imgdr = new Image(getClass().getResourceAsStream("/tuiles/dauphins/dauphin_rose.png"));
+	        Image imgrb = new Image(getClass().getResourceAsStream("/tuiles/dauphins/dauphin_rose.png"));
+	        Image imgobf = new Image(getClass().getResourceAsStream("/tuiles/dauphins/dauphin_rose.png"));
+	        Image imglv = new Image(getClass().getResourceAsStream("/tuiles/dauphins/dauphin_rose.png"));
+	        Image imgpr = new Image(getClass().getResourceAsStream("/tuiles/dauphins/dauphin_rose.png"));
+	        ImageView dbrs = new ImageView(imgdr);
+	        ImageView dbrg = new ImageView(imgpr);
+	        ImageView dbrb = new ImageView(imgrb);
+	        ImageView dbobf = new ImageView(imgobf);
+	        ImageView dblv = new ImageView(imglv);
+
+	        VBox vb = new VBox();
+	        
+	        Label pointsJ1 = new Label("Points du joueur 1 : ");
+	        Label pointsJ2 = new Label("Points du joueur 2 : ");
+	        vb.getChildren().addAll(pointsJ1,pointsJ2);
+	        root.setLeft(vb);
+	        
+	        vb.setAlignment(Pos.CENTER_LEFT);
+	        
+	        
+	        HBox rack = new HBox();
+	        rack.getChildren().addAll(dbrs, dbrg, dbrb, dbobf, dblv);
+	        root.setBottom(rack);
+	        rack.setAlignment(Pos.CENTER);
 	        
 			primaryStage.setTitle("Plateau Latice");
 			Scene scene = new Scene(root, 1000, 700);
 	        primaryStage.setScene(scene);
-
+	        
 	        primaryStage.setResizable(false);
 	        primaryStage.show();
 		
 	}
+
+	
 }
 		
