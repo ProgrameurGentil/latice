@@ -23,6 +23,10 @@ public class Tuile {
 	public Forme getForme() {
 		return forme;
 	}
+	
+	public String obtenirLienVersImage() {
+		return "/" + this.getForme() + "s/" + this.getForme() + "/" + this.getCouleur() + ".png";
+	}
 
 	@Override
 	public int hashCode() {
