@@ -3,13 +3,22 @@ package latice.application;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class Plateau extends Application{
@@ -26,23 +35,21 @@ public class Plateau extends Application{
 
 	        GridPane plateau = new GridPane();
 	        plateau.setGridLinesVisible(true);
-	        plateau.setPrefSize(558, 544);
-	        plateau.setMinSize(558, 544);
-	        plateau.setMaxSize(558, 558);
-
+	        plateau.setMaxSize(555, 555);
+	   
 	        for (int col = 0; col < colonnes; col++) {
 	            ColumnConstraints colConst = new ColumnConstraints();
-	            colConst.setMinWidth(10);
-	            colConst.setPrefWidth(100);
-	            colConst.setHgrow(Priority.SOMETIMES);
+	            colConst.setMinWidth(case_taille);
+	            colConst.setPrefWidth(case_taille);
+	            colConst.setHgrow(Priority.NEVER);
 	            plateau.getColumnConstraints().add(colConst);
 	        }
 
 	        for (int row = 0; row < lignes; row++) {
 	            RowConstraints rowConst = new RowConstraints();
-	            rowConst.setMinHeight(10);
-	            rowConst.setPrefHeight(30);
-	            rowConst.setVgrow(Priority.SOMETIMES);
+	            rowConst.setMinHeight(case_taille);
+	            rowConst.setPrefHeight(case_taille);
+	            rowConst.setVgrow(Priority.NEVER);
 	            plateau.getRowConstraints().add(rowConst);
 	        }
 
@@ -62,12 +69,18 @@ public class Plateau extends Application{
 	                plateau.add(imageView, col, row);
 	            }
 	        }
-	        ImageView imgv = new ImageView();
-
+	        Image img = new Image(getClass().getResourceAsStream("/plateau/plateau.png"));
+	        BackgroundImage background = new BackgroundImage(
+	        		img,
+	                BackgroundRepeat.NO_REPEAT,  
+	                BackgroundRepeat.NO_REPEAT,  
+	                BackgroundPosition.DEFAULT,  
+	                new BackgroundSize(
+	                        558, 558, false, false, true, false));
+	        plateau.setBackground(new Background(background));
 	        root.setCenter(plateau);
+	        
 			primaryStage.setTitle("Plateau Latice");
-			
-			root.getChildren().addAll(imgv);
 			Scene scene = new Scene(root, 1000, 700);
 	        primaryStage.setScene(scene);
 
