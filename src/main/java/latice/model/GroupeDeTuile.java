@@ -28,7 +28,7 @@ public class GroupeDeTuile {
 		Collections.shuffle(this.tuiles);
 	}
 	
-	public Tuile obtenirValeur(Integer indice) { // nom ne va pas
+	public Tuile obtenirTuile(Integer indice) {
 		return this.tuiles.get(indice);
 	}
 

@@ -1,6 +1,5 @@
 package latice.application;
 
-
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -57,8 +56,6 @@ public class Plateau extends Application{
 	            rowConst.setVgrow(Priority.NEVER);
 	            plateau.getRowConstraints().add(rowConst);
 	        }
-
-
 
 	        for (int row = 0; row < lignes; row++) {
 	            for (int col = 0; col < colonnes; col++) {
