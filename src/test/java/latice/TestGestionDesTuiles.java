@@ -41,7 +41,7 @@ public class TestGestionDesTuiles {
 	
 	@Test
 	public void initialisationsDesTuilesEtVerificationDeLaTaille() {
-		List<Tuile> listeDeTouteLesTuiles = maitre.initTuiles();
+		List<Tuile> listeDeTouteLesTuiles = maitre.initialisationTuiles();
 		assertEquals(listeDeTouteLesTuiles.size(), 72);
 	}
 	

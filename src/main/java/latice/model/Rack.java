@@ -9,11 +9,10 @@ public class Rack extends GroupeDeTuile {
 
 	public Rack(List<Tuile> tuiles) {
 		super(tuiles);
-		// Auto-generated constructor stub
 	}
 	
 	public Rack() {
-		this((List) new ArrayList<Tuile>());
+		this(new ArrayList<Tuile>());
 	}
 
 	public void afficher() {
@@ -22,5 +21,15 @@ public class Rack extends GroupeDeTuile {
 			System.out.println(tuile);
 		}
 		System.out.println(LINE_BAR);
+	}
+	
+	public void remplirLeRack(Pioche pioche) {
+		Integer taillePioche = pioche.taille();
+		Integer tailleRack = this.taille();
+		while (taillePioche > 0 && tailleRack < 5) {
+			this.ajouter(pioche.enlever(0)); // peut avoir une erreur si le l'indice n'est pas trouvé
+			taillePioche--;
+			tailleRack++;
+		}
 	}
 }

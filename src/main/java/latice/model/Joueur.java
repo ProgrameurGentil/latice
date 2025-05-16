@@ -61,6 +61,10 @@ public class Joueur {
 		}
 		return 0;
 	}
+	
+	public void RemplirSonRack() {
+		this.rack.remplirLeRack(this.pioche);
+	}
 
 	//getter et setter
 	public Integer getPoints() {

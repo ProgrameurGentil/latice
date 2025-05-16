@@ -38,4 +38,7 @@ public class GroupeDeTuile {
 		return "GroupeDeTuile [tuiles=" + tuiles + "]";
 	}
 	
+	public List<Tuile> diviser(int debutDePioche, int finDePioche) {
+		return this.tuiles.subList(debutDePioche, finDePioche);
+	}
 }

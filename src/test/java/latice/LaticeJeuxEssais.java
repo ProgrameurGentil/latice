@@ -7,6 +7,7 @@ import java.util.List;
 import latice.model.Constantes;
 import latice.model.Joueur;
 import latice.model.MaitreDuJeu;
+import latice.model.Pioche;
 import latice.model.PlateauDeCase;
 import latice.model.PlateauTuiles;
 import latice.model.Position;
@@ -20,21 +21,21 @@ public class LaticeJeuxEssais {
 		Joueur joueur2 = new Joueur("Second");
 		ArrayList<Joueur> listeJoueurs = new ArrayList<>(Arrays.asList(joueur1, joueur2)); 
 				
-		Position end = new Position(0, 0);
-		Position start = new Position(Constantes.COLONNES - 1, Constantes.LIGNES - 1);
-		PlateauTuiles plateauTuiles = new PlateauTuiles(joueur1, joueur2);
+		Position start = new Position(0, 0);
+		Position end = new Position(Constantes.COLONNES - 1, Constantes.LIGNES - 1);
+		PlateauTuiles plateauTuiles = new PlateauTuiles();
 		
 		
-		PlateauDeCase plateauDeCase = leMaitre.initPlateauCase();
+		PlateauDeCase plateauDeCase = PlateauDeCase.initialisationPlateauCase();
 		
 	    // test initialisation des tuiles	
-		List<Tuile> touteLesTuile = new ArrayList<Tuile>();
-		touteLesTuile = leMaitre.initTuiles();
+		Pioche touteLesTuile = new Pioche();
+		touteLesTuile = Tuile.initialisationTuiles();
 		
-		if ( touteLesTuile.size() == 72) {
-			System.out.println("tout va bien n°1  :  "+ touteLesTuile.size() +" = 72");
+		if ( touteLesTuile.taille() == 72) {
+			System.out.println("tout va bien n°1  :  "+ touteLesTuile.taille()+" = 72");
 		} else {
-			System.out.println("tout ne va pas bien n°1  :  "+ touteLesTuile.size() +" != 72");
+			System.out.println("tout ne va pas bien n°1  :  "+ touteLesTuile.taille() +" != 72");
 		}
 		
 		if ( listeJoueurs.size() == 2) {

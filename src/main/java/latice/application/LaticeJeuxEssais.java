@@ -19,7 +19,7 @@ public class LaticeJeuxEssais {
 		MaitreDuJeu maitreDuJeu = new MaitreDuJeu();
 		
 		List<Tuile> touteLesTuile = new ArrayList<Tuile>();
-		touteLesTuile = maitreDuJeu.initTuiles();
+		touteLesTuile = maitreDuJeu.initialisationTuiles();
 		
 		System.out.println("Nb total de tuiles : " + touteLesTuile.size());
 		

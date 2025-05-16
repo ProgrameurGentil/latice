@@ -5,14 +5,9 @@ import java.util.Map;
 
 public class PlateauTuiles{
 	private final Map<Position, Tuile> tuiles;
-
-	private Joueur joueur1;
-	private Joueur joueur2;
 	
 	
-	public PlateauTuiles(Joueur joueur1, Joueur joueur2) {
-		this.joueur1 = joueur1;
-		this.joueur2 = joueur2;
+	public PlateauTuiles() {
 		this.tuiles = new HashMap<>();
 	}
 	
@@ -24,7 +19,7 @@ public class PlateauTuiles{
 		return tuiles.containsKey(position);
 	}
 
-	public boolean siVide() {
+	public boolean siListTuileVide() {
 		return tuiles.isEmpty();
 	}
 
@@ -43,17 +38,7 @@ public class PlateauTuiles{
 		return tuiles.size();
 	}
 
-	public Tuile tuilesAPosition(Position position) {
+	public Tuile donnerTuilesAPosition(Position position) {
 		return tuiles.get(position);
-	}
-
-	public Tuile removeTuileAt(Position position) {
-		return null;
-		// TODO : one line instruction : see in javadoc ;-;
-	}
-
-	public String toAscii() {
-		return "";
-		// TODO
 	}
 }

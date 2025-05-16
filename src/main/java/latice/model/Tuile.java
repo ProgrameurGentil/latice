@@ -1,5 +1,7 @@
 package latice.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Tuile {
@@ -39,5 +41,19 @@ public class Tuile {
 			return false;
 		Tuile other = (Tuile) obj;
 		return couleur == other.couleur && forme == other.forme;
+	}
+	
+	public static Pioche initialisationTuiles() {
+		List<Tuile> touteLesTuileList = new ArrayList<Tuile>();
+		
+		for (Couleur couleur : Couleur.values()) {
+			for (Forme forme : Forme.values()) {
+				for (int count=0;count<2;count++) {
+					touteLesTuileList.add(new Tuile(couleur, forme));
+				}
+	        } 
+		}
+		Pioche touteLesTuilePioche = new Pioche(touteLesTuileList);
+		return touteLesTuilePioche;
 	}
 }

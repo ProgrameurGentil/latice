@@ -13,5 +13,4 @@ public class Pioche extends GroupeDeTuile{
 	public Pioche() {
 		this(new ArrayList<Tuile>());
 	}
-
 }
