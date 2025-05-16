@@ -5,27 +5,33 @@ import java.util.ArrayList;
 public class Joueur {
 	private final String nom;
 	private Integer points;
-	private Integer actionsRestante;
+	private Integer nombreActionRestanteAJouer;
 	private Integer nbTuilesPosees;
 	private Rack rack;
 	public Pioche pioche;
 	
+	//constructors
 	public Joueur(String nom, Integer points, Integer actionsRestante, Integer nbTuilesPosees, Rack rack,
 			Pioche pioche) {
 		this.nom = nom;
 		this.points = points;
-		this.actionsRestante = actionsRestante; //
+		this.nombreActionRestanteAJouer = actionsRestante; //à déplacer dans maitre?
 		this.nbTuilesPosees = nbTuilesPosees;
 		this.rack = rack;
 		this.pioche = pioche;
+	}
+	
+	public Joueur(String nom,Pioche pioche) {
+		this(nom, 0, 0, 0, new Rack(), pioche);
 	}
 	
 	public Joueur(String nom) {
 		this(nom, 0, 0, 0, new Rack(), new Pioche());
 	}
 
+	//comportement
 	public void echangerRack(Integer nbTuiles) {
-		//TODO echange de tuile dans le rack du joueur
+		//TODO echange de touts les tuiles dans le rack du joueur
 	}
 	
 	public Integer jouer(Rack rack, Tuile tuile, Case emplacement) {
@@ -33,20 +39,34 @@ public class Joueur {
 		return 0;
 	}
 	
-	public Integer acheterAction() {
-		//TODO
-		return 0;
+	public Boolean acheterAction() {
+		if (this.points < 1) {
+			this.nombreActionRestanteAJouer++;
+			this.points = this.points - 2;
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public void passerAction() {
-		//TODO
+		this.nombreActionRestanteAJouer--;
 	}
 	
-	public Integer finAction() {
-		//TODO
+	public Integer finAction() { //tous ce qu'on doit faire après qu'un joueur ait joué une action (à compléter)
+		if (this.nombreActionRestanteAJouer == 0) {
+				//à l'autre joueur de jouer
+		} else {
+			//le joueur continue
+		}
 		return 0;
 	}
+	
+	public void RemplirSonRack() {
+		this.rack.remplirLeRack(this.pioche);
+	}
 
+	//getter et setter
 	public Integer getPoints() {
 		return points;
 	}

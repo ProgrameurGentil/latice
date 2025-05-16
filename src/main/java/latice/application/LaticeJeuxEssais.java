@@ -19,13 +19,13 @@ public class LaticeJeuxEssais {
 		MaitreDuJeu maitreDuJeu = new MaitreDuJeu();
 		
 		List<Tuile> touteLesTuile = new ArrayList<Tuile>();
-		touteLesTuile = maitreDuJeu.initTuiles();
+		touteLesTuile = maitreDuJeu.initialisationTuiles();
 		
 		System.out.println("Nb total de tuiles : " + touteLesTuile.size());
 		
 		ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>( 
 											Arrays.asList(new Joueur("Joueur 1"), new Joueur("Joueur 2")));
-		maitreDuJeu.diviserTuilesEnDeux(touteLesTuile, listeJoueur);
+		maitreDuJeu.diviseEtRepartiLesTuilesEnPioches(touteLesTuile, listeJoueur);
 		
 		System.out.println(LINE_BAR);
 		System.out.println("Taille du rack du joueur 1 : " + listeJoueur.get(0).pioche.taille());

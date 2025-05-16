@@ -20,69 +20,18 @@ public class MaitreDuJeu {
 		return null;	
 	}
 	
-	public List<Tuile> initTuiles() { // devrait retrourner une pioche
-		List<Tuile> touteLesTuile = new ArrayList<Tuile>();
-		
-		for (Couleur couleur : Couleur.values()) {
-			for (Forme forme : Forme.values()) {
-				for (int count=0;count<2;count++) {
-					touteLesTuile.add(new Tuile(couleur, forme));
-				}
-	        } 
-		}
-		return touteLesTuile;
-	}
-	
-	public void melangerTuiles(GroupeDeTuile tuiles){ // se trouve deja dans la classe Groupe de tuiles
-		tuiles.melanger();
-	}
-	
-	public void diviserTuilesEnDeux(List<Tuile> tuiles, List<Joueur> listeJoueurs) { // le nom ne va pas
- 		Collections.shuffle(tuiles);
-	    int taille = tuiles.size();
+	public void diviseEtRepartiLesTuilesEnPioches(Pioche touteLesTuile, List<Joueur> listeJoueurs) {
+ 		touteLesTuile.melanger();
+	    int taille = touteLesTuile.taille();
 	    int dividende = listeJoueurs.size();
 	    int debutDePioche = 0;
 
 	    for (int i = 0; i < listeJoueurs.size(); i++) {
 	        int finDePioche = debutDePioche + (taille / dividende);
-	        ArrayList<Tuile> piocheJoueur = new ArrayList<>(tuiles.subList(debutDePioche, finDePioche));
+	        ArrayList<Tuile> piocheJoueur = new ArrayList<>(touteLesTuile.diviser(debutDePioche, finDePioche));
 	        listeJoueurs.get(i).setPioche(new Pioche(piocheJoueur));
 	        debutDePioche = finDePioche;
 	    }
-	}
-
-	public void piocher5Tuiles(Pioche pioche, Rack rack) { // devrai etre dans la class rack
-
-		Integer taillePioche = pioche.taille();
-		Integer tailleRack = rack.taille();
-		Integer i = 0;//
-		while (i < 5 && taillePioche > 0 && tailleRack < 5) {
-			rack.ajouter(pioche.enlever(0)); // peut avoir une erreur si le l'indice n'est pas trouvé
-			taillePioche--;
-			tailleRack++;
-            i++;
-		}
-	}
-	
-	public PlateauDeCase initPlateauCase() { // il y a un truc qui va pas mais je ne sais plus quoi
-		PlateauDeCase plateau = new PlateauDeCase();
-		
-		int i;
-		int j;
-		Position position;
-		for (i=0;i<Constantes.COLONNES;i++) {
-			for (j=0;j<Constantes.LIGNES;j++) {
-				position = new Position(i,j);
-				plateau.cases().put(position, new Case(Type.NORMAL));
-			}
-		}
-		
-		for (Position positionSun : Constantes.POSITION_SOLEIL) {
-			plateau.cases().replace(positionSun, new Case(Type.SOLEIL, null));
-		}
-		plateau.cases().replace(Constantes.CENTRE, new Case(Type.LUNE, null));
-		
-		return plateau;
 	}
 }
 

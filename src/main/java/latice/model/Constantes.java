@@ -15,5 +15,5 @@ public class Constantes {
 	
 	public static final Position CENTRE = new Position(4,4);
 	
-	public static final  Case caseDefault = new Case();
+	public static final  Case CASENORMALE = new Case();
 }

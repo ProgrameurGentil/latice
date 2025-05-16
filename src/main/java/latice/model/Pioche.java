@@ -1,16 +1,16 @@
 package latice.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Pioche extends GroupeDeTuile{
 	private GroupeDeTuile tuiles;
 	
-	public Pioche(ArrayList<Tuile> tuiles) {
-		super(tuiles);
+	public Pioche(List<Tuile> touteLesTuileList) {
+		super(touteLesTuileList);
 	}
 
 	public Pioche() {
 		this(new ArrayList<Tuile>());
 	}
-
 }

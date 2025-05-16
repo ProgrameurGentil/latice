@@ -34,14 +34,14 @@ public class TestGestionDesTuiles {
 	}
 	@Test
 	public void diviserUneListeDeTuillesEnDeuxEtAvoirUneSeparationJuste() {
-		maitre.diviserTuilesEnDeux(listeDeTuiles, listeJoueur);
+		maitre.diviseEtRepartiLesTuilesEnPioches(listeDeTuiles, listeJoueur);
 		
 		assertEquals(listeJoueur.get(0).pioche.taille(), listeJoueur.get(1).pioche.taille());
 	}
 	
 	@Test
 	public void initialisationsDesTuilesEtVerificationDeLaTaille() {
-		List<Tuile> listeDeTouteLesTuiles = maitre.initTuiles();
+		List<Tuile> listeDeTouteLesTuiles = maitre.initialisationTuiles();
 		assertEquals(listeDeTouteLesTuiles.size(), 72);
 	}
 	
