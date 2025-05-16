@@ -22,6 +22,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import latice.model.Couleur;
+import latice.model.Forme;
+import latice.model.Joueur;
+import latice.model.Pioche;
 import latice.model.Rack;
 import latice.model.Tuile;
 
@@ -29,6 +33,8 @@ public class Plateau extends Application{
 	 private static final int colonnes = 9;
 	 private static final int lignes = 9;
 	 private static final double case_taille = 62.0;
+	 private HBox rack;
+	 
 	 
 	 public static void main(String[] args) {
 	        launch(args);
@@ -83,16 +89,6 @@ public class Plateau extends Application{
 	        
 	        root.setCenter(plateau);
 	        
-	        Image imgdr = new Image(getClass().getResourceAsStream("/tuiles/dauphins/dauphin_rose.png"));
-	        Image imgrb = new Image(getClass().getResourceAsStream("/tuiles/dauphins/dauphin_rose.png"));
-	        Image imgobf = new Image(getClass().getResourceAsStream("/tuiles/dauphins/dauphin_rose.png"));
-	        Image imglv = new Image(getClass().getResourceAsStream("/tuiles/dauphins/dauphin_rose.png"));
-	        Image imgpr = new Image(getClass().getResourceAsStream("/tuiles/dauphins/dauphin_rose.png"));
-	        ImageView dbrs = new ImageView(imgdr);
-	        ImageView dbrg = new ImageView(imgpr);
-	        ImageView dbrb = new ImageView(imgrb);
-	        ImageView dbobf = new ImageView(imgobf);
-	        ImageView dblv = new ImageView(imglv);
 
 	        VBox vb = new VBox();
 	        
@@ -104,10 +100,11 @@ public class Plateau extends Application{
 	        vb.setAlignment(Pos.CENTER_LEFT);
 	        
 	        
-	        HBox rack = new HBox();
-	        rack.getChildren().addAll(dbrs, dbrg, dbrb, dbobf, dblv);
-	        root.setBottom(rack);
+
+	        
+	        rack = new HBox();
 	        rack.setAlignment(Pos.CENTER);
+	        root.setBottom(rack);
 	        
 			primaryStage.setTitle("Plateau Latice");
 			Scene scene = new Scene(root, 1000, 700);
@@ -118,6 +115,19 @@ public class Plateau extends Application{
 		
 	}
 
-	
+	public void afficherlerackdujoueur(Joueur joueur) {
+		Rack rackDuJoueur = joueur.getRack();
+		for(int i=0;i<5;i++) {
+			Tuile tuile = rackDuJoueur.obtenirTuile(i);
+			if (tuile != null) {
+	            Image image = new Image(getClass().getResourceAsStream(tuile.obtenirLienVersImage()));
+	            ImageView imageView = new ImageView(image);
+	            imageView.setFitWidth(62);
+	            imageView.setFitHeight(62);
+	            imageView.setPreserveRatio(true);
+	            rack.getChildren().add(imageView);
+	        }
+		}
+	}
 }
 		
