@@ -33,7 +33,7 @@ public class Plateau extends Application{
 	 private static final int colonnes = 9;
 	 private static final int lignes = 9;
 	 private static final double case_taille = 62.0;
-	 private HBox rack;
+	 private HBox rack = new HBox();;
 	 
 	 
 	 public static void main(String[] args) {
@@ -66,6 +66,7 @@ public class Plateau extends Application{
 	        for (int row = 0; row < lignes; row++) {
 	            for (int col = 0; col < colonnes; col++) {
 	                ImageView imageView = new ImageView();
+	                Dnd.sourceDragAndDrop(imageView);
 	                imageView.setFitHeight(case_taille);
 	                imageView.setFitWidth(case_taille);
 	                imageView.setPreserveRatio(true);
@@ -102,7 +103,6 @@ public class Plateau extends Application{
 	        
 
 	        
-	        rack = new HBox();
 	        rack.setAlignment(Pos.CENTER);
 	        root.setBottom(rack);
 	        
@@ -122,6 +122,7 @@ public class Plateau extends Application{
 			if (tuile != null) {
 	            Image image = new Image(getClass().getResourceAsStream(tuile.obtenirLienVersImage()));
 	            ImageView imageView = new ImageView(image);
+	            Dnd.cibleDragAndDrop(imageView);
 	            imageView.setFitWidth(62);
 	            imageView.setFitHeight(62);
 	            imageView.setPreserveRatio(true);
