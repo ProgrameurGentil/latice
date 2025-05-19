@@ -62,6 +62,7 @@ public class Dnd {
 		        
 		        if (db.hasImage()) {
 		           cible.setImage(db.getImage());
+		           cible.setOpacity(1);
 		           success = true;
 		           enleverDragAndDrop(cible);
 		        }
