@@ -35,12 +35,17 @@ public class Plateau extends Application{
 	 private static final double case_taille = 62.0;
 	 private HBox rack = new HBox();;
 	 
+	 private static Plateau instance; // <-- Référence statique
+	 public static Plateau getInstance() { return instance; }
+	 
 	 
 	 public static void main(String[] args) {
 	        launch(args);
 	    }
 	@Override
 	public void start(Stage primaryStage) throws Exception{
+			instance = this;
+		
 			BorderPane root = new BorderPane();
 
 	        GridPane plateau = new GridPane();
