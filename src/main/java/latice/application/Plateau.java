@@ -71,7 +71,7 @@ public class Plateau extends Application{
 	        for (int row = 0; row < lignes; row++) {
 	            for (int col = 0; col < colonnes; col++) {
 	                ImageView imageView = new ImageView();
-	                Dnd.sourceDragAndDrop(imageView);
+	                Dnd.cibleDragAndDrop(imageView);
 	                imageView.setFitHeight(case_taille);
 	                imageView.setFitWidth(case_taille);
 	                imageView.setPreserveRatio(true);
@@ -127,7 +127,7 @@ public class Plateau extends Application{
 			if (tuile != null) {
 	            Image image = new Image(getClass().getResourceAsStream(tuile.obtenirLienVersImage()));
 	            ImageView imageView = new ImageView(image);
-	            Dnd.cibleDragAndDrop(imageView);
+	            Dnd.sourceDragAndDrop(imageView);
 	            imageView.setFitWidth(62);
 	            imageView.setFitHeight(62);
 	            imageView.setPreserveRatio(true);

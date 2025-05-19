@@ -1,6 +1,8 @@
 package latice.application;
 
+
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -61,6 +63,7 @@ public class Dnd {
 		        if (db.hasImage()) {
 		           cible.setImage(db.getImage());
 		           success = true;
+		           enleverDragAndDrop(cible);
 		        }
 		        
 		        event.setDropCompleted(success);
@@ -68,5 +71,41 @@ public class Dnd {
 				
 			}
 		});
+		
+		cible.setOnDragEntered(new EventHandler<DragEvent>() {
+
+			@Override
+			public void handle(DragEvent event) {
+				Dragboard db = event.getDragboard();
+		        
+		        if (db.hasImage()) {
+		        	cible.setImage(db.getImage());
+		        	cible.setOpacity(0.5);
+		        }
+		        
+		        event.consume();
+				
+			}
+		});
+		
+		cible.setOnDragExited(new EventHandler<DragEvent>() {
+
+			@Override
+			public void handle(DragEvent event) {
+		        cible.setImage(null);
+		        
+		        event.consume();
+				
+			}
+		});
+	}
+	
+	private static void enleverDragAndDrop(ImageView objet) {
+		objet.setOnDragOver(null);
+		objet.setOnDragDropped(null);
+		objet.setOnDragDetected(null);
+		objet.setOnDragDone(null);
+		objet.setOnDragEntered(null);
+		objet.setOnDragExited(null);
 	}
 }
