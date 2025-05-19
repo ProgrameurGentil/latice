@@ -2,7 +2,6 @@ package latice.application;
 
 
 import javafx.event.EventHandler;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -23,7 +22,6 @@ public class Dnd {
 		        db.setContent(content);
 		        
 		        event.consume();
-				
 			}
 			
 		});
@@ -48,8 +46,8 @@ public class Dnd {
 				if (event.getGestureSource() != cible && event.getDragboard().hasImage()) {
 		            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
 		        }
-		        event.consume();
 				
+		        event.consume();
 			}
 		});
 		
@@ -69,11 +67,11 @@ public class Dnd {
 		        
 		        event.setDropCompleted(success);
 		        event.consume();
-				
 			}
 		});
 		
-		cible.setOnDragEntered(new EventHandler<DragEvent>() {
+		cible.setOnDragEntered(new EventHandler<DragEvent>() { 
+			/* des modifs peuvent avoir lieux ici pour montrer si une tuile peut etre placer ou non */
 
 			@Override
 			public void handle(DragEvent event) {
@@ -85,7 +83,6 @@ public class Dnd {
 		        }
 		        
 		        event.consume();
-				
 			}
 		});
 		
@@ -96,17 +93,16 @@ public class Dnd {
 		        cible.setImage(null);
 		        
 		        event.consume();
-				
 			}
 		});
 	}
 	
-	private static void enleverDragAndDrop(ImageView objet) {
-		objet.setOnDragOver(null);
-		objet.setOnDragDropped(null);
-		objet.setOnDragDetected(null);
-		objet.setOnDragDone(null);
-		objet.setOnDragEntered(null);
-		objet.setOnDragExited(null);
+	private static void enleverDragAndDrop(ImageView image) {
+		image.setOnDragOver(null);
+		image.setOnDragDropped(null);
+		image.setOnDragDetected(null);
+		image.setOnDragDone(null);
+		image.setOnDragEntered(null);
+		image.setOnDragExited(null);
 	}
 }
