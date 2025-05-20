@@ -1,5 +1,8 @@
 package latice.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class Position {
@@ -18,6 +21,31 @@ public class Position {
 	public Integer getColonne() {
 		return colonne;
 	}	
+	
+	public static Position position(int indice) {
+		// erreur, faire un execpetion
+		if (indice < 1 || indice > 81) {
+			System.out.println("indice inexistant sur plateau");
+			return new Position(0,0);
+		}
+		//le reste
+		int colonne = (indice / 9);
+		int ligne = (indice % 9);
+		if (ligne == 0) {
+			ligne = 8;
+			colonne--;
+		} else ligne--;
+		return new Position(colonne,ligne);
+	}
+	
+	public List<Position> caseAutour(){
+		Position positionAuDessus = new Position(this.getColonne(),this.getLigne()-1);
+		Position positionADroit = new Position(this.getColonne()+1,this.getLigne());
+		Position positionEnBas = new Position(this.getColonne(),this.getLigne()+1);
+		Position positionAGauche = new Position(this.getColonne()-1,this.getLigne());
+		List<Position> caseAutours = new ArrayList<Position>(Arrays.asList(positionAuDessus,positionADroit,positionEnBas,positionAGauche));
+		return caseAutours;
+	}
 	
 	@Override
 	public String toString() {

@@ -23,22 +23,6 @@ public class PlateauDeCase {
 		return cases.get(position);
 	}
 	
-	public Position position(int indice) {
-		// erreur, faire un execpetion
-		if (indice < 1 || indice > 81) {
-			System.out.println("indice inexistant sur plateau");
-			return new Position(0,0);
-		}
-		//le reste
-		int colonne = (indice / 9);
-		int ligne = (indice % 9);
-		if (ligne == 0) {
-			ligne = 8;
-			colonne--;
-		} else ligne--;
-		return new Position(colonne,ligne);
-	}
-	
 	public String toString() {
 		int i;
 		int j;

@@ -1,6 +1,8 @@
 package latice.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Joueur {
 	private final String nom;
@@ -30,18 +32,43 @@ public class Joueur {
 	}
 
 	//comportement	
-	public Joueur jouer(Rack rack, Tuile tuile, Case emplacement) {
+	public Joueur jouer() {
 		//TODO joueur un tour
-		/* dit qui joue, et lui permet de jouer
-		 * regarde actions
-		 * lance en fonction des action
-		 * fin action
-		 * donner le joueur suivant
-		 * */
 		
+		/* regarde actions
+		 * lance en fonction des action */
 		
-		suivant = finAction()
+		Joueur suivant;
+		suivant = finAction();
 		return suivant;
+	}
+	
+	public boolean poserTuile(Tuile tuilePosée, int indice, PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) {
+		Position positionPose = Position.position(indice);
+		//if (
+		return true;
+	}
+	
+	public boolean siTuilePosableIci(Tuile tuilePosée, int indice, PlateauTuiles plateauDeTuiles) {
+		boolean rep = false;
+		Position positionPose = Position.position(indice);
+		List<Position> positionAutours = positionPose.caseAutour();
+		if (plateauDeTuiles.siTuileIci(positionPose)) {
+			return false;
+		}
+		
+		for (Position positionAutour : positionAutours) {
+			if (plateauDeTuiles.siTuileIci(positionAutour)) {
+				rep = true;
+				if(plateauDeTuiles.donnerTuilesAPosition(positionAutour).getForme() 
+					!= plateauDeTuiles.donnerTuilesAPosition(positionPose).getForme() 
+					&& plateauDeTuiles.donnerTuilesAPosition(positionAutour).getCouleur() 
+					!= plateauDeTuiles.donnerTuilesAPosition(positionPose).getCouleur()) {
+				return false;
+				}
+			}
+		}						
+		return rep;
 	}
 	
 	public void echangerRack(Integer nbTuiles) {
@@ -49,7 +76,7 @@ public class Joueur {
 	}
 	
 	public Boolean acheterAction() {
-		if (this.points < 1) {
+		if (this.points > 1) {
 			this.nombreActionRestanteAJouer++;
 			this.points = this.points - 2;
 			return true;
