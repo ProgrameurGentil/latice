@@ -9,12 +9,26 @@ public class MaitreDuJeu {
 	private Integer nb_tours;
 	
 	public Boolean gagner(Joueur joueur) {
-		//TODO fonction qui retourne un boolean en si le joueur mit en parametre est gagnant
-		return null;
+		if (joueur.pioche.taille() == 0 && joueur.getRack().taille() == 0) return null; 
+		else return false;
 	}
-	public void lancerTour() {
-		//TODO fonction qui lance un tour
+	
+	public void lancerTour(List<Joueur> joueurs) {
+		Joueur joueur = new Joueur("nom");
+		while (this.gagner(joueur) != true) {	
+			joueur = joueurs.get(0);
+			while (joueur == joueurs.get(0)) {
+				joueur = joueur.jouer();
+			}
+			
+			joueur = joueurs.get(1);
+			while (joueur == joueurs.get(1)) {
+				joueur = joueurs.get(0);
+				joueur = joueur.jouer();
+			}
+		}
 	}
+	
 	public Joueur quelJoueurDoitJouer() {
 		//TODO fonction qui retourne le joueur qui doit jouer
 		return null;	
