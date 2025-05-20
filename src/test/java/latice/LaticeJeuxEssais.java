@@ -58,5 +58,15 @@ public class LaticeJeuxEssais {
 		
 		//plateau
 		plateauDeCase.toString();
+		
+		//test PDC position()
+		Position positionTps = plateauDeCase.position(1);
+		System.out.println(positionTps.toString());
+		positionTps = plateauDeCase.position(81);
+		System.out.println(positionTps.toString());
+		positionTps = plateauDeCase.position(-1);
+		System.out.println(positionTps.toString());
+		positionTps = plateauDeCase.position(82);
+		System.out.println(positionTps.toString());
 	}
 }

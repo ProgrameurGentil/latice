@@ -29,14 +29,23 @@ public class Joueur {
 		this(nom, 0, 0, 0, new Rack(), new Pioche());
 	}
 
-	//comportement
-	public void echangerRack(Integer nbTuiles) {
-		//TODO echange de touts les tuiles dans le rack du joueur
+	//comportement	
+	public Joueur jouer(Rack rack, Tuile tuile, Case emplacement) {
+		//TODO joueur un tour
+		/* dit qui joue, et lui permet de jouer
+		 * regarde actions
+		 * lance en fonction des action
+		 * fin action
+		 * donner le joueur suivant
+		 * */
+		
+		
+		suivant = finAction()
+		return suivant;
 	}
 	
-	public Integer jouer(Rack rack, Tuile tuile, Case emplacement) {
-		//TODO joueur un tour
-		return 0;
+	public void echangerRack(Integer nbTuiles) {
+		//TODO echange de touts les tuiles dans le rack du joueur
 	}
 	
 	public Boolean acheterAction() {
@@ -53,13 +62,15 @@ public class Joueur {
 		this.nombreActionRestanteAJouer--;
 	}
 	
-	public Integer finAction() { //tous ce qu'on doit faire après qu'un joueur ait joué une action (à compléter)
+	public Joueur finAction() { //tous ce qu'on doit faire après qu'un joueur ait joué une action (à compléter)
 		if (this.nombreActionRestanteAJouer == 0) {
 				//à l'autre joueur de jouer
+			return null;
 		} else {
 			//le joueur continue
+			return this;
 		}
-		return 0;
+		
 	}
 	
 	public void RemplirSonRack() {

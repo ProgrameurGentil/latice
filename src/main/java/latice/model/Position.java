@@ -20,6 +20,10 @@ public class Position {
 	}	
 	
 	@Override
+	public String toString() {
+		return this.colonne+", "+this.ligne;
+	}
+	@Override
 	public int hashCode() {
 		return Objects.hash(colonne, ligne);
 	}
