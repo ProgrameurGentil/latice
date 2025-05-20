@@ -61,9 +61,9 @@ public class Joueur {
 			if (plateauDeTuiles.siTuileIci(positionAutour)) {
 				rep = true;
 				if(plateauDeTuiles.donnerTuilesAPosition(positionAutour).getForme() 
-					!= plateauDeTuiles.donnerTuilesAPosition(positionPose).getForme() 
+					!= tuilePosée.getForme() 
 					&& plateauDeTuiles.donnerTuilesAPosition(positionAutour).getCouleur() 
-					!= plateauDeTuiles.donnerTuilesAPosition(positionPose).getCouleur()) {
+					!= tuilePosée.getCouleur()) {
 				return false;
 				}
 			}
