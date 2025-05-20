@@ -17,7 +17,7 @@ public class Joueur {
 			Pioche pioche) {
 		this.nom = nom;
 		this.points = points;
-		this.nombreActionRestanteAJouer = actionsRestante; //à déplacer dans maitre?
+		this.nombreActionRestanteAJouer = actionsRestante;
 		this.nbTuilesPosees = nbTuilesPosees;
 		this.rack = rack;
 		this.pioche = pioche;

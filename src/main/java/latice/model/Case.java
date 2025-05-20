@@ -32,11 +32,6 @@ public class Case {
 		}
 		return "erreur";
 	}
-	
-	public Boolean estOccupe() {
-		//TODO récuper et comparer les deux plateaux (tuile et case) à l'aide de la position de la case
-		return true;
-	}
 
 	@Override
 	public int hashCode() {
