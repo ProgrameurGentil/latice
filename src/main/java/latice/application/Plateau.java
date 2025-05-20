@@ -18,6 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -33,18 +34,36 @@ public class Plateau extends Application{
 	 private static final int colonnes = 9;
 	 private static final int lignes = 9;
 	 private static final double case_taille = 62.0;
-	 private HBox rack = new HBox();;
-	 
+	 private HBox rack = new HBox();
 	 
 	 public static void main(String[] args) {
 	        launch(args);
 	    }
 	@Override
 	public void start(Stage primaryStage) throws Exception{
-			BorderPane root = new BorderPane();
+			BorderPane root = new BorderPane();		
+			rack.setStyle(
+		            "-fx-border-width: 10;" + "-fx-border-radius: 15;" + "-fx-padding: 20;");
+			rack.setPrefWidth(340);
+			rack.setPrefHeight(85);
+			rack.setMaxSize(350, 90);
+			
+			Image bgImage = new Image(getClass().getResourceAsStream("/rack/fond.png"));
 
-	        GridPane plateau = new GridPane();
-	        plateau.setGridLinesVisible(true);
+			BackgroundImage backgroundImage = new BackgroundImage(
+			    bgImage,
+			    BackgroundRepeat.NO_REPEAT,
+			    BackgroundRepeat.NO_REPEAT,
+			    BackgroundPosition.CENTER,
+			    new BackgroundSize(
+			        350, 90, false, false, false, false)
+			);
+
+			rack.setBackground(new Background(backgroundImage));
+			
+			
+			GridPane plateau = new GridPane();
+	        plateau.setGridLinesVisible(false);
 	        plateau.setMaxSize(555, 555);
 	   
 	        for (int col = 0; col < colonnes; col++) {
@@ -99,12 +118,11 @@ public class Plateau extends Application{
 	        root.setLeft(vb);
 	        
 	        vb.setAlignment(Pos.CENTER_LEFT);
-	        
-	        
 
-	        
-	        rack.setAlignment(Pos.CENTER);
-	        root.setBottom(rack);
+	        StackPane bottomPane = new StackPane(rack);
+	        bottomPane.setAlignment(Pos.CENTER);
+	        bottomPane.setPrefHeight(90); 
+	        root.setBottom(bottomPane);
 	        
 			primaryStage.setTitle("Plateau Latice");
 			Scene scene = new Scene(root, 1000, 700);
