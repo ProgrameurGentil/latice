@@ -45,30 +45,11 @@ public class Joueur {
 	
 	public boolean poserTuile(Tuile tuilePosée, int indice, PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) {
 		Position positionPose = Position.position(indice);
-		//if (
-		return true;
-	}
-	
-	public boolean siTuilePosableIci(Tuile tuilePosée, int indice, PlateauTuiles plateauDeTuiles) {
-		boolean rep = false;
-		Position positionPose = Position.position(indice);
-		List<Position> positionAutours = positionPose.caseAutour();
-		if (plateauDeTuiles.siTuileIci(positionPose)) {
-			return false;
-		}
-		
-		for (Position positionAutour : positionAutours) {
-			if (plateauDeTuiles.siTuileIci(positionAutour)) {
-				rep = true;
-				if(plateauDeTuiles.donnerTuilesAPosition(positionAutour).getForme() 
-					!= tuilePosée.getForme() 
-					&& plateauDeTuiles.donnerTuilesAPosition(positionAutour).getCouleur() 
-					!= tuilePosée.getCouleur()) {
-				return false;
-				}
-			}
-		}						
-		return rep;
+		if (plateauDeTuiles.siTuilePosableIci(tuilePosée, positionPose)){
+			this.nbTuilesPosees++;
+			plateauDeTuiles.poser(positionPose, tuilePosée);
+			return true;
+		}else return false;
 	}
 	
 	public void echangerRack(Integer nbTuiles) {
