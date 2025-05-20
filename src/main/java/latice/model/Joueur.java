@@ -45,9 +45,15 @@ public class Joueur {
 	
 	public boolean poserTuile(Tuile tuilePosée, int indice, PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) {
 		Position positionPose = Position.position(indice);
+		int nbTuilesAutour = plateauDeTuiles.combienDeTuileAutour(positionPose)
 		if (plateauDeTuiles.siTuilePosableIci(tuilePosée, positionPose)){
 			this.nbTuilesPosees++;
 			plateauDeTuiles.poser(positionPose, tuilePosée);
+			
+			if (plateauDeCases.donnerLaCaseAPosition(positionPose).equals(new Case(Type.SOLEIL))) this.points++;
+			if ( nbTuilesAutour == 2) this.points++;
+			if ( nbTuilesAutour == 3) this.points = this.points + 2;
+			if ( nbTuilesAutour == 4) this.points = this.points + 4;
 			return true;
 		}else return false;
 	}
