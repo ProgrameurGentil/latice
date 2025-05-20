@@ -58,8 +58,11 @@ public class Joueur {
 		}else return false;
 	}
 	
-	public void echangerRack(Integer nbTuiles) {
-		//TODO echange de touts les tuiles dans le rack du joueur
+	public void echangerRack() {
+		int i;
+		for (i=0 ; i<this.pioche.taille() ; i++) this.pioche.ajouter(this.rack.enlever(0));
+		this.rack.remplirLeRack(this.pioche);
+		this.pioche.melanger();
 	}
 	
 	public Boolean acheterAction() {
