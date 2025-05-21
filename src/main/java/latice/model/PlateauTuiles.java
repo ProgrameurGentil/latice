@@ -57,7 +57,7 @@ public class PlateauTuiles{
 	public boolean siTuilePosableIci(Tuile tuilePosée, Position positionPose) {
 		boolean rep = false;
 		List<Position> positionAutours = positionPose.caseAutour();
-		if (this.siTuileIci(positionPose) || this.combienDeTuileAutour(positionPose) >0 ) {
+		if (this.siTuileIci(positionPose) || this.combienDeTuileAutour(positionPose) < 1 ) {
 			return false;
 		}
 		

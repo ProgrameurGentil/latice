@@ -5,12 +5,15 @@ import java.util.Arrays;
 import java.util.List;
 
 import latice.model.Constantes;
+import latice.model.Couleur;
+import latice.model.Forme;
 import latice.model.Joueur;
 import latice.model.MaitreDuJeu;
 import latice.model.Pioche;
 import latice.model.PlateauDeCase;
 import latice.model.PlateauTuiles;
 import latice.model.Position;
+import latice.model.Rack;
 import latice.model.Tuile;
 
 public class LaticeJeuxEssais {
@@ -60,13 +63,45 @@ public class LaticeJeuxEssais {
 		plateauDeCase.toString();
 		
 		//test PDC position()
-		Position positionTps = plateauDeCase.position(1);
+		Position positionTps = Position.position(1);
 		System.out.println(positionTps.toString());
-		positionTps = plateauDeCase.position(81);
+		positionTps = Position.position(81);
 		System.out.println(positionTps.toString());
-		positionTps = plateauDeCase.position(-1);
+		positionTps = Position.position(-1);
 		System.out.println(positionTps.toString());
-		positionTps = plateauDeCase.position(82);
+		positionTps = Position.position(82);
 		System.out.println(positionTps.toString());
+		
+		// testes rack
+		boolean rep = true;
+		Tuile T1a = new Tuile(Couleur.ROUGE, Forme.OISEAU);
+		Tuile T1b = new Tuile(Couleur.BLEU, Forme.OISEAU);
+		Tuile T1c = new Tuile(Couleur.JAUNE, Forme.FLEUR);
+		Tuile T1d = new Tuile(Couleur.VERT, Forme.DAUPHIN);
+		Tuile T1e = new Tuile(Couleur.ROUGE, Forme.TORTUE);
+		List<Tuile> lerack1 = new ArrayList<>(Arrays.asList(T1a, T1b, T1c, T1d, T1e));
+		Rack rackUn = new Rack(lerack1);
+		
+		Tuile T2a = new Tuile(Couleur.BLEU, Forme.FLEUR);
+		Tuile T2b = new Tuile(Couleur.JAUNE, Forme.PLUME);
+		Tuile T2c = new Tuile(Couleur.JAUNE, Forme.PLUME);
+		Tuile T2d = new Tuile(Couleur.ROUGE, Forme.DAUPHIN);
+		Tuile T2e = new Tuile(Couleur.VERT, Forme.TORTUE);
+		List<Tuile> lerack2 = new ArrayList<>(Arrays.asList(T2a, T2b, T2c, T2d, T2e));
+		Rack rackDeux = new Rack(lerack2);
+		
+		Joueur joueurTestRack1 = new Joueur("J1", 0, 0, 0, rackUn, joueur1.pioche ) ;
+		Joueur joueurTestRack2 = new Joueur("J2", 0, 0, 0, rackDeux, joueur2.pioche ) ;
+		joueurTestRack1.getRack().afficher();
+		plateauTuiles.poser(new Position(4,4), new Tuile(Couleur.BLEU,Forme.DAUPHIN));
+		rep = joueurTestRack1.poserTuile(3, 40, plateauDeCase, plateauTuiles);
+		joueurTestRack1.getRack().afficher();
+		
+		rep = joueurTestRack2.poserTuile(3, 40, plateauDeCase, plateauTuiles);
+		System.out.println(rep);
+		joueurTestRack2.getRack().afficher();
+		rep = joueurTestRack2.poserTuile(2, 31, plateauDeCase, plateauTuiles);
+		System.out.println(rep);
+		joueurTestRack2.getRack().afficher();
 	}
 }

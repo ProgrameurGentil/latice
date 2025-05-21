@@ -43,19 +43,24 @@ public class Joueur {
 		return suivant;
 	}
 	
-	public boolean poserTuile(Tuile tuilePosée, int indice, PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) {
-		Position positionPose = Position.position(indice);
-		int nbTuilesAutour = plateauDeTuiles.combienDeTuileAutour(positionPose)
-		if (plateauDeTuiles.siTuilePosableIci(tuilePosée, positionPose)){
+	public boolean poserTuile(int indiceTuileRack, int indiceDestination, PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) {
+		Position positionPose = Position.position(indiceDestination);
+		Tuile tuileAPoser = this.rack.enlever(indiceTuileRack);
+		int nbTuilesAutour = plateauDeTuiles.combienDeTuileAutour(positionPose);
+		if (plateauDeTuiles.siTuilePosableIci(tuileAPoser, positionPose)){
 			this.nbTuilesPosees++;
-			plateauDeTuiles.poser(positionPose, tuilePosée);
+			plateauDeTuiles.poser(positionPose, tuileAPoser);
 			
 			if (plateauDeCases.donnerLaCaseAPosition(positionPose).equals(new Case(Type.SOLEIL))) this.points++;
 			if ( nbTuilesAutour == 2) this.points++;
 			if ( nbTuilesAutour == 3) this.points = this.points + 2;
 			if ( nbTuilesAutour == 4) this.points = this.points + 4;
+			this.nombreActionRestanteAJouer--;
 			return true;
-		}else return false;
+		}else { 
+			this.rack.ajouter(tuileAPoser);
+			return false;
+		}
 	}
 	
 	public void echangerRack() {
@@ -63,6 +68,7 @@ public class Joueur {
 		for (i=0 ; i<this.pioche.taille() ; i++) this.pioche.ajouter(this.rack.enlever(0));
 		this.rack.remplirLeRack(this.pioche);
 		this.pioche.melanger();
+		this.nombreActionRestanteAJouer--;
 	}
 	
 	public Boolean acheterAction() {
