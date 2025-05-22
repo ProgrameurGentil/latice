@@ -54,7 +54,7 @@ public class PlateauTuiles{
 		return nbTuilesAutour;
 	}
 	
-	public boolean siTuilePosableIci(Tuile tuilePosée, Position positionPose) {
+	public boolean siTuilePosableIci(Tuile tuilePosee, Position positionPose) {
 		boolean rep = false;
 		
 		if (this.siListTuileVide()) {
@@ -74,9 +74,9 @@ public class PlateauTuiles{
 			if (this.siTuileIci(positionAutour)) {
 				rep = true;
 				if(this.donnerTuilesAPosition(positionAutour).getForme() 
-					!= tuilePosée.getForme() 
+					!= tuilePosee.getForme() 
 					&& this.donnerTuilesAPosition(positionAutour).getCouleur() 
-					!= tuilePosée.getCouleur()) {
+					!= tuilePosee.getCouleur()) {
 				return false;
 				}
 			}
