@@ -1,6 +1,7 @@
 package latice.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PlateauTuiles{
@@ -40,5 +41,37 @@ public class PlateauTuiles{
 
 	public Tuile donnerTuilesAPosition(Position position) {
 		return tuiles.get(position);
+	}
+	
+	public int combienDeTuileAutour(Position positionPose) {
+		int nbTuilesAutour=0;
+		List<Position> positionAutours = positionPose.caseAutour();
+		for (Position positionAutour : positionAutours) {
+			if (this.siTuileIci(positionAutour)) {
+				nbTuilesAutour++;
+			}
+		}
+		return nbTuilesAutour;
+	}
+	
+	public boolean siTuilePosableIci(Tuile tuilePosée, Position positionPose) {
+		boolean rep = false;
+		List<Position> positionAutours = positionPose.caseAutour();
+		if (this.siTuileIci(positionPose) || this.combienDeTuileAutour(positionPose) < 1 ) {
+			return false;
+		}
+		
+		for (Position positionAutour : positionAutours) {
+			if (this.siTuileIci(positionAutour)) {
+				rep = true;
+				if(this.donnerTuilesAPosition(positionAutour).getForme() 
+					!= tuilePosée.getForme() 
+					&& this.donnerTuilesAPosition(positionAutour).getCouleur() 
+					!= tuilePosée.getCouleur()) {
+				return false;
+				}
+			}
+		}						
+		return rep;
 	}
 }
