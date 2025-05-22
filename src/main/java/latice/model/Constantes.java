@@ -16,4 +16,5 @@ public class Constantes {
 	public static final Position CENTRE = new Position(4,4);
 	
 	public static final  Case CASENORMALE = new Case();
+	public static final Pioche TOUTE_LES_TUILES = Tuile.initialisationTuiles();
 }

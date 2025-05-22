@@ -1,6 +1,8 @@
 package latice.application;
 
 
+import java.io.File;
+
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -8,6 +10,9 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.GridPane;
+import latice.model.Constantes;
+import latice.model.Tuile;
 
 public class Dnd {
 	public static void sourceDragAndDrop(ImageView source) {
@@ -19,6 +24,7 @@ public class Dnd {
 		        
 		        ClipboardContent content = new ClipboardContent();
 		        content.putImage(source.getImage());
+		        content.putString(source.getImage().getUrl());
 		        db.setContent(content);
 		        
 		        event.consume();
@@ -59,10 +65,13 @@ public class Dnd {
 		        boolean success = false;
 		        
 		        if (db.hasImage()) {
-		           cible.setImage(db.getImage());
-		           cible.setOpacity(1);
-		           success = true;
-		           enleverDragAndDrop(cible);
+		        	
+					System.out.println(obtenirTuileAvecUnChemin(db.getString()));
+					
+					cible.setImage(db.getImage());
+					cible.setOpacity(1);
+					success = true;
+					enleverDragAndDrop(cible);
 		        }
 		        
 		        event.setDropCompleted(success);
@@ -80,6 +89,10 @@ public class Dnd {
 		        if (db.hasImage()) {
 		        	cible.setImage(db.getImage());
 		        	cible.setOpacity(0.5);
+		        	
+		        	System.out.println("ligne :" + GridPane.getRowIndex(cible));
+		        	System.out.println("colonne :" + GridPane.getColumnIndex(cible));
+		        	
 		        }
 		        
 		        event.consume();
@@ -105,4 +118,20 @@ public class Dnd {
 		image.setOnDragEntered(null);
 		image.setOnDragExited(null);
 	}
+	
+	private static Tuile obtenirTuileAvecUnChemin(String chemin) {
+		String base = "file:/D:/java/iut/saebut1/latice/target/classes";
+		chemin = chemin.substring(base.length());
+		Tuile tuile;
+		Integer tailleTouteLesTuiles = Constantes.TOUTE_LES_TUILES.taille();
+		
+		for (int i=0 ; i<tailleTouteLesTuiles ; i++) {
+			tuile = Constantes.TOUTE_LES_TUILES.obtenirTuile(i);
+			if (tuile.obtenirLienVersImage().equals(chemin)) {
+				return tuile;
+			}
+		}
+		return new Tuile(null, null); // A changer
+	}
+	
 }

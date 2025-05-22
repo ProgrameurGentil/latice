@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -19,13 +18,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import latice.model.Couleur;
-import latice.model.Forme;
 import latice.model.Joueur;
-import latice.model.Pioche;
 import latice.model.Rack;
 import latice.model.Tuile;
 
@@ -105,9 +99,6 @@ public class Plateau extends Application{
 	        
 	        vb.setAlignment(Pos.CENTER_LEFT);
 	        
-	        
-
-	        
 	        rack.setAlignment(Pos.CENTER);
 	        root.setBottom(rack);
 	        
@@ -125,7 +116,7 @@ public class Plateau extends Application{
 		for(int i=0;i<5;i++) {
 			Tuile tuile = rackDuJoueur.obtenirTuile(i);
 			if (tuile != null) {
-	            Image image = new Image(getClass().getResourceAsStream(tuile.obtenirLienVersImage()));
+	            Image image = new Image(getClass().getResource(tuile.obtenirLienVersImage()).toString());
 	            ImageView imageView = new ImageView(image);
 	            Dnd.sourceDragAndDrop(imageView);
 	            imageView.setFitWidth(62);
