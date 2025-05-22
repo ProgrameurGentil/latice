@@ -47,8 +47,8 @@ public class Plateau extends Application{
 			
 			Image bgImage = new Image(getClass().getResourceAsStream("/rack/fond.png"));
 			rack.setPrefWidth(340);
-		            "-fx-border-width: 10;" + "-fx-border-radius: 15;" + "-fx-padding: 20;");
-			rack.setStyle(
+		            
+			rack.setStyle("-fx-border-width: 10;" + "-fx-border-radius: 15;" + "-fx-padding: 20;");
 			
 
 			BackgroundImage backgroundImage = new BackgroundImage(
