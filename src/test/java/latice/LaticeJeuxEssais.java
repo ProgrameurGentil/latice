@@ -49,10 +49,10 @@ public class LaticeJeuxEssais {
 		
 		// test création des pioche		
 		leMaitre.diviseEtRepartiLesTuilesEnPioches(touteLesTuile, listeJoueurs);	
-		if ( joueur1.pioche.taille() == 36 && joueur2.pioche.taille() == 36) {
-			System.out.println("tout va bien n°3  :  "+ joueur1.pioche.taille() +" = 36 et "+ joueur2.pioche.taille() +" = 36");
+		if ( joueur1.getPioche().taille() == 36 && joueur2.getPioche().taille() == 36) {
+			System.out.println("tout va bien n°3  :  "+ joueur1.getPioche().taille() +" = 36 et "+ joueur2.getPioche().taille() +" = 36");
 		} else {
-			System.out.println("tout ne va pas bien n°3  :  "+ joueur1.pioche.taille() +" != 36 et/ou "+ joueur2.pioche.taille() +" != 36");
+			System.out.println("tout ne va pas bien n°3  :  "+ joueur1.getPioche().taille() +" != 36 et/ou "+ joueur2.getPioche().taille() +" != 36");
 		}
 		
 		// test création des rack
@@ -62,15 +62,15 @@ public class LaticeJeuxEssais {
 		//plateau
 		plateauDeCase.toString();
 		
-		//test PDC position()
-		Position positionTps = Position.position(1);
-		System.out.println(positionTps.toString());
-		positionTps = Position.position(81);
-		System.out.println(positionTps.toString());
-		positionTps = Position.position(-1);
-		System.out.println(positionTps.toString());
-		positionTps = Position.position(82);
-		System.out.println(positionTps.toString());
+//		//test PDC position()
+//		Position positionTps = Position.position(1);
+//		System.out.println(positionTps.toString());
+//		positionTps = Position.position(81);
+//		System.out.println(positionTps.toString());
+//		positionTps = Position.position(-1);
+//		System.out.println(positionTps.toString());
+//		positionTps = Position.position(82);
+//		System.out.println(positionTps.toString());
 		
 		// testes rack
 		// poser
@@ -91,24 +91,24 @@ public class LaticeJeuxEssais {
 		List<Tuile> lerack2 = new ArrayList<>(Arrays.asList(T2a, T2b, T2c, T2d, T2e));
 		Rack rackDeux = new Rack(lerack2);
 		
-		Joueur joueurTestRack1 = new Joueur("J1", 0, 0, 0, rackUn, joueur1.pioche ) ;
-		Joueur joueurTestRack2 = new Joueur("J2", 0, 0, 0, rackDeux, joueur2.pioche ) ;
+		Joueur joueurTestRack1 = new Joueur("J1", 0, 0, 0, rackUn, joueur1.getPioche() ) ;
+		Joueur joueurTestRack2 = new Joueur("J2", 0, 0, 0, rackDeux, joueur2.getPioche() ) ;
 		joueurTestRack1.getRack().afficher();
 		plateauTuiles.poser(new Position(4,4), new Tuile(Couleur.BLEU,Forme.DAUPHIN));
-		rep = joueurTestRack1.poserTuile(3, 40, plateauDeCase, plateauTuiles);
+		rep = joueurTestRack1.poserTuile(3, new Position(3,4), plateauDeCase, plateauTuiles);
 		joueurTestRack1.getRack().afficher();
 		
-		rep = joueurTestRack2.poserTuile(3, 40, plateauDeCase, plateauTuiles);
+		rep = joueurTestRack2.poserTuile(3, new Position(3,4), plateauDeCase, plateauTuiles);
 		System.out.println(rep);
 		joueurTestRack2.getRack().afficher();
-		rep = joueurTestRack2.poserTuile(2, 31, plateauDeCase, plateauTuiles);
+		rep = joueurTestRack2.poserTuile(2, new Position(3,3), plateauDeCase, plateauTuiles);
 		System.out.println(rep);
 		joueurTestRack2.getRack().afficher();
 		
 		//remplir
-		System.out.println(joueurTestRack1.pioche.taille()+" , "+joueurTestRack1.getRack().taille());
+		System.out.println(joueurTestRack1.getPioche().taille()+" , "+joueurTestRack1.getRack().taille());
 		joueurTestRack1.remplirSonRack();
-		System.out.println(joueurTestRack1.pioche.taille()+" , "+joueurTestRack1.getRack().taille());
+		System.out.println(joueurTestRack1.getPioche().taille()+" , "+joueurTestRack1.getRack().taille());
 		
 		//echanger
 		joueurTestRack2.getRack().afficher();

@@ -13,8 +13,9 @@ import latice.model.*;
 
 public class TestGestionDesTuiles {
 	MaitreDuJeu maitre = new MaitreDuJeu();
-	ArrayList<Tuile> listeDeTuiles = new ArrayList<Tuile>();
+	List<Tuile> listeDeTuiles= new ArrayList<Tuile>();
 	ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>();
+	Pioche lesTuiles;
 	
 	@BeforeEach
 	public void ajouterDesElementDansLaListePourFaireLesTests() {
@@ -24,25 +25,26 @@ public class TestGestionDesTuiles {
 		listeDeTuiles.add(new Tuile(Couleur.ROUGE, Forme.FLEUR));
 		listeDeTuiles.add(new Tuile(Couleur.VERT, Forme.DAUPHIN));
 		listeDeTuiles.add(new Tuile(Couleur.VERT, Forme.FLEUR));
-		listeDeTuiles.add(new Tuile(Couleur.GRIS, Forme.DAUPHIN));
-		listeDeTuiles.add(new Tuile(Couleur.GRIS, Forme.FLEUR));
+		listeDeTuiles.add(new Tuile(Couleur.BLEU_FONCE, Forme.DAUPHIN));
+		listeDeTuiles.add(new Tuile(Couleur.BLEU_FONCE, Forme.FLEUR));
 		listeDeTuiles.add(new Tuile(Couleur.JAUNE, Forme.DAUPHIN));
 		listeDeTuiles.add(new Tuile(Couleur.JAUNE, Forme.FLEUR));
+		lesTuiles = new Pioche(listeDeTuiles); 
 		
 		listeJoueur.add(new Joueur("J1"));
 		listeJoueur.add(new Joueur("J2"));
 	}
 	@Test
 	public void diviserUneListeDeTuillesEnDeuxEtAvoirUneSeparationJuste() {
-		maitre.diviseEtRepartiLesTuilesEnPioches(listeDeTuiles, listeJoueur);
+		maitre.diviseEtRepartiLesTuilesEnPioches(lesTuiles, listeJoueur);
 		
-		assertEquals(listeJoueur.get(0).pioche.taille(), listeJoueur.get(1).pioche.taille());
+		assertEquals(listeJoueur.get(0).getPioche().taille(), listeJoueur.get(1).getPioche().taille());
 	}
 	
 	@Test
 	public void initialisationsDesTuilesEtVerificationDeLaTaille() {
-		List<Tuile> listeDeTouteLesTuiles = maitre.initialisationTuiles();
-		assertEquals(listeDeTouteLesTuiles.size(), 72);
+		Pioche listeDeTouteLesTuiles = Tuile.initialisationTuiles();
+		assertEquals(listeDeTouteLesTuiles.taille(), 72);
 	}
 	
 	@Test
