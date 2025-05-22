@@ -1,9 +1,8 @@
 package latice.application;
 
 
-import java.io.File;
-
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -12,6 +11,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import latice.model.Constantes;
+import latice.model.PlateauTuiles;
+import latice.model.Position;
 import latice.model.Tuile;
 
 public class Dnd {
@@ -44,7 +45,7 @@ public class Dnd {
 		});
 	}
 	
-	public static void cibleDragAndDrop(ImageView cible) {
+	public static void cibleDragAndDrop(ImageView cible, PlateauTuiles plateauTuiles) {
 		cible.setOnDragOver(new EventHandler<DragEvent>() {
 
 			@Override
@@ -68,10 +69,13 @@ public class Dnd {
 		        	
 					System.out.println(obtenirTuileAvecUnChemin(db.getString()));
 					
-					cible.setImage(db.getImage());
-					cible.setOpacity(1);
-					success = true;
-					enleverDragAndDrop(cible);
+					if (plateauTuiles.siTuilePosableIci(obtenirTuileAvecUnChemin(db.getString()), new Position(GridPane.getRowIndex(cible), GridPane.getColumnIndex(cible)))) {
+						cible.setImage(db.getImage());
+						cible.setOpacity(1);
+						success = true;
+						enleverDragAndDrop(cible);
+						plateauTuiles.poser(new Position(GridPane.getRowIndex(cible), GridPane.getColumnIndex(cible)), obtenirTuileAvecUnChemin(db.getString()));
+					}
 		        }
 		        
 		        event.setDropCompleted(success);
@@ -87,11 +91,15 @@ public class Dnd {
 				Dragboard db = event.getDragboard();
 		        
 		        if (db.hasImage()) {
-		        	cible.setImage(db.getImage());
-		        	cible.setOpacity(0.5);
 		        	
-		        	System.out.println("ligne :" + GridPane.getRowIndex(cible));
-		        	System.out.println("colonne :" + GridPane.getColumnIndex(cible));
+		        	if (plateauTuiles.siTuilePosableIci(obtenirTuileAvecUnChemin(db.getString()), new Position(GridPane.getRowIndex(cible), GridPane.getColumnIndex(cible)))) {
+			        	cible.setImage(db.getImage());
+		        	} else {
+		        		cible.setImage(new Image(getClass().getResource("/tuiles/tuile_interdite.png").toString()));
+		        	}
+		        	cible.setOpacity(0.5);
+		        	//System.out.println("ligne :" + GridPane.getRowIndex(cible));
+		        	//System.out.println("colonne :" + GridPane.getColumnIndex(cible));
 		        	
 		        }
 		        

@@ -21,6 +21,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import latice.model.Joueur;
+import latice.model.PlateauDeCase;
+import latice.model.PlateauTuiles;
 import latice.model.Rack;
 import latice.model.Tuile;
 
@@ -62,6 +64,8 @@ public class Plateau extends Application{
 
 			rack.setBackground(new Background(backgroundImage));
 			
+			PlateauTuiles plateauTuile = new PlateauTuiles();
+			PlateauDeCase plateauCase = new PlateauDeCase();
 			
 			GridPane plateau = new GridPane();
 	        plateau.setGridLinesVisible(false);
@@ -86,7 +90,7 @@ public class Plateau extends Application{
 	        for (int row = 0; row < lignes; row++) {
 	            for (int col = 0; col < colonnes; col++) {
 	                ImageView imageView = new ImageView();
-	                Dnd.cibleDragAndDrop(imageView);
+	                Dnd.cibleDragAndDrop(imageView, plateauTuile);
 	                imageView.setFitHeight(case_taille);
 	                imageView.setFitWidth(case_taille);
 	                imageView.setPreserveRatio(true);

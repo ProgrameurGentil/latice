@@ -57,7 +57,7 @@ public class Joueur {
 			if ( nbTuilesAutour == 3) this.points = this.points + 2;
 			if ( nbTuilesAutour == 4) this.points = this.points + 4;
 			return true;
-		}else { 
+		} else { 
 			return false;
 		}
 	}
