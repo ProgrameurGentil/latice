@@ -9,7 +9,7 @@ public class MaitreDuJeu {
 	private Integer nb_tours;
 	
 	public Boolean gagner(Joueur joueur) {
-		if (joueur.pioche.taille() == 0 && joueur.getRack().taille() == 0) return null; 
+		if (joueur.getPioche().taille() == 0 && joueur.getRack().taille() == 0) return null; 
 		else return false;
 	}
 	

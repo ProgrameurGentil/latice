@@ -107,7 +107,7 @@ public class LaticeJeuxEssais {
 		
 		//remplir
 		System.out.println(joueurTestRack1.pioche.taille()+" , "+joueurTestRack1.getRack().taille());
-		joueurTestRack1.RemplirSonRack();
+		joueurTestRack1.remplirSonRack();
 		System.out.println(joueurTestRack1.pioche.taille()+" , "+joueurTestRack1.getRack().taille());
 		
 		//echanger

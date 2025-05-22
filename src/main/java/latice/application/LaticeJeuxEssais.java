@@ -6,6 +6,8 @@ import java.util.List;
 
 import latice.model.Joueur;
 import latice.model.MaitreDuJeu;
+import latice.model.Pioche;
+import latice.model.PlateauTuiles;
 import latice.model.Tuile;
 
 public class LaticeJeuxEssais {
@@ -18,23 +20,22 @@ public class LaticeJeuxEssais {
 		
 		MaitreDuJeu maitreDuJeu = new MaitreDuJeu();
 		
-		List<Tuile> touteLesTuile = new ArrayList<Tuile>();
-		touteLesTuile = maitreDuJeu.initialisationTuiles();
+		Pioche touteLesTuile = Tuile.initialisationTuiles();
 		
-		System.out.println("Nb total de tuiles : " + touteLesTuile.size());
+		System.out.println("Nb total de tuiles : " + touteLesTuile.taille());
 		
 		ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>( 
 											Arrays.asList(new Joueur("Joueur 1"), new Joueur("Joueur 2")));
 		maitreDuJeu.diviseEtRepartiLesTuilesEnPioches(touteLesTuile, listeJoueur);
 		
 		System.out.println(LINE_BAR);
-		System.out.println("Taille du rack du joueur 1 : " + listeJoueur.get(0).pioche.taille());
-		System.out.println("Taille du rack du joueur 2 : " + listeJoueur.get(1).pioche.taille());
+		System.out.println("Taille du rack du joueur 1 : " + listeJoueur.get(0).getPioche().taille());
+		System.out.println("Taille du rack du joueur 2 : " + listeJoueur.get(1).getPioche().taille());
 		
 		for (Joueur joueur : listeJoueur) {
 			//Pioche p = joueur.getPioche();
 			//System.out.println("Pioche : " + p);
-			maitreDuJeu.piocher5Tuiles(joueur.getPioche(), joueur.getRack());
+			joueur.remplirSonRack();
 		}
 		
 		System.out.println(LINE_BAR);
@@ -48,8 +49,8 @@ public class LaticeJeuxEssais {
 		listeJoueur.get(1).getRack().afficher();
 		
 		System.out.println(LINE_BAR);
-		System.out.println("Taille du rack du joueur 1 : " + listeJoueur.get(0).pioche.taille());
-		System.out.println("Taille du rack du joueur 2 : " + listeJoueur.get(1).pioche.taille());
+		System.out.println("Taille du rack du joueur 1 : " + listeJoueur.get(0).getPioche().taille());
+		System.out.println("Taille du rack du joueur 2 : " + listeJoueur.get(1).getPioche().taille());
 	}
 	
 	private static String titre() {

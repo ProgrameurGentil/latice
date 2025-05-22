@@ -10,7 +10,7 @@ public class Joueur {
 	private Integer nombreActionRestanteAJouer;
 	private Integer nbTuilesPosees;
 	private Rack rack;
-	public Pioche pioche;
+	private Pioche pioche;
 	
 	//constructors
 	public Joueur(String nom, Integer points, Integer actionsRestante, Integer nbTuilesPosees, Rack rack,
@@ -97,7 +97,7 @@ public class Joueur {
 		
 	}
 	
-	public void RemplirSonRack() {
+	public void remplirSonRack() {
 		this.rack.remplirLeRack(this.pioche);
 	}
 
