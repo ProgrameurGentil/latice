@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -20,13 +19,8 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import latice.model.Couleur;
-import latice.model.Forme;
 import latice.model.Joueur;
-import latice.model.Pioche;
 import latice.model.Rack;
 import latice.model.Tuile;
 
@@ -36,19 +30,26 @@ public class Plateau extends Application{
 	 private static final double case_taille = 62.0;
 	 private HBox rack = new HBox();
 	 
+	 private static Plateau instance; // <-- Référence statique
+	 public static Plateau getInstance() { return instance; }
+	 
+	 
 	 public static void main(String[] args) {
 	        launch(args);
 	    }
 	@Override
 	public void start(Stage primaryStage) throws Exception{
-			BorderPane root = new BorderPane();		
-			rack.setStyle(
-		            "-fx-border-width: 10;" + "-fx-border-radius: 15;" + "-fx-padding: 20;");
-			rack.setPrefWidth(340);
+            instance = this;
+		
+			BorderPane root = new BorderPane();
 			rack.setPrefHeight(85);
 			rack.setMaxSize(350, 90);
 			
 			Image bgImage = new Image(getClass().getResourceAsStream("/rack/fond.png"));
+			rack.setPrefWidth(340);
+		            "-fx-border-width: 10;" + "-fx-border-radius: 15;" + "-fx-padding: 20;");
+			rack.setStyle(
+			
 
 			BackgroundImage backgroundImage = new BackgroundImage(
 			    bgImage,
@@ -85,7 +86,7 @@ public class Plateau extends Application{
 	        for (int row = 0; row < lignes; row++) {
 	            for (int col = 0; col < colonnes; col++) {
 	                ImageView imageView = new ImageView();
-	                Dnd.sourceDragAndDrop(imageView);
+	                Dnd.cibleDragAndDrop(imageView);
 	                imageView.setFitHeight(case_taille);
 	                imageView.setFitWidth(case_taille);
 	                imageView.setPreserveRatio(true);
@@ -138,9 +139,9 @@ public class Plateau extends Application{
 		for(int i=0;i<5;i++) {
 			Tuile tuile = rackDuJoueur.obtenirTuile(i);
 			if (tuile != null) {
-	            Image image = new Image(getClass().getResourceAsStream(tuile.obtenirLienVersImage()));
+	            Image image = new Image(getClass().getResource(tuile.obtenirLienVersImage()).toString());
 	            ImageView imageView = new ImageView(image);
-	            Dnd.cibleDragAndDrop(imageView);
+	            Dnd.sourceDragAndDrop(imageView);
 	            imageView.setFitWidth(62);
 	            imageView.setFitHeight(62);
 	            imageView.setPreserveRatio(true);

@@ -1,6 +1,5 @@
 package latice.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,5 +39,9 @@ public class GroupeDeTuile {
 	
 	public List<Tuile> diviser(int debutDePioche, int finDePioche) {
 		return this.tuiles.subList(debutDePioche, finDePioche);
+	}
+	
+	public List<Tuile> getTuiles() {
+		return this.tuiles;
 	}
 }

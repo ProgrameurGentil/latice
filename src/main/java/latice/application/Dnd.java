@@ -1,5 +1,8 @@
 package latice.application;
 
+
+import java.io.File;
+
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -7,6 +10,9 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.GridPane;
+import latice.model.Constantes;
+import latice.model.Tuile;
 
 public class Dnd {
 	public static void sourceDragAndDrop(ImageView source) {
@@ -18,10 +24,10 @@ public class Dnd {
 		        
 		        ClipboardContent content = new ClipboardContent();
 		        content.putImage(source.getImage());
+		        content.putString(source.getImage().getUrl());
 		        db.setContent(content);
 		        
 		        event.consume();
-				
 			}
 			
 		});
@@ -46,8 +52,8 @@ public class Dnd {
 				if (event.getGestureSource() != cible && event.getDragboard().hasImage()) {
 		            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
 		        }
-		        event.consume();
 				
+		        event.consume();
 			}
 		});
 		
@@ -59,14 +65,73 @@ public class Dnd {
 		        boolean success = false;
 		        
 		        if (db.hasImage()) {
-		           cible.setImage(db.getImage());
-		           success = true;
+		        	
+					System.out.println(obtenirTuileAvecUnChemin(db.getString()));
+					
+					cible.setImage(db.getImage());
+					cible.setOpacity(1);
+					success = true;
+					enleverDragAndDrop(cible);
 		        }
 		        
 		        event.setDropCompleted(success);
 		        event.consume();
-				
+			}
+		});
+		
+		cible.setOnDragEntered(new EventHandler<DragEvent>() { 
+			/* des modifs peuvent avoir lieux ici pour montrer si une tuile peut etre placer ou non */
+
+			@Override
+			public void handle(DragEvent event) {
+				Dragboard db = event.getDragboard();
+		        
+		        if (db.hasImage()) {
+		        	cible.setImage(db.getImage());
+		        	cible.setOpacity(0.5);
+		        	
+		        	System.out.println("ligne :" + GridPane.getRowIndex(cible));
+		        	System.out.println("colonne :" + GridPane.getColumnIndex(cible));
+		        	
+		        }
+		        
+		        event.consume();
+			}
+		});
+		
+		cible.setOnDragExited(new EventHandler<DragEvent>() {
+
+			@Override
+			public void handle(DragEvent event) {
+		        cible.setImage(null);
+		        
+		        event.consume();
 			}
 		});
 	}
+	
+	private static void enleverDragAndDrop(ImageView image) {
+		image.setOnDragOver(null);
+		image.setOnDragDropped(null);
+		image.setOnDragDetected(null);
+		image.setOnDragDone(null);
+		image.setOnDragEntered(null);
+		image.setOnDragExited(null);
+	}
+	
+	private static Tuile obtenirTuileAvecUnChemin(String chemin) {
+		String base = "file:/D:/java/iut/saebut1/latice/target/classes";
+		chemin = chemin.substring(base.length());
+		Tuile tuile;
+		Integer tailleTouteLesTuiles = Constantes.TOUTE_LES_TUILES.taille();
+		
+		for (int i=0 ; i<tailleTouteLesTuiles ; i++) {
+			tuile = Constantes.TOUTE_LES_TUILES.obtenirTuile(i);
+			if (tuile.obtenirLienVersImage().equals(chemin)) {
+				return tuile;
+			}
+		}
+		return new Tuile(null, null); // A changer
+	}
+	
 }

@@ -15,7 +15,7 @@ public class Tuile {
 
 	@Override
 	public String toString() {
-		return forme+" de couleur "+couleur;
+		return forme+" de couleur " + couleur;
 	}
 
 	public Couleur getCouleur() {
@@ -44,6 +44,9 @@ public class Tuile {
 		if (getClass() != obj.getClass())
 			return false;
 		Tuile other = (Tuile) obj;
+		if (obtenirLienVersImage() == other.obtenirLienVersImage()) {
+			return true;
+		}
 		return couleur == other.couleur && forme == other.forme;
 	}
 	
