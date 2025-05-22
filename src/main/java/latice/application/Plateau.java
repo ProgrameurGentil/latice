@@ -30,7 +30,7 @@ public class Plateau extends Application{
 	 private static final int colonnes = 9;
 	 private static final int lignes = 9;
 	 private static final double case_taille = 62.0;
-	 private HBox rack = new HBox();
+	 private HBox hbRack = new HBox();
 	 
 	 private static Plateau instance; // <-- Référence statique
 	 public static Plateau getInstance() { return instance; }
@@ -44,13 +44,13 @@ public class Plateau extends Application{
             instance = this;
 		
 			BorderPane root = new BorderPane();
-			rack.setPrefHeight(85);
-			rack.setMaxSize(350, 90);
+			hbRack.setPrefHeight(85);
+			hbRack.setMaxSize(350, 90);
 			
 			Image bgImage = new Image(getClass().getResourceAsStream("/rack/fond.png"));
-			rack.setPrefWidth(340);
+			hbRack.setPrefWidth(340);
 		            
-			rack.setStyle("-fx-border-width: 10;" + "-fx-border-radius: 15;" + "-fx-padding: 20;");
+			hbRack.setStyle("-fx-border-width: 10;" + "-fx-border-radius: 15;" + "-fx-padding: 20;");
 			
 
 			BackgroundImage backgroundImage = new BackgroundImage(
@@ -62,9 +62,9 @@ public class Plateau extends Application{
 			        350, 90, false, false, false, false)
 			);
 
-			rack.setBackground(new Background(backgroundImage));
+			hbRack.setBackground(new Background(backgroundImage));
 			
-			PlateauTuiles plateauTuile = new PlateauTuiles();
+			PlateauTuiles plateauTuile = new PlateauTuiles(); // temporaire
 			PlateauDeCase plateauCase = new PlateauDeCase();
 			
 			GridPane plateau = new GridPane();
@@ -102,9 +102,9 @@ public class Plateau extends Application{
 	                plateau.add(imageView, col, row);
 	            }
 	        }
-	        Image img = new Image(getClass().getResourceAsStream("/plateau/plateau.png"));
+	        Image imgPlateau = new Image(getClass().getResourceAsStream("/plateau/plateau.png"));
 	        BackgroundImage background = new BackgroundImage(
-	        		img,
+	        		imgPlateau,
 	                BackgroundRepeat.NO_REPEAT,  
 	                BackgroundRepeat.NO_REPEAT,  
 	                BackgroundPosition.DEFAULT,  
@@ -124,7 +124,7 @@ public class Plateau extends Application{
 	        
 	        vb.setAlignment(Pos.CENTER_LEFT);
 
-	        StackPane bottomPane = new StackPane(rack);
+	        StackPane bottomPane = new StackPane(hbRack);
 	        bottomPane.setAlignment(Pos.CENTER);
 	        bottomPane.setPrefHeight(90); 
 	        root.setBottom(bottomPane);
@@ -149,7 +149,7 @@ public class Plateau extends Application{
 	            imageView.setFitWidth(62);
 	            imageView.setFitHeight(62);
 	            imageView.setPreserveRatio(true);
-	            rack.getChildren().add(imageView);
+	            hbRack.getChildren().add(imageView);
 	        }
 		}
 	}

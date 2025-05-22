@@ -25,10 +25,10 @@ public class PlateauTuiles{
 	}
 
 	public boolean poser(Position position, Tuile tuile) {
-		if(tuiles.putIfAbsent(position, tuile) == null) {
+		if (tuiles.putIfAbsent(position, tuile) == null) {
 			return true;
 		}
-		return false;
+		return false; 
 	}
 
 	public void vider() {
@@ -73,10 +73,8 @@ public class PlateauTuiles{
 		for (Position positionAutour : positionAutours) {
 			if (this.siTuileIci(positionAutour)) {
 				rep = true;
-				if(this.donnerTuilesAPosition(positionAutour).getForme() 
-					!= tuilePosee.getForme() 
-					&& this.donnerTuilesAPosition(positionAutour).getCouleur() 
-					!= tuilePosee.getCouleur()) {
+				if (this.donnerTuilesAPosition(positionAutour).getForme() != tuilePosee.getForme() && 
+					this.donnerTuilesAPosition(positionAutour).getCouleur() != tuilePosee.getCouleur()) {
 				return false;
 				}
 			}
