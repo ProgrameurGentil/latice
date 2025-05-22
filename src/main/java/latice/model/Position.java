@@ -37,14 +37,46 @@ public class Position {
 //		} else ligne--;
 //		return new Position(colonne,ligne);
 //	}
-	
 	public List<Position> caseAutour(){
+		Position positionAuDessus = null;
+		Position positionADroit = null;
+		Position positionEnBas = null;
+		Position positionAGauche = null;
 		int colonne = this.getColonne();
-		int ligne = this.getLigne();
-		Position positionAuDessus = new Position(colonne,ligne-1);
-		Position positionADroit = new Position(colonne+1,ligne);
-		Position positionEnBas = new Position(colonne,ligne+1);
-		Position positionAGauche = new Position(colonne-1,ligne);
+		int ligne = this.getLigne();		
+		if (colonne >= 0 && colonne <= 8 && ligne >= 0 && ligne <= 8) {
+
+	        if (ligne > 0) {
+	            positionAuDessus = new Position(colonne, ligne - 1);
+	        } else {
+	            positionAuDessus = null;
+	        }
+
+	        if (colonne < 8) {
+	            positionADroit = new Position(colonne + 1, ligne);
+	        } else {
+	            positionADroit = null;
+	        }
+
+	        if (ligne < 8) {
+	            positionEnBas = new Position(colonne, ligne + 1);
+	        } else {
+	            positionEnBas = null;
+	        }
+
+	        if (colonne > 0) {
+	            positionAGauche = new Position(colonne - 1, ligne);
+	        } else {
+	            positionAGauche = null;
+	        }
+
+	    } else {
+	        // En dehors de la grille, aucune position autour n'est valide
+	        positionAuDessus = null;
+	        positionADroit = null;
+	        positionEnBas = null;
+	        positionAGauche = null;
+	    }
 		List<Position> caseAutours = new ArrayList<Position>(Arrays.asList(positionAuDessus,positionADroit,positionEnBas,positionAGauche));
 		return caseAutours;
 	}
