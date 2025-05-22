@@ -121,5 +121,7 @@ public class LaticeJeuxEssais {
 		System.out.println(joueurTestRack1.getPoints()+" , "+joueurTestRack1.getNombreActionRestanteAJouer());
 		joueurTestRack1.acheterAction();
 		System.out.println(joueurTestRack1.getPoints()+" , "+joueurTestRack1.getNombreActionRestanteAJouer());
+		
+		
 	}
 }
