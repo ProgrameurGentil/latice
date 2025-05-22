@@ -73,6 +73,7 @@ public class LaticeJeuxEssais {
 		System.out.println(positionTps.toString());
 		
 		// testes rack
+		// poser
 		boolean rep = true;
 		Tuile T1a = new Tuile(Couleur.ROUGE, Forme.OISEAU);
 		Tuile T1b = new Tuile(Couleur.BLEU, Forme.OISEAU);
@@ -103,5 +104,22 @@ public class LaticeJeuxEssais {
 		rep = joueurTestRack2.poserTuile(2, 31, plateauDeCase, plateauTuiles);
 		System.out.println(rep);
 		joueurTestRack2.getRack().afficher();
+		
+		//remplir
+		System.out.println(joueurTestRack1.pioche.taille()+" , "+joueurTestRack1.getRack().taille());
+		joueurTestRack1.RemplirSonRack();
+		System.out.println(joueurTestRack1.pioche.taille()+" , "+joueurTestRack1.getRack().taille());
+		
+		//echanger
+		joueurTestRack2.getRack().afficher();
+		
+		joueurTestRack2.echangerRack();
+		joueurTestRack2.getRack().afficher();
+		
+		//acheter un tour
+		joueurTestRack1.setPoints(5);
+		System.out.println(joueurTestRack1.getPoints()+" , "+joueurTestRack1.getNombreActionRestanteAJouer());
+		joueurTestRack1.acheterAction();
+		System.out.println(joueurTestRack1.getPoints()+" , "+joueurTestRack1.getNombreActionRestanteAJouer());
 	}
 }

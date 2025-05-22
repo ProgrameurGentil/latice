@@ -32,43 +32,43 @@ public class Joueur {
 	}
 
 	//comportement	
-	public Joueur jouer() {
-		//TODO joueur un tour
-		
-		/* regarde actions
-		 * lance en fonction des action */
-		
-		Joueur suivant;
+	public Joueur jouer() { //TODO joueur un tour
+		boolean aJouer = false;
+		Joueur suivant;	
+		while (aJouer != true) {
+				/* regarde actions
+				 * lance en fonction des action 
+				 * /!\ ne pas faire aJouer = this.acheterAction() */
+		}
 		suivant = finAction();
 		return suivant;
 	}
 	
 	public boolean poserTuile(int indiceTuileRack, int indiceDestination, PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) {
 		Position positionPose = Position.position(indiceDestination);
-		Tuile tuileAPoser = this.rack.enlever(indiceTuileRack);
+		Tuile tuileAPoser = this.rack.obtenirTuile(indiceTuileRack);
 		int nbTuilesAutour = plateauDeTuiles.combienDeTuileAutour(positionPose);
 		if (plateauDeTuiles.siTuilePosableIci(tuileAPoser, positionPose)){
 			this.nbTuilesPosees++;
-			plateauDeTuiles.poser(positionPose, tuileAPoser);
+			plateauDeTuiles.poser(positionPose, this.rack.enlever(indiceTuileRack));
 			
 			if (plateauDeCases.donnerLaCaseAPosition(positionPose).equals(new Case(Type.SOLEIL))) this.points++;
 			if ( nbTuilesAutour == 2) this.points++;
 			if ( nbTuilesAutour == 3) this.points = this.points + 2;
 			if ( nbTuilesAutour == 4) this.points = this.points + 4;
-			this.nombreActionRestanteAJouer--;
 			return true;
 		}else { 
-			this.rack.ajouter(tuileAPoser);
 			return false;
 		}
 	}
 	
-	public void echangerRack() {
+	public boolean echangerRack() {
+		if (this.pioche.taille()==0) return false;
 		int i;
-		for (i=0 ; i<this.pioche.taille() ; i++) this.pioche.ajouter(this.rack.enlever(0));
+		for (i=0 ; i<this.pioche.taille() && i<5 ; i++) this.pioche.ajouter(this.rack.enlever(0));
 		this.rack.remplirLeRack(this.pioche);
 		this.pioche.melanger();
-		this.nombreActionRestanteAJouer--;
+		return true;
 	}
 	
 	public Boolean acheterAction() {
@@ -81,11 +81,12 @@ public class Joueur {
 		}
 	}
 	
-	public void passerAction() {
-		this.nombreActionRestanteAJouer--;
+	public boolean passerAction() {
+		return true;
 	}
 	
 	public Joueur finAction() { //tous ce qu'on doit faire après qu'un joueur ait joué une action (à compléter)
+		this.nombreActionRestanteAJouer--;
 		if (this.nombreActionRestanteAJouer == 0) {
 				//à l'autre joueur de jouer
 			return null;
@@ -124,4 +125,25 @@ public class Joueur {
 	public void setPioche(Pioche pioche) {
 		this.pioche = pioche;
 	}
+	
+	public Integer getNombreActionRestanteAJouer() {
+		return nombreActionRestanteAJouer;
+	}
+
+	public void setNombreActionRestanteAJouer(Integer nombreActionRestanteAJouer) {
+		this.nombreActionRestanteAJouer = nombreActionRestanteAJouer;
+	}
+
+	public Integer getNbTuilesPosees() {
+		return nbTuilesPosees;
+	}
+
+	public void setNbTuilesPosees(Integer nbTuilesPosees) {
+		this.nbTuilesPosees = nbTuilesPosees;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
 }
