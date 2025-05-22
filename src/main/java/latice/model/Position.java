@@ -22,21 +22,21 @@ public class Position {
 		return colonne;
 	}	
 	
-	public static Position position(int indice) {
-		// erreur, faire un execpetion
-		if (indice < 1 || indice > 81) {
-			System.out.println("indice inexistant sur plateau");
-			return new Position(0,0);
-		}
-		//le reste
-		int colonne = (indice / 9);
-		int ligne = (indice % 9);
-		if (ligne == 0) {
-			ligne = 8;
-			colonne--;
-		} else ligne--;
-		return new Position(colonne,ligne);
-	}
+//	public static Position position(int indice) {
+//		// erreur, faire un execpetion
+//		if (indice < 1 || indice > 81) {
+//			System.out.println("indice inexistant sur plateau");
+//			return new Position(0,0);
+//		}
+//		//le reste
+//		int colonne = (indice / 9);
+//		int ligne = (indice % 9);
+//		if (ligne == 0) {
+//			ligne = 8;
+//			colonne--;
+//		} else ligne--;
+//		return new Position(colonne,ligne);
+//	}
 	
 	public List<Position> caseAutour(){
 		int colonne = this.getColonne();
