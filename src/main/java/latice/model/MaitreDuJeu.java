@@ -2,8 +2,6 @@ package latice.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collections;
-import java.util.List;
 
 public class MaitreDuJeu {
 	private Integer nb_tours;

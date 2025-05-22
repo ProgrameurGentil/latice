@@ -1,9 +1,5 @@
 package latice.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class Joueur {
 	private final String nom;
 	private Integer points;

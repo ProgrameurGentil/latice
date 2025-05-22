@@ -1,9 +1,5 @@
 package latice.application;
 
-import java.util.ArrayList;
-
-import latice.model.*;
-
 public class LaticeApplicationConsole {
 	private static final String LINE_BAR = "-----------------------------------------------------";
 	
