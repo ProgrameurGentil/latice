@@ -67,14 +67,16 @@ public class Dnd {
 		        
 		        if (db.hasImage()) {
 		        	
-					System.out.println(obtenirTuileAvecUnChemin(db.getString()));
+					//System.out.println(obtenirTuileAvecUnChemin(db.getString())); //
 					
-					if (plateauTuiles.siTuilePosableIci(obtenirTuileAvecUnChemin(db.getString()), new Position(GridPane.getRowIndex(cible), GridPane.getColumnIndex(cible)))) {
+					Position postionTuile =  new Position(GridPane.getColumnIndex(cible), GridPane.getRowIndex(cible));
+					
+					if (plateauTuiles.siTuilePosableIci(obtenirTuileAvecUnChemin(db.getString()), postionTuile)) {
 						cible.setImage(db.getImage());
 						cible.setOpacity(1);
 						success = true;
 						enleverDragAndDrop(cible);
-						plateauTuiles.poser(new Position(GridPane.getRowIndex(cible), GridPane.getColumnIndex(cible)), obtenirTuileAvecUnChemin(db.getString()));
+						plateauTuiles.poser(postionTuile, obtenirTuileAvecUnChemin(db.getString()));
 					}
 		        }
 		        
@@ -92,7 +94,7 @@ public class Dnd {
 		        
 		        if (db.hasImage()) {
 		        	
-		        	if (plateauTuiles.siTuilePosableIci(obtenirTuileAvecUnChemin(db.getString()), new Position(GridPane.getRowIndex(cible), GridPane.getColumnIndex(cible)))) {
+		        	if (plateauTuiles.siTuilePosableIci(obtenirTuileAvecUnChemin(db.getString()), new Position(GridPane.getColumnIndex(cible), GridPane.getRowIndex(cible)))) {
 			        	cible.setImage(db.getImage());
 		        	} else {
 		        		cible.setImage(new Image(getClass().getResource("/tuiles/tuile_interdite.png").toString()));

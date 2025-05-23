@@ -67,10 +67,12 @@ public class PlateauTuiles{
 		
 		List<Position> positionAutours = positionPose.caseAutour();
 		if (this.siTuileIci(positionPose) || this.combienDeTuileAutour(positionPose) < 1 ) {
+			//System.out.println("je passe ici : " + this.combienDeTuileAutour(positionPose)); //debug
 			return false;
 		}
 		
 		for (Position positionAutour : positionAutours) {
+			//System.out.println(positionAutour); // debug
 			if (this.siTuileIci(positionAutour)) {
 				rep = true;
 				if (this.donnerTuilesAPosition(positionAutour).getForme() != tuilePosee.getForme() && 

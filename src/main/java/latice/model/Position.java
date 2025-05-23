@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class Position {
+public class Position { // La postion est fait comme : Colonne ; Ligne
 	private final Integer ligne;
 	private final Integer colonne;
 	
-	public Position(Integer ligne, Integer colonne) {
+	public Position(Integer colonne, Integer ligne) {
 		this.ligne = ligne;
 		this.colonne = colonne;
 	}
@@ -48,26 +48,18 @@ public class Position {
 
 	        if (ligne > 0) {
 	            positionAuDessus = new Position(colonne, ligne - 1);
-	        } else {
-	            positionAuDessus = null;
 	        }
 
 	        if (colonne < 8) {
 	            positionADroit = new Position(colonne + 1, ligne);
-	        } else {
-	            positionADroit = null;
 	        }
 
 	        if (ligne < 8) {
 	            positionEnBas = new Position(colonne, ligne + 1);
-	        } else {
-	            positionEnBas = null;
 	        }
 
 	        if (colonne > 0) {
 	            positionAGauche = new Position(colonne - 1, ligne);
-	        } else {
-	            positionAGauche = null;
 	        }
 
 	    } else {
