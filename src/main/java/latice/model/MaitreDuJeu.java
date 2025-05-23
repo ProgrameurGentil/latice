@@ -45,5 +45,9 @@ public class MaitreDuJeu {
 	        debutDePioche = finDePioche;
 	    }
 	}
+	
+	public Integer quelJoueurCommence(List<Joueur> listeJoueurs) {
+		return (int)(Math.random() * listeJoueurs.size());
+	}
 }
 

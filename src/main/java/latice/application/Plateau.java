@@ -62,7 +62,7 @@ public class Plateau extends Application{
 			        350, 90, false, false, false, false)
 			);
 
-			hbRack.setBackground(new Background(backgroundImage));
+			hbRack.setBackground(new Background(backgroundImage)); 
 			
 			PlateauTuiles plateauTuile = new PlateauTuiles(); // temporaire
 			PlateauDeCase plateauCase = new PlateauDeCase();
@@ -115,14 +115,16 @@ public class Plateau extends Application{
 	        root.setCenter(plateau);
 	        
 
-	        VBox vb = new VBox();
+	        VBox vbInformation = new VBox();
 	        
 	        Label pointsJ1 = new Label("Points du joueur 1 : ");
 	        Label pointsJ2 = new Label("Points du joueur 2 : ");
-	        vb.getChildren().addAll(pointsJ1,pointsJ2);
-	        root.setLeft(vb);
 	        
-	        vb.setAlignment(Pos.CENTER_LEFT);
+	        vbInformation.setStyle("-fx-border-color: red;");
+	        vbInformation.getChildren().addAll(pointsJ1,pointsJ2);
+	        
+	        root.setLeft(vbInformation);
+	        vbInformation.setAlignment(Pos.CENTER_LEFT);
 
 	        StackPane bottomPane = new StackPane(hbRack);
 	        bottomPane.setAlignment(Pos.CENTER);

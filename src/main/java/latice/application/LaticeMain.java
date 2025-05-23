@@ -18,6 +18,7 @@ public class LaticeMain {
 		List<Joueur> listeDeJoueurs = new ArrayList<Joueur>();
 		PlateauDeCase plateauDeCase = new PlateauDeCase();
 		PlateauTuiles plateauDeTuiles = new PlateauTuiles();
+		Integer indiceDuJoueurQuiJoue;
 		
 		listeDeJoueurs.add(new Joueur("Joueur 1"));
 		listeDeJoueurs.add(new Joueur("Joueur 2"));
@@ -27,6 +28,10 @@ public class LaticeMain {
 		for (Joueur joueur : listeDeJoueurs) {
 			joueur.remplirSonRack();
 		}
+		
+		indiceDuJoueurQuiJoue = maitreDuJeu.quelJoueurCommence(listeDeJoueurs);
+		
+		
 	}
 	
 }
