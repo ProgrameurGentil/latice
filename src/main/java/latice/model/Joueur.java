@@ -28,16 +28,27 @@ public class Joueur {
 	}
 
 	//comportement	
-	public Joueur jouer() { //TODO joueur un tour
+	public String jouer(String option, int indiceTuileRack, Position positionDestination,
+			PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) { //TODO joueur un tour
 		boolean aJouer = false;
-		Joueur suivant;	
-		while (aJouer != true) {
-				/* regarde actions
-				 * lance en fonction des action 
-				 * /!\ ne pas faire aJouer = this.acheterAction() */
+		boolean suivant = true;	
+		if (option == "acheter") { 
+			aJouer = this.acheterAction();
+			if (aJouer == true) return "rejouer";
+			else return "pauvre";
 		}
-		suivant = finAction();
-		return suivant;
+		else {
+			if (option == "poser") aJouer = this.poserTuile(indiceTuileRack, positionDestination, plateauDeCases, plateauDeTuiles);
+			if (option == "piocher") aJouer = this.echangerRack();
+			if (option == "passer") aJouer = this.passerAction();
+			
+			if (aJouer == true) suivant = this.finAction();
+		}
+		if (aJouer == false) return "echec";
+		else {
+			if (suivant == false) return "au suivant";
+			else return "rejouer";
+		}
 	}
 	
 	public boolean poserTuile(int indiceTuileRack, Position positionDestination, PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) {
@@ -81,14 +92,14 @@ public class Joueur {
 		return true;
 	}
 	
-	public Joueur finAction() { //tous ce qu'on doit faire après qu'un joueur ait joué une action (à compléter)
+	public Boolean finAction() { //tous ce qu'on doit faire après qu'un joueur ait joué une action (à compléter)
 		this.nombreActionRestanteAJouer--;
 		if (this.nombreActionRestanteAJouer == 0) {
 				//à l'autre joueur de jouer
-			return null;
+			return false;
 		} else {
 			//le joueur continue
-			return this;
+			return true;
 		}
 		
 	}
