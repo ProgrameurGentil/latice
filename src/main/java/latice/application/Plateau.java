@@ -72,7 +72,7 @@ public class Plateau extends Application{
 			hbRack.setBackground(new Background(backgroundImage)); 
 			
 
-			//PlateauTuiles plateauTuile = new PlateauTuiles(); // temporaire
+			PlateauTuiles plateauTuile = new PlateauTuiles(); // temporaire
 			PlateauDeCase plateauCase = new PlateauDeCase();
 
 			
@@ -99,7 +99,7 @@ public class Plateau extends Application{
 	        for (int row = 0; row < lignes; row++) {
 	            for (int col = 0; col < colonnes; col++) {
 	                ImageView imageView = new ImageView();
-	                Dnd.cibleDragAndDrop(imageView, null);
+	                Dnd.cibleDragAndDrop(imageView, plateauTuile);
 	                imageView.setFitHeight(case_taille);
 	                imageView.setFitWidth(case_taille);
 	                imageView.setPreserveRatio(true);

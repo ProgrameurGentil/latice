@@ -32,6 +32,7 @@ public class LaticeMain {
 		indiceDuJoueurQuiJoue = maitreDuJeu.quelJoueurCommence(listeDeJoueurs);
 		
 		
+		
 	}
 	
 }
