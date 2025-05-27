@@ -179,16 +179,25 @@ public class Plateau extends Application{
 
 	public void afficherlerackdujoueur(Joueur joueur) {
 		Rack rackDuJoueur = joueur.getRack();
-		for(int i=0;i<5;i++) {
+		Integer tailleDuRackDuJoueur = joueur.getRack().taille();
+		Integer longueurDAffichage = 5;
+		if (tailleDuRackDuJoueur < 5) {
+			longueurDAffichage = tailleDuRackDuJoueur;
+		}
+		for(int i=0;i<longueurDAffichage;i++) {
 			Tuile tuile = rackDuJoueur.obtenirTuile(i);
 			if (tuile != null) {
-	            Image image = new Image(getClass().getResource(tuile.obtenirLienVersImage()).toString());
-	            ImageView imageView = new ImageView(image);
-	            Dnd.sourceDragAndDrop(imageView);
-	            imageView.setFitWidth(62);
-	            imageView.setFitHeight(62);
-	            imageView.setPreserveRatio(true);
-	            hbRack.getChildren().add(imageView);
+				try {
+		            Image image = new Image(getClass().getResource(tuile.obtenirLienVersImage()).toString());
+		            ImageView imageView = new ImageView(image);
+		            Dnd.sourceDragAndDrop(imageView);
+		            imageView.setFitWidth(62);
+		            imageView.setFitHeight(62);
+		            imageView.setPreserveRatio(true);
+		            hbRack.getChildren().add(imageView);
+				} catch(Exception e) {
+					System.out.println(tuile.toString());
+				}
 	        }
 		}
 	}

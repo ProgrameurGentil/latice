@@ -2,7 +2,12 @@ package latice.application;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
+import javafx.application.Application;
+import javafx.application.Platform;
 import latice.model.Joueur;
 import latice.model.MaitreDuJeu;
 import latice.model.Pioche;
@@ -12,7 +17,7 @@ import latice.model.Tuile;
 
 public class LaticeMain {
 
-	public  void main(String[] args) {
+	public static void main(String[] args) {
 		final MaitreDuJeu maitreDuJeu = new MaitreDuJeu();
 		final Pioche toutesLesTuiles = Tuile.initialisationTuiles();
 		List<Joueur> listeDeJoueurs = new ArrayList<Joueur>();
@@ -27,11 +32,26 @@ public class LaticeMain {
 		
 		for (Joueur joueur : listeDeJoueurs) {
 			joueur.remplirSonRack();
+			System.out.println(joueur.getRack().toString());
 		}
 		
 		indiceDuJoueurQuiJoue = maitreDuJeu.quelJoueurCommence(listeDeJoueurs);
 		
+		// Lancement de la parite
 		
+		new Thread(() -> Application.launch(Plateau.class)).start();
+		
+        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+        executor.scheduleAtFixedRate(() -> {
+            Plateau plateau = Plateau.getInstance();
+            if (plateau != null) {
+            	Platform.runLater(() -> plateau.afficherlerackdujoueur(listeDeJoueurs.get(indiceDuJoueurQuiJoue)));
+                executor.shutdown();
+            } else {
+                System.out.println("En attente de l'initialisation du Plateau...");
+            }
+        }, 0, 200, TimeUnit.MILLISECONDS);
+		/**/
 		
 	}
 	

@@ -27,7 +27,7 @@ public class Tuile {
 	}
 	
 	public String obtenirLienVersImage() {
-		return "/tuiles/" + this.getForme() + "s/" + this.getForme() + "_" + this.getCouleur() + ".png";
+		return "/tuiles/" + this.getForme() + "/" + this.getForme() + "_" + this.getCouleur() + ".png";
 	}
 
 	@Override
