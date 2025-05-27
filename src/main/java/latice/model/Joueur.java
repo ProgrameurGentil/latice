@@ -28,17 +28,6 @@ public class Joueur {
 	}
 
 	//comportement	
-	public Joueur jouer() { //TODO joueur un tour
-		boolean aJouer = false;
-		Joueur suivant;	
-		while (aJouer != true) {
-				/* regarde actions
-				 * lance en fonction des action 
-				 * /!\ ne pas faire aJouer = this.acheterAction() */
-		}
-		suivant = finAction();
-		return suivant;
-	}
 	
 	public boolean poserTuile(int indiceTuileRack, Position positionDestination, PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) {
 //		Position positionPose = Position.position(indiceDestination);
@@ -52,6 +41,7 @@ public class Joueur {
 			if ( nbTuilesAutour == 2) this.points++;
 			if ( nbTuilesAutour == 3) this.points = this.points + 2;
 			if ( nbTuilesAutour == 4) this.points = this.points + 4;
+			this.finAction();
 			return true;
 		} else { 
 			return false;
@@ -64,6 +54,7 @@ public class Joueur {
 		for (i=0 ; i<this.pioche.taille() && i<5 ; i++) this.pioche.ajouter(this.rack.enlever(0));
 		this.rack.remplirLeRack(this.pioche);
 		this.pioche.melanger();
+		this.finAction();
 		return true;
 	}
 	
@@ -81,15 +72,8 @@ public class Joueur {
 		return true;
 	}
 	
-	public Joueur finAction() { //tous ce qu'on doit faire après qu'un joueur ait joué une action (à compléter)
+	public void finAction() { //tous ce qu'on doit faire après qu'un joueur ait joué une action (à compléter)
 		this.nombreActionRestanteAJouer--;
-		if (this.nombreActionRestanteAJouer == 0) {
-				//à l'autre joueur de jouer
-			return null;
-		} else {
-			//le joueur continue
-			return this;
-		}
 		
 	}
 	
