@@ -166,6 +166,9 @@ public class Plateau extends Application{
 	        StackPane bottomPane = new StackPane(hbRack);
 	        bottomPane.setAlignment(Pos.CENTER);
 	        bottomPane.setPrefHeight(90); 
+	        
+	        bottomPane.setTranslateY(-10);
+	        bottomPane.setTranslateX(55);
 	        root.setBottom(bottomPane);
 	        
 			primaryStage.setTitle("Plateau Latice");
