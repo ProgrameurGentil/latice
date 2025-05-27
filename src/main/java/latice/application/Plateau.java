@@ -235,10 +235,14 @@ public class Plateau extends Application{
 		final Button button = new Button(string);
 		
 		if (string != "retour") {
-			button.setOnAction(e -> System.out.println(action));
+			button.setOnAction(e -> {
+			System.out.println(action);
+			stage.close();
+			});
 		}else {
 			button.setOnAction(e -> stage.close());
 		}
+		
 		
 		button.setMaxWidth(btn_taille);
 		
