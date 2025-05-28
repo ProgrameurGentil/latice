@@ -31,10 +31,10 @@ public class Joueur {
 	public String jouer(String option, int indiceTuileRack, Position positionDestination,
 			PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) { //TODO joueur un tour
 		boolean aJouer = false;
-		boolean suivant = true;	
+		boolean auSuivant = true;	
 		if (option == "acheter") { 
 			aJouer = this.acheterAction();
-			if (aJouer == true) return "rejouer";
+			if (aJouer) return "rejouer";
 			else return "pauvre";
 		}
 		else {
@@ -42,13 +42,13 @@ public class Joueur {
 			if (option == "piocher") aJouer = this.echangerRack();
 			if (option == "passer") aJouer = this.passerTour();
 			
-			if (aJouer == true) suivant = this.finAction();
+			if (aJouer) auSuivant = this.finAction();
 		}
-		if (aJouer == false) return "echec";
-		else {
-			if (suivant == false) return "au suivant";
+		if (aJouer) {
+			if (auSuivant) return "au_suivant";
 			else return "rejouer";
 		}
+		else return "echec";
 	}
 	
 	public boolean poserTuile(int indiceTuileRack, Position positionDestination, PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) {
@@ -98,10 +98,10 @@ public class Joueur {
 		this.nombreActionRestanteAJouer--;
 		if (this.nombreActionRestanteAJouer == 0) {
 				//à l'autre joueur de jouer
-			return false;
+			return true;
 		} else {
 			//le joueur continue
-			return true;
+			return false;
 		}
 		
 	}
