@@ -14,16 +14,16 @@ public class MaitreDuJeu {
 	public void lancerTour(List<Joueur> joueurs) {
 		Joueur joueur = new Joueur("nom");
 		while (this.gagner(joueur) != true) {	
-			joueur = joueurs.get(0);
-			while (joueur == joueurs.get(0)) {
-				joueur = joueur.jouer();
-			}
-			
-			joueur = joueurs.get(1);
-			while (joueur == joueurs.get(1)) {
-				joueur = joueurs.get(0);
-				joueur = joueur.jouer();
-			}
+//			joueur = joueurs.get(0);
+//			while (joueur == joueurs.get(0)) {
+//				joueur = joueur.jouer();
+//			}
+//			
+//			joueur = joueurs.get(1);
+//			while (joueur == joueurs.get(1)) {
+//				joueur = joueurs.get(0);
+//				joueur = joueur.jouer();
+//			}
 		}
 	}
 	
