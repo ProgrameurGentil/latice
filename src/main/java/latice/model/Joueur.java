@@ -40,7 +40,7 @@ public class Joueur {
 		else {
 			if (option == "poser") aJouer = this.poserTuile(indiceTuileRack, positionDestination, plateauDeCases, plateauDeTuiles);
 			if (option == "piocher") aJouer = this.echangerRack();
-			if (option == "passer") aJouer = this.passerAction();
+			if (option == "passer") aJouer = this.passerTour();
 			
 			if (aJouer == true) suivant = this.finAction();
 		}
@@ -75,6 +75,7 @@ public class Joueur {
 		for (i=0 ; i<this.pioche.taille() && i<5 ; i++) this.pioche.ajouter(this.rack.enlever(0));
 		this.rack.remplirLeRack(this.pioche);
 		this.pioche.melanger();
+		this.passerTour();
 		return true;
 	}
 	
@@ -88,7 +89,8 @@ public class Joueur {
 		}
 	}
 	
-	public boolean passerAction() {
+	public boolean passerTour() {
+		this.nombreActionRestanteAJouer = 1; //car 1-1=0 pour finAction
 		return true;
 	}
 	
