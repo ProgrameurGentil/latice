@@ -83,7 +83,7 @@ public class Dnd {
 		        event.setDropCompleted(success);
 		        event.consume();
 			}
-		});
+		}); 
 		
 		cible.setOnDragEntered(new EventHandler<DragEvent>() { 
 			/* des modifs peuvent avoir lieux ici pour montrer si une tuile peut etre placer ou non */
