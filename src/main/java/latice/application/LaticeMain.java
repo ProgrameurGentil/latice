@@ -30,9 +30,13 @@ public class LaticeMain {
 		
 		maitreDuJeu.diviseEtRepartiLesTuilesEnPioches(toutesLesTuiles, listeDeJoueurs);
 		
+		System.out.println(listeDeJoueurs.get(0).getPioche());
+		System.out.println(listeDeJoueurs.get(1).getPioche());
+		System.out.println(toutesLesTuiles.getTuiles());
+		
 		for (Joueur joueur : listeDeJoueurs) {
 			joueur.remplirSonRack();
-			System.out.println(joueur.getRack().toString());
+			//System.out.println(joueur.getRack().toString());
 		}
 		
 		indiceDuJoueurQuiJoue = maitreDuJeu.quelJoueurCommence(listeDeJoueurs);

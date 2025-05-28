@@ -62,12 +62,6 @@ public class Position { // La postion est fait comme : Colonne ; Ligne
 	            positionAGauche = new Position(colonne - 1, ligne);
 	        }
 
-	    } else {
-	        // En dehors de la grille, aucune position autour n'est valide
-	        positionAuDessus = null;
-	        positionADroit = null;
-	        positionEnBas = null;
-	        positionAGauche = null;
 	    }
 		List<Position> caseAutours = new ArrayList<Position>(Arrays.asList(positionAuDessus,positionADroit,positionEnBas,positionAGauche));
 		return caseAutours;

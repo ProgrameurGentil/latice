@@ -59,7 +59,7 @@ public class Joueur {
 	}
 	
 	public boolean echangerRack() {
-		if (this.pioche.taille()==0) return false;
+		if (this.pioche.taille()<5) return false; // TODO verifier ça fonctionne
 		int i;
 		for (i=0 ; i<this.pioche.taille() && i<5 ; i++) this.pioche.ajouter(this.rack.enlever(0));
 		this.rack.remplirLeRack(this.pioche);
