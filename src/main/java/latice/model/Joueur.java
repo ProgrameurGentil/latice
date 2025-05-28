@@ -54,7 +54,7 @@ public class Joueur {
 		for (i=0 ; i<this.pioche.taille() && i<5 ; i++) this.pioche.ajouter(this.rack.enlever(0));
 		this.rack.remplirLeRack(this.pioche);
 		this.pioche.melanger();
-		this.finAction();
+		this.passerTour();
 		return true;
 	}
 	
@@ -68,7 +68,8 @@ public class Joueur {
 		}
 	}
 	
-	public boolean passerAction() {
+	public boolean passerTour() {
+		this.nombreActionRestanteAJouer = 0;
 		return true;
 	}
 	
