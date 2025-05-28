@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -22,10 +23,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import latice.model.Joueur;
 import latice.model.PlateauDeCase;
 import latice.model.PlateauTuiles;
@@ -41,7 +40,6 @@ public class Plateau extends Application{
 	 
 	 private static Plateau instance; 
 	 public static Plateau getInstance() { return instance; }
-	 
 	 
 	 public static void main(String[] args) {
 	        launch(args);
@@ -211,10 +209,10 @@ public class Plateau extends Application{
         menuStage.initModality(Modality.APPLICATION_MODAL);
         menuStage.setTitle("Menu");
 
-        Button btnpass = afficherboutton("passer son tour", "La joueur a passer son tour", menuStage); 
-        Button btnacheter = afficherboutton("Acheter une Action (2)", "Le joueur a choisi d'acheter", menuStage);
-        Button btnchangerRack = afficherboutton("Echanger son rack (2)", "Le joueur a échanger son rack", menuStage);
-        Button btnfermerAction = afficherboutton("retour", null, menuStage);
+        Button btnpass = afficherboutton("passer son tour", "La joueur a passer son tour", "Cette action va finir votre tour",menuStage); 
+        Button btnacheter = afficherboutton("Acheter une Action (2)", "Le joueur a choisi d'acheter", "Acheter une action pour joueur à nouveau",menuStage);
+        Button btnchangerRack = afficherboutton("Echanger son rack (2)", "Le joueur a échanger son rack", "Cette action passera votre tour",menuStage);
+        Button btnfermerAction = afficherboutton("retour", null, null, menuStage);
                 
         VBox vbBoutton1et2 = new VBox(10, btnacheter, btnpass);
         VBox vbBoutton3etfermer = new VBox(10, btnchangerRack, btnfermerAction);
@@ -233,9 +231,13 @@ public class Plateau extends Application{
         menuStage.setResizable(false);
     }
 	
-	private Button afficherboutton(String string, String action, Stage stage) {
+	private Button afficherboutton(String string, String action, String descriptif, Stage stage) {
 		
 		final Button button = new Button(string);
+		if (descriptif != null) {
+			final Tooltip tooltip = new Tooltip(descriptif);
+	        Tooltip.install(button, tooltip);
+		}
 		
 		if (string != "retour") {
 			button.setOnAction(e -> {
