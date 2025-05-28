@@ -15,14 +15,13 @@ public class MaitreDuJeu {
 		Joueur joueur = new Joueur("nom");
 		while (this.gagner(joueur) != true) {	
 			joueur = joueurs.get(0);
-			while (joueur == joueurs.get(0)) {
-				joueur = joueur.jouer();
+			while (joueur.getNombreActionRestanteAJouer() > 0) {
+				//joueur = joueur.jouer();
 			}
 			
 			joueur = joueurs.get(1);
-			while (joueur == joueurs.get(1)) {
-				joueur = joueurs.get(0);
-				joueur = joueur.jouer();
+			while (joueur.getNombreActionRestanteAJouer() > 0) {
+				//joueur = joueur.jouer();
 			}
 		}
 	}
