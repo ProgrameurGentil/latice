@@ -46,7 +46,7 @@ public class Plateau extends Application{
 	    }
 	@Override
 	public void start(Stage primaryStage) throws Exception{
-            instance = this.instance;
+            instance = this;
 		
 			BorderPane root = new BorderPane();
 			hbRack.setPrefHeight(85);
