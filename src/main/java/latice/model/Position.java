@@ -85,6 +85,7 @@ public class Position { // La postion est fait comme : Colonne ; Ligne
 		if (getClass() != obj.getClass())
 			return false;
 		Position other = (Position) obj;
-		return Objects.equals(colonne, other.colonne) && Objects.equals(ligne, other.ligne);
+		//return Objects.equals(colonne, other.colonne) && Objects.equals(ligne, other.ligne);
+		return colonne == other.getColonne() && ligne == other.getLigne();
 	}
 }
