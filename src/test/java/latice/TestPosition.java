@@ -3,6 +3,7 @@ package latice;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 
@@ -49,10 +50,10 @@ public class TestPosition {
 		
 		List<Position> positionsAutourDePos5 = pos5.caseAutour();
 
-		assertEquals(positionsAutourDePos5.get(0), POSITION_NULL);
+		assertNull(positionsAutourDePos5.get(0));
 		assertEquals(positionsAutourDePos5.get(1), new Position(1, 0));
 		assertEquals(positionsAutourDePos5.get(2), new Position(0, 1));
-		assertEquals(positionsAutourDePos5.get(3), POSITION_NULL);
+		assertNull(positionsAutourDePos5.get(3));
 	}
 	
 	@Test
@@ -62,9 +63,9 @@ public class TestPosition {
 		
 		List<Position> positionsAutourDePos6 = pos6.caseAutour();
 		
-		assertEquals(positionsAutourDePos6.get(0), POSITION_NULL);
-		assertEquals(positionsAutourDePos6.get(1), POSITION_NULL);
-		assertEquals(positionsAutourDePos6.get(2), POSITION_NULL);
-		assertEquals(positionsAutourDePos6.get(3), POSITION_NULL);
+		assertNull(positionsAutourDePos6.get(0));
+		assertNull(positionsAutourDePos6.get(1));
+		assertNull(positionsAutourDePos6.get(2));
+		assertNull(positionsAutourDePos6.get(3));
 	}
 }
