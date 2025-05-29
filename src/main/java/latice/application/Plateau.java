@@ -204,7 +204,7 @@ public class Plateau extends Application{
         menuStage.setTitle("Menu");
 
         Label lblpts = new Label("Nombre de points de ");
-        Button btnpass = afficherboutton("passer son tour", "La joueur a passer son tour", "Cette action va finir votre tour",menuStage);
+        Button btnpass = afficherboutton("Fin du tour", "La joueur a passer son tour", "Cette action va finir votre tour",menuStage);
         Button btnacheter = afficherboutton("Acheter une Action (2)", "Le joueur a choisi d'acheter", "Acheter une action pour joueur à nouveau",menuStage);
         Button btnchangerRack = afficherboutton("Echanger son rack (2)", "Le joueur a échanger son rack", "Cette action passera votre tour",menuStage);
         Button btnfermerAction = afficherboutton("retour", null, null, menuStage);
