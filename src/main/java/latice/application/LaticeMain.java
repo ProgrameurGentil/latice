@@ -21,8 +21,6 @@ public class LaticeMain {
 		final MaitreDuJeu maitreDuJeu = new MaitreDuJeu();
 		final Pioche toutesLesTuiles = Tuile.initialisationTuiles();
 		List<Joueur> listeDeJoueurs = new ArrayList<Joueur>();
-		PlateauDeCase plateauDeCase = new PlateauDeCase();
-		PlateauTuiles plateauDeTuiles = new PlateauTuiles();
 		Integer indiceDuJoueurQuiJoue;
 		
 		listeDeJoueurs.add(new Joueur("Joueur 1"));

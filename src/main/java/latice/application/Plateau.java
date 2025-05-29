@@ -36,6 +36,9 @@ public class Plateau extends Application{
 	 private static final int lignes = 9;
 	 private static final double case_taille = 62.0;
 	 private static final int btn_taille = 175;
+	 private static final PlateauTuiles plateauTuile = new PlateauTuiles();
+	 private static final PlateauDeCase plateauCase = new PlateauDeCase();
+	 
 	 private HBox hbRack = new HBox();
 	 
 	 private static Plateau instance; 
@@ -68,11 +71,6 @@ public class Plateau extends Application{
 			);
 
 			hbRack.setBackground(new Background(backgroundImage)); 
-			
-
-			PlateauTuiles plateauTuile = new PlateauTuiles(); // temporaire
-			PlateauDeCase plateauCase = new PlateauDeCase();
-
 			
 			GridPane plateau = new GridPane();
 	        plateau.setGridLinesVisible(false);
