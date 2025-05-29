@@ -46,7 +46,7 @@ public class Plateau extends Application{
 	    }
 	@Override
 	public void start(Stage primaryStage) throws Exception{
-            instance = this;
+            instance = this.instance;
 		
 			BorderPane root = new BorderPane();
 			hbRack.setPrefHeight(85);
@@ -137,20 +137,16 @@ public class Plateau extends Application{
 	        VBox vb = new VBox();
 	        VBox vblbl = new VBox();
 	        VBox vboxbtn = new VBox();
-	        Label pointsJ1 = new Label("Points du joueur 1 : ");
-	        Label pointsJ2 = new Label("Points du joueur 2 : ");
 
 	        Button menuAction = new Button("Faire une Action");
 	        menuAction.setOnAction(e -> showMenuPopup());
 	        
 	        
 	        vblbl.setStyle("-fx-border-color: red;");
-	        pointsJ1.setTextFill(Color.RED);
 	        
 
 	        vboxbtn.getChildren().add(menuAction);
 	        vboxbtn.setStyle("-fx-border-color: green;");
-	        vblbl.getChildren().addAll(pointsJ1,pointsJ2);
 	        vb.getChildren().addAll(vboxbtn, vblbl);
 	        root.setLeft(vb);
 
@@ -203,13 +199,14 @@ public class Plateau extends Application{
 		}
 	}
 	
-	private void showMenuPopup() {
-		
+	private void showMenuPopup() {	//dans l'idéale mettre un joueur pour faire les actions et afficher le nb de points mais jsp comment faire 
+		Integer largeurFenetre = 400;
         Stage menuStage = new Stage();
         menuStage.initModality(Modality.APPLICATION_MODAL);
         menuStage.setTitle("Menu");
 
-        Button btnpass = afficherboutton("passer son tour", "La joueur a passer son tour", "Cette action va finir votre tour",menuStage); 
+        Label lblpts = new Label("Nombre de points de ");
+        Button btnpass = afficherboutton("passer son tour", "La joueur a passer son tour", "Cette action va finir votre tour",menuStage);
         Button btnacheter = afficherboutton("Acheter une Action (2)", "Le joueur a choisi d'acheter", "Acheter une action pour joueur à nouveau",menuStage);
         Button btnchangerRack = afficherboutton("Echanger son rack (2)", "Le joueur a échanger son rack", "Cette action passera votre tour",menuStage);
         Button btnfermerAction = afficherboutton("retour", null, null, menuStage);
@@ -220,11 +217,13 @@ public class Plateau extends Application{
         
         
 
-        HBox menuaction = new HBox(15, vbBoutton1et2, vbBoutton3etfermer);
+        HBox menubouton = new HBox(15, vbBoutton1et2, vbBoutton3etfermer);
+        VBox menuaction = new VBox(lblpts, menubouton);
+        lblpts.setTranslateX((largeurFenetre/2) - (largeurFenetre/6.6667));       
         
+        menubouton.setStyle("-fx-padding: 20; -fx-alignment: center;");
         
-        menuaction.setStyle("-fx-padding: 20; -fx-alignment: center;");
-        Scene menuScene = new Scene(menuaction, 400, 125);
+        Scene menuScene = new Scene(menuaction, largeurFenetre, 125);
 
         menuStage.setScene(menuScene);
         menuStage.showAndWait();
