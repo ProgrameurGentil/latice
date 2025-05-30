@@ -1,6 +1,15 @@
 package latice.application;
 
+import javafx.util.Duration;
+
+import javafx.animation.Animation;
+import javafx.animation.FillTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,18 +20,25 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -69,7 +85,16 @@ public class Plateau extends Application{
             
 	        StackPane bottomPane = new StackPane(hbRack);
             
-            
+	        Rectangle bg = new Rectangle(800, 600);
+	        bg.widthProperty().bind(root.widthProperty());
+	        bg.heightProperty().bind(root.heightProperty());
+
+	        FillTransition ft = new FillTransition(Duration.seconds(2), bg, Color.RED, Color.BLUE);
+	        ft.setAutoReverse(true);
+	        ft.setCycleCount(FillTransition.INDEFINITE);
+	        ft.play();
+
+	        root.getChildren().add(bg);
             
 	        Image imgPlateau = new Image(getClass().getResourceAsStream("/plateau/plateau.png"));
 	        BackgroundImage background = new BackgroundImage(
@@ -163,6 +188,20 @@ public class Plateau extends Application{
 	        bottomPane.setTranslateX(55);
 	        root.setBottom(bottomPane);
 	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
 			primaryStage.setTitle("Plateau Latice");
 			Scene scene = new Scene(root, 1000, 700);
 	        primaryStage.setScene(scene);
@@ -255,6 +294,7 @@ public class Plateau extends Application{
         
         menubouton.setStyle("-fx-padding: 20; -fx-alignment: center;");
         
+
         Scene menuScene = new Scene(menuaction, largeurFenetre, 140);
 
         menuStage.setScene(menuScene);
