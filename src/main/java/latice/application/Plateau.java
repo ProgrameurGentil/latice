@@ -1,6 +1,7 @@
 package latice.application;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -8,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -205,13 +207,39 @@ public class Plateau extends Application{
         
         Label lblpts;
         if (joueur != null) {
-        	lblpts = new Label("Nombre de points du " + joueur.getNom() + " : " + joueur.getPoints() + " spnts");
+        	lblpts = new Label("Nombre de points du " + joueur.getNom() + " : " + joueur.getPoints() + " pnts");
         } else {
-        	lblpts = new Label("Nombre de points du " + " null : " + "XX pnts");
+        	lblpts = new Label("Nombre de points du null : XX pnts");
         }
-        Button btnpass = afficherboutton("passer son tour", "La joueur a passer son tour", "Cette action va finir votre tour",menuStage);
-        Button btnacheter = afficherboutton("Acheter une Action (2)", "Le joueur a choisi d'acheter", "Acheter une action pour joueur à nouveau",menuStage);
-        Button btnchangerRack = afficherboutton("Echanger son rack (2)", "Le joueur a échanger son rack", "Cette action passera votre tour",menuStage);
+        Button btnpass = afficherboutton("Fin du tour", new EventHandler<MouseEvent>() {
+			
+			@Override
+			public void handle(MouseEvent event) {
+				System.out.println("le joueur passe son tour");
+				
+			}
+		}, "Cette action va finir votre tour",menuStage);
+        
+        Button btnacheter = afficherboutton("Acheter une Action (2)", new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				System.out.println("Le joueur a choisi d'acheter");
+				
+			}
+        	
+        }, "Acheter une action pour joueur à nouveau",menuStage);
+        
+        Button btnchangerRack = afficherboutton("Echanger son rack (2)", new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				System.out.println("Le joueur a échanger son rack");
+				
+			}
+        	
+        }, "Cette action passera votre tour",menuStage);
+        
         Button btnfermerAction = afficherboutton("retour", null, null, menuStage);
                 
         VBox vbBoutton1et2 = new VBox(10, btnacheter, btnpass);
@@ -231,7 +259,7 @@ public class Plateau extends Application{
         menuStage.setResizable(false);
     }
 	
-	private Button afficherboutton(String string, String action, String descriptif, Stage stage) {
+	private Button afficherboutton(String string, EventHandler<MouseEvent> action, String descriptif, Stage stage) {
 		
 		final Button button = new Button(string);
 		if (descriptif != null) {
@@ -240,10 +268,9 @@ public class Plateau extends Application{
 		}
 		
 		if (string != "retour") {
-			button.setOnAction(e -> {
-			System.out.println(action);
-			stage.close();
-			});
+			button.setOnMousePressed(action);
+			button.setOnMouseClicked(event -> {stage.close();});
+			
 		}else {
 			button.setOnAction(e -> stage.close());
 		}

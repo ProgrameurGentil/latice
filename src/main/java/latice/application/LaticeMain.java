@@ -46,6 +46,9 @@ public class LaticeMain {
             Plateau plateau = Plateau.getInstance();
             if (plateau != null) {
             	Platform.runLater(() -> plateau.afficherlerackdujoueur(listeDeJoueurs.get(indiceDuJoueurQuiJoue)));
+            	Platform.runLater(() -> {
+            		System.out.println("fini");
+            	});
                 executor.shutdown();
             } else {
                 System.out.println("En attente de l'initialisation du Plateau...");
