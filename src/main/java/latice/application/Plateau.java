@@ -38,6 +38,7 @@ public class Plateau extends Application{
 	 private static final PlateauTuiles plateauTuile = new PlateauTuiles();
 	 private static final PlateauDeCase plateauCase = PlateauDeCase.initialisationPlateauCase();
 	 private static final Dnd dragAndDrop = new Dnd();
+	 private Joueur joueur = null;
 	 
 	 private HBox hbRack = new HBox();
 	 
@@ -165,6 +166,7 @@ public class Plateau extends Application{
 		if (tailleDuRackDuJoueur < 5) {
 			longueurDAffichage = tailleDuRackDuJoueur;
 		}
+		setJoueur(joueur);
 		dragAndDrop.setJoueur(joueur);
 		for(int i=0;i<longueurDAffichage;i++) {
 			Tuile tuile = rackDuJoueur.obtenirTuile(i);
@@ -189,8 +191,13 @@ public class Plateau extends Application{
         Stage menuStage = new Stage();
         menuStage.initModality(Modality.APPLICATION_MODAL);
         menuStage.setTitle("Menu");
-
-        Label lblpts = new Label("Nombre de points de ");
+        
+        Label lblpts;
+        if (joueur != null) {
+        	lblpts = new Label("Nombre de points du " + joueur.getNom() + " : " + joueur.getPoints() + " spnts");
+        } else {
+        	lblpts = new Label("Nombre de points du " + " null : " + "XX pnts");
+        }
         Button btnpass = afficherboutton("passer son tour", "La joueur a passer son tour", "Cette action va finir votre tour",menuStage);
         Button btnacheter = afficherboutton("Acheter une Action (2)", "Le joueur a choisi d'acheter", "Acheter une action pour joueur à nouveau",menuStage);
         Button btnchangerRack = afficherboutton("Echanger son rack (2)", "Le joueur a échanger son rack", "Cette action passera votre tour",menuStage);
@@ -198,8 +205,6 @@ public class Plateau extends Application{
                 
         VBox vbBoutton1et2 = new VBox(10, btnacheter, btnpass);
         VBox vbBoutton3etfermer = new VBox(10, btnchangerRack, btnfermerAction);
-        
-        
         
 
         HBox menubouton = new HBox(15, vbBoutton1et2, vbBoutton3etfermer);
@@ -252,6 +257,10 @@ public class Plateau extends Application{
         });
 		return button;
 		
+	}
+	
+	public void setJoueur(Joueur joueur) {
+		this.joueur = joueur;
 	}
 }
 		
