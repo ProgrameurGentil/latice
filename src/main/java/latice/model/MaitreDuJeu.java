@@ -27,11 +27,6 @@ public class MaitreDuJeu {
 		}
 	}
 	
-	public Joueur quelJoueurDoitJouer() {
-		//TODO fonction qui retourne le joueur qui doit jouer
-		return null;	
-	}
-	
 	public void diviseEtRepartiLesTuilesEnPioches(Pioche touteLesTuile, List<Joueur> listeJoueurs) {
  		touteLesTuile.melanger();
 	    int taille = touteLesTuile.taille();

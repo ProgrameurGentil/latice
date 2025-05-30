@@ -14,12 +14,16 @@ import latice.model.Pioche;
 import latice.model.Tuile;
 
 public class LaticeMain {
+	private static Plateau plateau;
+	private static List<Joueur> listeDeJoueurs = new ArrayList<Joueur>();
+	private static Integer indiceDuJoueurQuiJoue;
+	private static Integer nbTours = 0;
+	private static final Integer nbToursMax = 10;
 
 	public static void main(String[] args) {
 		final MaitreDuJeu maitreDuJeu = new MaitreDuJeu();
 		final Pioche toutesLesTuiles = Tuile.initialisationTuiles();
-		List<Joueur> listeDeJoueurs = new ArrayList<Joueur>();
-		Integer indiceDuJoueurQuiJoue;
+		
 		
 		listeDeJoueurs.add(new Joueur("Joueur 1"));
 		listeDeJoueurs.add(new Joueur("Joueur 2"));
@@ -43,12 +47,9 @@ public class LaticeMain {
 		
         ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
         executor.scheduleAtFixedRate(() -> {
-            Plateau plateau = Plateau.getInstance();
+            plateau = Plateau.getInstance();
             if (plateau != null) {
             	Platform.runLater(() -> plateau.afficherlerackdujoueur(listeDeJoueurs.get(indiceDuJoueurQuiJoue)));
-            	Platform.runLater(() -> {
-            		System.out.println("fini");
-            	});
                 executor.shutdown();
             } else {
                 System.out.println("En attente de l'initialisation du Plateau...");
@@ -58,4 +59,19 @@ public class LaticeMain {
 		
 	}
 	
+	public static void joueurSuivant() {
+		if (!nbTours.equals(nbToursMax*listeDeJoueurs.size())) {
+			indiceDuJoueurQuiJoue = (indiceDuJoueurQuiJoue+1) % listeDeJoueurs.size();
+			Joueur joueur = listeDeJoueurs.get(indiceDuJoueurQuiJoue);
+			joueur.remplirSonRack();
+			plateau.afficherlerackdujoueur(joueur);
+			nbTours++;
+		} else {
+			System.out.println("Fin de la partie : nb de tours max atteint");
+		}
+	}
+	
+	public static Integer getNbTours() {
+		return nbTours;
+	}
 }

@@ -176,6 +176,7 @@ public class Plateau extends Application{
 		Rack rackDuJoueur = joueur.getRack();
 		Integer tailleDuRackDuJoueur = joueur.getRack().taille();
 		Integer longueurDAffichage = 5;
+		hbRack.getChildren().clear();
 		if (tailleDuRackDuJoueur < 5) {
 			longueurDAffichage = tailleDuRackDuJoueur;
 		}
@@ -215,8 +216,10 @@ public class Plateau extends Application{
 			
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println("le joueur passe son tour");
-				
+				//System.out.println("le joueur passe son tour");
+				if (!LaticeMain.getNbTours().equals(0)) {
+					LaticeMain.joueurSuivant();
+				}
 			}
 		}, "Cette action va finir votre tour",menuStage);
         
