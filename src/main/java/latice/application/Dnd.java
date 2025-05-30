@@ -79,16 +79,13 @@ public class Dnd {
 					Position postionTuile =  new Position(GridPane.getColumnIndex(cible), GridPane.getRowIndex(cible));
 					Integer indiceDansLeRack = joueur.getRack().obtenirIndiceTuile(obtenirTuileAvecUnChemin(db.getUrl())); 
 					
-					if (plateauTuiles.siTuilePosableIci(obtenirTuileAvecUnChemin(db.getUrl()), postionTuile)) {
-					//if (joueur.poserTuile(indiceDansLeRack, postionTuile, plateauCase, plateauTuiles)) {
-						System.out.println(indiceDansLeRack);
-						joueur.poserTuile(indiceDansLeRack, postionTuile, plateauCase, plateauTuiles);
+					if (joueur.poserTuile(indiceDansLeRack, postionTuile, plateauCase, plateauTuiles)) {
+						//System.out.println(indiceDansLeRack);
 						cible.setImage(db.getImage());
 						cible.setOpacity(1);
 						success = true;
 						enleverDragAndDrop(cible);
-						System.out.println("pnts : " + joueur.getPoints());
-						//plateauTuiles.poser(postionTuile, obtenirTuileAvecUnChemin(db.getUrl()));
+						//System.out.println("pnts : " + joueur.getPoints());
 					}
 		        }
 		        

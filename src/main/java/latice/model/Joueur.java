@@ -42,7 +42,7 @@ public class Joueur {
 	
 	public boolean poserTuile(int indiceTuileRack, Position positionDestination, PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) {
 //		Position positionPose = Position.position(indiceDestination);
-		Tuile tuileAPoser = this.rack.obtenirTuile(indiceTuileRack);// TODO pb ici au niv de l'indice
+		Tuile tuileAPoser = this.rack.obtenirTuile(indiceTuileRack);
 		int nbTuilesAutour = plateauDeTuiles.combienDeTuileAutour(positionDestination);
 		if (plateauDeTuiles.siTuilePosableIci(tuileAPoser, positionDestination)){
 			this.nbTuilesPosees++;

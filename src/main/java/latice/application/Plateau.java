@@ -135,26 +135,9 @@ public class Plateau extends Application{
 	                plateau.add(imageView, col, row); 
 	            }
 	        }
-	      
-	        Image imgPlateau = new Image(getClass().getResourceAsStream("/plateau/plateau.png"));
-	        BackgroundImage background = new BackgroundImage(
-	        		imgPlateau,
-	                BackgroundRepeat.NO_REPEAT,  
-	                BackgroundRepeat.NO_REPEAT,  
-	                BackgroundPosition.DEFAULT,  
-	                new BackgroundSize(
-	                        558, 558, false, false, true, false));
-	        plateau.setBackground(new Background(background));
 	        
 	        root.setCenter(plateau);
-	        
-	        VBox vbInformation = new VBox();
 
-	        VBox vb = new VBox();
-	        VBox vblbl = new VBox();
-	        VBox vboxbtn = new VBox();
-
-	        Button menuAction = new Button("Faire une Action");
 	        menuAction.setOnAction(e -> showMenuPopup());
 	        
 	        vblbl.setStyle("-fx-border-color: red;");
