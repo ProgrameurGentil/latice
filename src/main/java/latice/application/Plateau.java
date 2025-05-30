@@ -21,7 +21,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -37,7 +36,8 @@ public class Plateau extends Application{
 	 private static final double case_taille = 62.0;
 	 private static final int btn_taille = 175;
 	 private static final PlateauTuiles plateauTuile = new PlateauTuiles();
-	 private static final PlateauDeCase plateauCase = new PlateauDeCase();
+	 private static final PlateauDeCase plateauCase = PlateauDeCase.initialisationPlateauCase();
+	 private static final Dnd dragAndDrop = new Dnd();
 	 
 	 private HBox hbRack = new HBox();
 	 
@@ -60,7 +60,6 @@ public class Plateau extends Application{
 		            
 			hbRack.setStyle("-fx-border-width: 10;" + "-fx-border-radius: 15;" + "-fx-padding: 20;");
 			
-
 			BackgroundImage backgroundImage = new BackgroundImage(
 			    bgImage,
 			    BackgroundRepeat.NO_REPEAT,
@@ -95,7 +94,7 @@ public class Plateau extends Application{
 	        for (int row = 0; row < lignes; row++) {
 	            for (int col = 0; col < colonnes; col++) {
 	                ImageView imageView = new ImageView();
-	                Dnd.cibleDragAndDrop(imageView, plateauTuile);
+	                dragAndDrop.cibleDragAndDrop(imageView, plateauTuile, plateauCase);
 	                imageView.setFitHeight(case_taille);
 	                imageView.setFitWidth(case_taille);
 	                imageView.setPreserveRatio(true);
@@ -104,17 +103,10 @@ public class Plateau extends Application{
 	                GridPane.setHgrow(imageView, Priority.ALWAYS);
 	                GridPane.setVgrow(imageView, Priority.ALWAYS);
 
-	                plateau.add(imageView, col, row);
+	                plateau.add(imageView, col, row); 
 	            }
 	        }
-	        
-	        
-	        
-
-	        
-	        
-	        
-	        
+	      
 	        Image imgPlateau = new Image(getClass().getResourceAsStream("/plateau/plateau.png"));
 	        BackgroundImage background = new BackgroundImage(
 	        		imgPlateau,
@@ -127,11 +119,8 @@ public class Plateau extends Application{
 	        
 	        root.setCenter(plateau);
 	        
-
-
 	        VBox vbInformation = new VBox();
 
-	        
 	        VBox vb = new VBox();
 	        VBox vblbl = new VBox();
 	        VBox vboxbtn = new VBox();
@@ -139,16 +128,13 @@ public class Plateau extends Application{
 	        Button menuAction = new Button("Faire une Action");
 	        menuAction.setOnAction(e -> showMenuPopup());
 	        
-	        
 	        vblbl.setStyle("-fx-border-color: red;");
 	        
-
 	        vboxbtn.getChildren().add(menuAction);
 	        vboxbtn.setStyle("-fx-border-color: green;");
 	        vb.getChildren().addAll(vboxbtn, vblbl);
 	        root.setLeft(vb);
 
-	        
 	        vbInformation.setStyle("-fx-border-color: red;");
 	        vbInformation.getChildren().add(vb);
 	        
@@ -179,13 +165,14 @@ public class Plateau extends Application{
 		if (tailleDuRackDuJoueur < 5) {
 			longueurDAffichage = tailleDuRackDuJoueur;
 		}
+		dragAndDrop.setJoueur(joueur);
 		for(int i=0;i<longueurDAffichage;i++) {
 			Tuile tuile = rackDuJoueur.obtenirTuile(i);
 			if (tuile != null) {
 				try {
 		            Image image = new Image(getClass().getResource(tuile.obtenirLienVersImage()).toString());
 		            ImageView imageView = new ImageView(image);
-		            Dnd.sourceDragAndDrop(imageView);
+		            dragAndDrop.sourceDragAndDrop(imageView, i);
 		            imageView.setFitWidth(62);
 		            imageView.setFitHeight(62);
 		            imageView.setPreserveRatio(true);

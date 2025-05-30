@@ -11,12 +11,20 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import latice.model.Constantes;
+import latice.model.Joueur;
+import latice.model.PlateauDeCase;
 import latice.model.PlateauTuiles;
 import latice.model.Position;
 import latice.model.Tuile;
 
 public class Dnd {
-	public static void sourceDragAndDrop(ImageView source) {
+	private Joueur joueur;
+	
+	public Dnd() {
+		this.joueur = null;
+	}
+	
+	public void sourceDragAndDrop(ImageView source, Integer indice) {
 		source.setOnDragDetected(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -25,7 +33,8 @@ public class Dnd {
 		        
 		        ClipboardContent content = new ClipboardContent();
 		        content.putImage(source.getImage());
-		        content.putString(source.getImage().getUrl());
+		        content.putUrl(source.getImage().getUrl());
+		        content.putString(indice.toString());
 		        db.setContent(content);
 		        
 		        event.consume();
@@ -45,7 +54,7 @@ public class Dnd {
 		});
 	}
 	
-	public static void cibleDragAndDrop(ImageView cible, PlateauTuiles plateauTuiles) {
+	public void cibleDragAndDrop(ImageView cible, PlateauTuiles plateauTuiles, PlateauDeCase plateauCase) {
 		cible.setOnDragOver(new EventHandler<DragEvent>() {
 
 			@Override
@@ -66,17 +75,20 @@ public class Dnd {
 		        boolean success = false;
 		        
 		        if (db.hasImage()) {
-		        	
-					//System.out.println(obtenirTuileAvecUnChemin(db.getString())); //
 					
 					Position postionTuile =  new Position(GridPane.getColumnIndex(cible), GridPane.getRowIndex(cible));
+					Integer indiceDansLeRack = joueur.getRack().obtenirIndiceTuile(obtenirTuileAvecUnChemin(db.getUrl())); 
 					
-					if (plateauTuiles.siTuilePosableIci(obtenirTuileAvecUnChemin(db.getString()), postionTuile)) {
+					if (plateauTuiles.siTuilePosableIci(obtenirTuileAvecUnChemin(db.getUrl()), postionTuile)) {
+					//if (joueur.poserTuile(indiceDansLeRack, postionTuile, plateauCase, plateauTuiles)) {
+						System.out.println(indiceDansLeRack);
+						joueur.poserTuile(indiceDansLeRack, postionTuile, plateauCase, plateauTuiles);
 						cible.setImage(db.getImage());
 						cible.setOpacity(1);
 						success = true;
 						enleverDragAndDrop(cible);
-						plateauTuiles.poser(postionTuile, obtenirTuileAvecUnChemin(db.getString()));
+						System.out.println("pnts : " + joueur.getPoints());
+						//plateauTuiles.poser(postionTuile, obtenirTuileAvecUnChemin(db.getUrl()));
 					}
 		        }
 		        
@@ -94,7 +106,7 @@ public class Dnd {
 		        
 		        if (db.hasImage()) {
 		        	
-		        	if (plateauTuiles.siTuilePosableIci(obtenirTuileAvecUnChemin(db.getString()), new Position(GridPane.getColumnIndex(cible), GridPane.getRowIndex(cible)))) {
+		        	if (plateauTuiles.siTuilePosableIci(obtenirTuileAvecUnChemin(db.getUrl().toString()), new Position(GridPane.getColumnIndex(cible), GridPane.getRowIndex(cible)))) {
 			        	cible.setImage(db.getImage());
 		        	} else {
 		        		cible.setImage(new Image(getClass().getResource("/tuiles/tuile_interdite.png").toString()));
@@ -118,6 +130,10 @@ public class Dnd {
 		        event.consume();
 			}
 		});
+	}
+	
+	public void setJoueur(Joueur joueur) {
+		this.joueur = joueur;
 	}
 	
 	private static void enleverDragAndDrop(ImageView image) {

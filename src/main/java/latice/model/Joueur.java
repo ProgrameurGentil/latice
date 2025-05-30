@@ -42,16 +42,18 @@ public class Joueur {
 	
 	public boolean poserTuile(int indiceTuileRack, Position positionDestination, PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) {
 //		Position positionPose = Position.position(indiceDestination);
-		Tuile tuileAPoser = this.rack.obtenirTuile(indiceTuileRack);
+		Tuile tuileAPoser = this.rack.obtenirTuile(indiceTuileRack);// TODO pb ici au niv de l'indice
 		int nbTuilesAutour = plateauDeTuiles.combienDeTuileAutour(positionDestination);
 		if (plateauDeTuiles.siTuilePosableIci(tuileAPoser, positionDestination)){
 			this.nbTuilesPosees++;
 			plateauDeTuiles.poser(positionDestination, this.rack.enlever(indiceTuileRack));
 			
+			//System.out.println(positionDestination);
 			if (plateauDeCases.donnerLaCaseAPosition(positionDestination).equals(new Case(Type.SOLEIL))) this.points++;
 			if ( nbTuilesAutour == 2) this.points++;
 			if ( nbTuilesAutour == 3) this.points = this.points + 2;
 			if ( nbTuilesAutour == 4) this.points = this.points + 4;
+			
 			return true;
 		} else { 
 			return false;

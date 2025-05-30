@@ -10,7 +10,7 @@ public class GroupeDeTuile {
 		this.tuiles = touteLesTuileList;
 	}
 
-	public Integer taille() {
+	public Integer taille() { 
 		return this.tuiles.size();
 	}
 	
@@ -30,6 +30,10 @@ public class GroupeDeTuile {
 	
 	public Tuile obtenirTuile(Integer indice) {
 		return this.tuiles.get(indice);
+	}
+	
+	public Integer obtenirIndiceTuile(Tuile tuile) {
+		return this.tuiles.indexOf(tuile);
 	}
 
 	@Override

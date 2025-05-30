@@ -11,8 +11,6 @@ import javafx.application.Platform;
 import latice.model.Joueur;
 import latice.model.MaitreDuJeu;
 import latice.model.Pioche;
-import latice.model.PlateauDeCase;
-import latice.model.PlateauTuiles;
 import latice.model.Tuile;
 
 public class LaticeMain {
