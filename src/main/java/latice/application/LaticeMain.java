@@ -60,7 +60,7 @@ public class LaticeMain {
 	}
 	
 	public static void joueurSuivant() {
-		if (!nbTours.equals(nbToursMax*listeDeJoueurs.size())) {
+		if ( (!nbTours.equals(nbToursMax*listeDeJoueurs.size())) || estCeQunJoueurAGagne()) {
 			indiceDuJoueurQuiJoue = (indiceDuJoueurQuiJoue+1) % listeDeJoueurs.size();
 			Joueur joueur = listeDeJoueurs.get(indiceDuJoueurQuiJoue);
 			joueur.remplirSonRack();
@@ -73,5 +73,24 @@ public class LaticeMain {
 	
 	public static Integer getNbTours() {
 		return nbTours;
+	}
+	
+	private static Boolean estCeQunJoueurAGagne() {
+		for (Joueur joueur : listeDeJoueurs) {
+			if (joueur.nombreDeTuilesToTal().equals(0)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private Joueur quelJoueurAGagne() {
+		Joueur joueurGagnant = null;
+		for (Joueur joueur : listeDeJoueurs) {
+			if (joueur.nombreDeTuilesToTal().equals(0)) {
+				joueurGagnant = joueur;
+			}
+		}
+		return joueurGagnant;
 	}
 }

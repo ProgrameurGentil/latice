@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MaitreDuJeu {
-	private Integer nb_tours;
 	
 	public Boolean gagner(Joueur joueur) {
 		if (joueur.getPioche().taille() == 0 && joueur.getRack().taille() == 0) return true; 

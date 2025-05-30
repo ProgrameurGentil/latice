@@ -36,8 +36,8 @@ public class Joueur {
 				 * lance en fonction des action 
 				 * /!\ ne pas faire aJouer = this.acheterAction() */
 		}
-		suivant = finAction();
-		return suivant;
+		//suivant = finAction();
+		return null;
 	}
 	
 	public boolean poserTuile(int indiceTuileRack, Position positionDestination, PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) {
@@ -83,14 +83,12 @@ public class Joueur {
 		return true;
 	}
 	
-	public Joueur finAction() { //tous ce qu'on doit faire après qu'un joueur ait joué une action (à compléter)
+	public Boolean encroreDesActions() { //tous ce qu'on doit faire après qu'un joueur ait joué une action (à compléter)
 		this.nombreActionRestanteAJouer--;
 		if (this.nombreActionRestanteAJouer == 0) {
-				//à l'autre joueur de jouer
-			return null;
+			return false;
 		} else {
-			//le joueur continue
-			return this;
+			return true;
 		}
 		
 	}
@@ -142,6 +140,10 @@ public class Joueur {
 
 	public String getNom() {
 		return nom;
+	}
+	
+	public Integer nombreDeTuilesToTal() {
+		return getPioche().taille() + getRack().taille();
 	}
 
 }
