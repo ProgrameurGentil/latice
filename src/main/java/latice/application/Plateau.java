@@ -108,7 +108,6 @@ public class Plateau extends Application{
             
 	        Image bgImage = new Image(getClass().getResourceAsStream("/rack/fond.png"));
             
-            
 			hbRack.setPrefHeight(85);
 			hbRack.setMaxSize(350, 90);
 			
@@ -128,10 +127,7 @@ public class Plateau extends Application{
 
 			hbRack.setBackground(new Background(backgroundImage)); 
 			
-			
-	        
-	   
-	        for (int col = 0; col < colonnes; col++) {
+			for (int col = 0; col < colonnes; col++) {
 	            ColumnConstraints colConst = new ColumnConstraints();
 	            colConst.setMinWidth(case_taille);
 	            colConst.setPrefWidth(case_taille);
@@ -180,27 +176,12 @@ public class Plateau extends Application{
 	        root.setLeft(vbInformation);
 	        vbInformation.setAlignment(Pos.CENTER_LEFT);
 
-	        
 	        bottomPane.setAlignment(Pos.CENTER);
 	        bottomPane.setPrefHeight(90); 
 	        
 	        bottomPane.setTranslateY(-10);
 	        bottomPane.setTranslateX(55);
 	        root.setBottom(bottomPane);
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
 	        
 			primaryStage.setTitle("Plateau Latice");
 			Scene scene = new Scene(root, 1000, 700);
@@ -255,9 +236,9 @@ public class Plateau extends Application{
 			
 			@Override
 			public void handle(MouseEvent event) {
-				//System.out.println("le joueur passe son tour");
-				if (!LaticeMain.getNbTours().equals(0)) {
+				if (!(LaticeMain.getNbTours().equals(0) && joueur.getNbTuilesPosees().equals(0))) {
 					LaticeMain.joueurSuivant();
+					//System.out.println("le joueur passe son tour");
 				}
 			}
 		}, "Cette action va finir votre tour",menuStage);
