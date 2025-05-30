@@ -51,11 +51,40 @@ public class Plateau extends Application{
 	public void start(Stage primaryStage) throws Exception{
             instance = this;
 		
-			BorderPane root = new BorderPane();
+            BorderPane root = new BorderPane();
+            GridPane plateau = new GridPane();
+            plateau.setGridLinesVisible(false);
+	        plateau.setMaxSize(555, 555);
+            
+	        VBox vbInformation = new VBox();
+	        VBox vb = new VBox();
+	        VBox vblbl = new VBox();
+	        VBox vboxbtn = new VBox();
+
+	        Button menuAction = new Button("Faire une Action");
+	        menuAction.setOnAction(e -> showMenuPopup());
+            
+	        StackPane bottomPane = new StackPane(hbRack);
+            
+            
+            
+	        Image imgPlateau = new Image(getClass().getResourceAsStream("/plateau/plateau.png"));
+	        BackgroundImage background = new BackgroundImage(
+	        		imgPlateau,
+	                BackgroundRepeat.NO_REPEAT,  
+	                BackgroundRepeat.NO_REPEAT,  
+	                BackgroundPosition.DEFAULT,  
+	                new BackgroundSize(
+	                        558, 558, false, false, true, false));
+	        plateau.setBackground(new Background(background));
+            
+	        Image bgImage = new Image(getClass().getResourceAsStream("/rack/fond.png"));
+            
+            
 			hbRack.setPrefHeight(85);
 			hbRack.setMaxSize(350, 90);
 			
-			Image bgImage = new Image(getClass().getResourceAsStream("/rack/fond.png"));
+			
 			hbRack.setPrefWidth(340);
 		            
 			hbRack.setStyle("-fx-border-width: 10;" + "-fx-border-radius: 15;" + "-fx-padding: 20;");
@@ -72,9 +101,8 @@ public class Plateau extends Application{
 
 			hbRack.setBackground(new Background(backgroundImage)); 
 			
-			GridPane plateau = new GridPane();
-	        plateau.setGridLinesVisible(false);
-	        plateau.setMaxSize(555, 555);
+			
+	        
 	   
 	        for (int col = 0; col < colonnes; col++) {
 	            ColumnConstraints colConst = new ColumnConstraints();
@@ -108,40 +136,11 @@ public class Plateau extends Application{
 	            }
 	        }
 	        
-	        
-	        
 
-	        
-	        
-	        
-	        
-	        Image imgPlateau = new Image(getClass().getResourceAsStream("/plateau/plateau.png"));
-	        BackgroundImage background = new BackgroundImage(
-	        		imgPlateau,
-	                BackgroundRepeat.NO_REPEAT,  
-	                BackgroundRepeat.NO_REPEAT,  
-	                BackgroundPosition.DEFAULT,  
-	                new BackgroundSize(
-	                        558, 558, false, false, true, false));
-	        plateau.setBackground(new Background(background));
-	        
 	        root.setCenter(plateau);
-	        
 
-
-	        VBox vbInformation = new VBox();
-
-	        
-	        VBox vb = new VBox();
-	        VBox vblbl = new VBox();
-	        VBox vboxbtn = new VBox();
-
-	        Button menuAction = new Button("Faire une Action");
-	        menuAction.setOnAction(e -> showMenuPopup());
-	        
 	        
 	        vblbl.setStyle("-fx-border-color: red;");
-	        
 
 	        vboxbtn.getChildren().add(menuAction);
 	        vboxbtn.setStyle("-fx-border-color: green;");
@@ -155,7 +154,7 @@ public class Plateau extends Application{
 	        root.setLeft(vbInformation);
 	        vbInformation.setAlignment(Pos.CENTER_LEFT);
 
-	        StackPane bottomPane = new StackPane(hbRack);
+	        
 	        bottomPane.setAlignment(Pos.CENTER);
 	        bottomPane.setPrefHeight(90); 
 	        
@@ -221,7 +220,7 @@ public class Plateau extends Application{
         
         menubouton.setStyle("-fx-padding: 20; -fx-alignment: center;");
         
-        Scene menuScene = new Scene(menuaction, largeurFenetre, 125);
+        Scene menuScene = new Scene(menuaction, largeurFenetre, 140);
 
         menuStage.setScene(menuScene);
         menuStage.showAndWait();
