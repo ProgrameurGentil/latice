@@ -149,8 +149,14 @@ public class Plateau extends Application{
 	        root.setCenter(plateau);
 
 	        menuAction.setOnAction(e -> showMenuPopup());
-	        
-	        vblbl.setStyle("-fx-border-color: red;");
+	        menuAction.setStyle("-fx-background-radius: 15;" +
+	        		"-fx-background-image: url('/Bouton/background_bouton.png');"+
+	        	    "-fx-background-size: cover;" +
+	        	    "-fx-background-size: 100% 100%;" +
+	        	    "-fx-background-position: center;" +
+	        	    "-fx-padding: 10 20;"+
+	        	    "-fx-background-repeat: no-repeat;" +
+	        	    "-fx-text-fill: lightblue;");
 
 	        vboxbtn.getChildren().add(menuAction);
 	        vboxbtn.setStyle("-fx-border-color: green;");
@@ -219,7 +225,7 @@ public class Plateau extends Application{
         } else {
         	lblpts = new Label("Nombre de points du null : XX pnts");
         }
-        Button btnpass = afficherboutton("Fin du tour", new EventHandler<MouseEvent>() {
+        Button btnpass = afficherbouttonDansMenu("Fin du tour", new EventHandler<MouseEvent>() {
 			
 			@Override
 			public void handle(MouseEvent event) {
@@ -230,7 +236,7 @@ public class Plateau extends Application{
 			}
 		}, "Cette action va finir votre tour",menuStage);
         
-        Button btnacheter = afficherboutton("Acheter une Action (2)", new EventHandler<MouseEvent>() {
+        Button btnacheter = afficherbouttonDansMenu("Acheter une Action (2)", new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
@@ -240,7 +246,7 @@ public class Plateau extends Application{
         	
         }, "Acheter une action pour joueur à nouveau",menuStage);
         
-        Button btnchangerRack = afficherboutton("Echanger son rack (2)", new EventHandler<MouseEvent>() {
+        Button btnchangerRack = afficherbouttonDansMenu("Echanger son rack (2)", new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
@@ -250,7 +256,7 @@ public class Plateau extends Application{
         	
         }, "Cette action passera votre tour",menuStage);
         
-        Button btnfermerAction = afficherboutton("retour", null, null, menuStage);
+        Button btnfermerAction = afficherbouttonDansMenu("retour", null, null, menuStage);
                 
         VBox vbBoutton1et2 = new VBox(10, btnacheter, btnpass);
         VBox vbBoutton3etfermer = new VBox(10, btnchangerRack, btnfermerAction);
@@ -258,7 +264,7 @@ public class Plateau extends Application{
 
         HBox menubouton = new HBox(15, vbBoutton1et2, vbBoutton3etfermer);
         VBox menuaction = new VBox(lblpts, menubouton);
-        lblpts.setTranslateX((largeurFenetre/2) - (largeurFenetre/6.6667));       
+        lblpts.setTranslateX((largeurFenetre/2) - (largeurFenetre/4.5));       
         
         menubouton.setStyle("-fx-padding: 20; -fx-alignment: center;");
         
@@ -270,7 +276,7 @@ public class Plateau extends Application{
         menuStage.setResizable(false);
     }
 	
-	private Button afficherboutton(String string, EventHandler<MouseEvent> action, String descriptif, Stage stage) {
+	private Button afficherbouttonDansMenu(String string, EventHandler<MouseEvent> action, String descriptif, Stage stage) {
 		
 		final Button button = new Button(string);
 		if (descriptif != null) {
