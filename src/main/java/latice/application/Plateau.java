@@ -63,11 +63,11 @@ public class Plateau extends Application{
             plateau.setGridLinesVisible(false);
 	        plateau.setMaxSize(555, 555);
             
-	        VBox vbInformation = new VBox();
-	        VBox vb = new VBox();
-	        VBox vblbl = new VBox();
-	        VBox vboxbtn = new VBox();
+	        VBox vbInformations = new VBox();
+	        VBox vblblInforomation = new VBox();
+	        VBox vboxbtnAction = new VBox();
 	        VBox vbplarack = new VBox();
+	        VBox vbactInfo = new VBox();
 	        Button menuAction = new Button("Faire une Action");
 	        
 	        menuAction.setOnAction(e -> showMenuPopup());
@@ -161,25 +161,46 @@ public class Plateau extends Application{
 	        	    "-fx-background-repeat: no-repeat;" +
 	        	    "-fx-text-fill: lightblue;");
 
-	        vboxbtn.getChildren().add(menuAction);
-	        vboxbtn.setStyle("-fx-border-color: green;");
+	        vboxbtnAction.getChildren().add(menuAction);
+	        vboxbtnAction.setStyle("-fx-border-color: green;");
 	        
-	        lblNbTuileDansPioche = new Label("Nombre de tuiles restantes dans la pioche de null : XX");
+	        
+	        lblNbTuileDansPioche = new Label("Nombre de tuiles restantes dans\nla pioche de null : XX");
             
 	        
-	        lblNbTuileDansPioche.setStyle("-fx-text-fill: lightblue;");
+	        lblNbTuileDansPioche.setStyle("-fx-text-fill: yellow;");
 	     
+	        vblblInforomation.getChildren().add(lblNbTuileDansPioche);
+	        root.setLeft(vbInformations);
 	        
-	        vblbl.getChildren().add(lblNbTuileDansPioche);
-	        vb.getChildren().addAll(vboxbtn, vblbl);
-	        root.setLeft(vb);
-
-	        vbInformation.setStyle("-fx-border-color: red;");
-	        vbInformation.getChildren().add(vb);
 	        
-	        root.setLeft(vbInformation);
-	        vbInformation.setAlignment(Pos.CENTER_LEFT);
+	        BackgroundImage bgImgInformations = new BackgroundImage(
+	        	    new Image(getClass().getResource("/interface/cadre.png").toExternalForm()),
+	        	    BackgroundRepeat.NO_REPEAT,
+	        	    BackgroundRepeat.NO_REPEAT,
+	        	    BackgroundPosition.DEFAULT,
+	        	    new BackgroundSize(
+	        	        100, 100,
+	        	        true, true, 
+	        	        true, false
+	        	    )
+	        	);
 
+	        vbInformations.setBackground(new Background(bgImgInformations));
+	        
+	        
+	        vbInformations.setPrefHeight(200);
+	        vbInformations.setPrefWidth(300);
+	        vblblInforomation.setAlignment(Pos.CENTER);
+	        vbInformations.setStyle("-fx-border-color: red;");
+	        
+	        root.setLeft(vbInformations);
+	        vbInformations .setAlignment(Pos.CENTER);
+	        vbactInfo.getChildren().addAll(vboxbtnAction, vblblInforomation);
+	        vbInformations.getChildren().add(vbactInfo);
+	        vboxbtnAction.setAlignment(Pos.CENTER);
+	        menuAction.setTranslateY(-170);
+	        vblblInforomation.setTranslateY(-120);
 	        bottomPane.setAlignment(Pos.CENTER);
 	        bottomPane.setPrefHeight(90); 
 	        
