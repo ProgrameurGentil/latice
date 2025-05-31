@@ -43,6 +43,7 @@ public class Plateau extends Application{
 	 private static final PlateauTuiles plateauTuile = new PlateauTuiles();
 	 private static final PlateauDeCase plateauCase = PlateauDeCase.initialisationPlateauCase();
 	 private static final Dnd dragAndDrop = new Dnd();
+	 private Label lblNbTuileDansPioche;
 	 private Joueur joueur = null;
 	 
 	 private HBox hbRack = new HBox();
@@ -66,7 +67,6 @@ public class Plateau extends Application{
 	        VBox vb = new VBox();
 	        VBox vblbl = new VBox();
 	        VBox vboxbtn = new VBox();
-	        Label lblNbTuileDansPioche = new Label();
 	        Button menuAction = new Button("Faire une Action");
 	        menuAction.setOnAction(e -> showMenuPopup());
             
@@ -163,12 +163,8 @@ public class Plateau extends Application{
 	        vboxbtn.getChildren().add(menuAction);
 	        vboxbtn.setStyle("-fx-border-color: green;");
 	        
-	        
-	        if (joueur == null) {
-	        	lblNbTuileDansPioche = new Label("Nombre de tuiles restantes dans la pioche de null : XX");
-            }else {
-            	lblNbTuileDansPioche = new Label("Nombre de tuiles restantes dans la pioche de " + joueur.getNom() + " : " + joueur.getPioche().taille());
-            }
+	        lblNbTuileDansPioche = new Label("Nombre de tuiles restantes dans la pioche de null : XX");
+            
 	        
 	        lblNbTuileDansPioche.setStyle("-fx-text-fill: lightblue;");
 	     
@@ -330,6 +326,21 @@ public class Plateau extends Application{
 	
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
+		
+		//this.joueur.getPioche().getTuiles().add
+		
+		if (joueur == null) {
+        	lblNbTuileDansPioche.setText("Nombre de tuiles restantes dans la pioche de null : XX");
+        }else {
+        	lblNbTuileDansPioche.setText("Nombre de tuiles restantes dans la pioche de " + joueur.getNom() + " : " + joueur.getPioche().taille());
+        }
+	}
+	
+	public void updateLabelPioche() {
+		if (joueur != null) {
+			System.out.println(joueur.getPioche().taille());
+			lblNbTuileDansPioche.setText("Nombre de tuiles restantes dans la pioche de " + joueur.getNom() + " : " + joueur.getPioche().taille());
+		}
 	}
 	
 	public void showWinnerPopup(Joueur joueur) {
