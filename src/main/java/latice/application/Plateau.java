@@ -66,10 +66,12 @@ public class Plateau extends Application{
 	        VBox vb = new VBox();
 	        VBox vblbl = new VBox();
 	        VBox vboxbtn = new VBox();
-
+	        Label lblNbTuileDansPioche = new Label();
 	        Button menuAction = new Button("Faire une Action");
 	        menuAction.setOnAction(e -> showMenuPopup());
             
+	        
+	        
 	        StackPane bottomPane = new StackPane(hbRack);
             
 	        Rectangle bg = new Rectangle(800, 600);
@@ -160,6 +162,18 @@ public class Plateau extends Application{
 
 	        vboxbtn.getChildren().add(menuAction);
 	        vboxbtn.setStyle("-fx-border-color: green;");
+	        
+	        
+	        if (joueur == null) {
+	        	lblNbTuileDansPioche = new Label("Nombre de tuiles restantes dans la pioche de null : XX");
+            }else {
+            	lblNbTuileDansPioche = new Label("Nombre de tuiles restantes dans la pioche de " + joueur.getNom() + " : " + joueur.getPioche().taille());
+            }
+	        
+	        lblNbTuileDansPioche.setStyle("-fx-text-fill: lightblue;");
+	     
+	        
+	        vblbl.getChildren().add(lblNbTuileDansPioche);
 	        vb.getChildren().addAll(vboxbtn, vblbl);
 	        root.setLeft(vb);
 
@@ -213,7 +227,7 @@ public class Plateau extends Application{
 		}
 	}
 	
-	private void showMenuPopup() {	//dans l'idéale mettre un joueur pour faire les actions et afficher le nb de points mais jsp comment faire 
+	private void showMenuPopup() {
 		Integer largeurFenetre = 400;
         Stage menuStage = new Stage();
         menuStage.initModality(Modality.APPLICATION_MODAL);
