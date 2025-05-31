@@ -67,7 +67,9 @@ public class Plateau extends Application{
 	        VBox vb = new VBox();
 	        VBox vblbl = new VBox();
 	        VBox vboxbtn = new VBox();
+	        VBox vbplarack = new VBox();
 	        Button menuAction = new Button("Faire une Action");
+	        
 	        menuAction.setOnAction(e -> showMenuPopup());
             
 	        
@@ -148,7 +150,6 @@ public class Plateau extends Application{
 	            }
 	        }
 	        
-	        root.setCenter(plateau);
 
 	        menuAction.setOnAction(e -> showMenuPopup());
 	        menuAction.setStyle("-fx-background-radius: 15;" +
@@ -182,9 +183,13 @@ public class Plateau extends Application{
 	        bottomPane.setAlignment(Pos.CENTER);
 	        bottomPane.setPrefHeight(90); 
 	        
-	        bottomPane.setTranslateY(-10);
-	        bottomPane.setTranslateX(55);
-	        root.setBottom(bottomPane);
+	        bottomPane.setTranslateY(40);
+	        bottomPane.setTranslateX(-50);
+	        plateau.setTranslateX(-50);
+	        plateau.setTranslateY(30);
+	        vbplarack.getChildren().addAll(plateau, bottomPane);
+	        root.setRight(vbplarack);
+	        
 	        
 			primaryStage.setTitle("Plateau Latice");
 			Scene scene = new Scene(root, 1000, 700);
