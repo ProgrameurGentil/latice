@@ -60,7 +60,7 @@ public class LaticeMain {
 	}
 	
 	public static void joueurSuivant() {
-		if ( (!nbTours.equals(nbToursMax*listeDeJoueurs.size())) || estCeQunJoueurAGagne()) {
+		if ( (!nbTours.equals(nbToursMax*listeDeJoueurs.size())) || estCeQunJoueurAPLusDeTuiles()) {
 			indiceDuJoueurQuiJoue = (indiceDuJoueurQuiJoue+1) % listeDeJoueurs.size();
 			Joueur joueur = listeDeJoueurs.get(indiceDuJoueurQuiJoue);
 			joueur.remplirSonRack();
@@ -68,6 +68,7 @@ public class LaticeMain {
 			nbTours++;
 		} else {
 			System.out.println("Fin de la partie : nb de tours max atteint");
+			finDeLaPartie();
 		}
 	}
 	
@@ -75,7 +76,7 @@ public class LaticeMain {
 		return nbTours;
 	}
 	
-	private static Boolean estCeQunJoueurAGagne() {
+	private static Boolean estCeQunJoueurAPLusDeTuiles() {
 		for (Joueur joueur : listeDeJoueurs) {
 			if (joueur.nombreDeTuilesToTal().equals(0)) {
 				return true;
@@ -84,7 +85,7 @@ public class LaticeMain {
 		return false;
 	}
 	
-	private Joueur quelJoueurAGagne() {
+	private static Joueur quelJoueurAPlusDeTuiles() {
 		Joueur joueurGagnant = null;
 		for (Joueur joueur : listeDeJoueurs) {
 			if (joueur.nombreDeTuilesToTal().equals(0)) {
@@ -92,5 +93,25 @@ public class LaticeMain {
 			}
 		}
 		return joueurGagnant;
+	}
+	
+	private static Joueur quelJoueurALeMoinsDeTuiles() {
+		Joueur joueurGagnant = listeDeJoueurs.get(0);
+		for (int i = 1; i<listeDeJoueurs.size()-1 ;  i++ ) {
+			if (listeDeJoueurs.get(i).nombreDeTuilesToTal() < joueurGagnant.nombreDeTuilesToTal()) {
+				joueurGagnant = listeDeJoueurs.get(i);
+			}
+		}
+		return joueurGagnant;
+	}
+	
+	private static void finDeLaPartie() {
+		Joueur joueurQuiAGagne;
+		if (estCeQunJoueurAPLusDeTuiles()) {
+			joueurQuiAGagne = quelJoueurAPlusDeTuiles();
+		} else {
+			joueurQuiAGagne = quelJoueurALeMoinsDeTuiles();
+		}
+		plateau.showWinnerPopup(joueurQuiAGagne);
 	}
 }

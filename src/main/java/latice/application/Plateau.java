@@ -311,5 +311,26 @@ public class Plateau extends Application{
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
 	}
+	
+	public void showWinnerPopup(Joueur joueur) {
+		Integer largeurFenetre = 400;
+        Stage winnerStage = new Stage();
+        winnerStage.initModality(Modality.APPLICATION_MODAL);
+        winnerStage.setTitle("Menu");
+        
+        Label labelJoueurGagnant = new Label("Bravo !! Le joueur " + joueur.getNom() + " a gagné la partie !!");
+        
+        VBox vbox = new VBox(labelJoueurGagnant);
+        //labelJoueurGagnant.setTranslateX((largeurFenetre/2) - (largeurFenetre/6.6667));       
+        
+        labelJoueurGagnant.setStyle("-fx-padding: 20; -fx-alignment: center;");
+        
+
+        Scene winnerScene = new Scene(vbox, largeurFenetre, 140);
+
+        winnerStage.setScene(winnerScene);
+        winnerStage.showAndWait();
+        winnerStage.setResizable(false);
+    }
 }
 		
