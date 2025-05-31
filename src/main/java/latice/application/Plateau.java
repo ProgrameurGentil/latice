@@ -325,11 +325,11 @@ public class Plateau extends Application{
 	}
 	
 	public void setJoueur(Joueur joueur) {
+		joueur.setNombreActionRestanteAJouer(1);
+		//System.out.println("nb action : " + joueur.getNombreActionRestanteAJouer());
 		this.joueur = joueur;
 		
-		//this.joueur.getPioche().getTuiles().add
-		
-		if (joueur == null) {
+		if (this.joueur == null) {
         	lblNbTuileDansPioche.setText("Nombre de tuiles restantes dans la pioche de null : XX");
         }else {
         	lblNbTuileDansPioche.setText("Nombre de tuiles restantes dans la pioche de " + joueur.getNom() + " : " + joueur.getPioche().taille());
@@ -338,7 +338,7 @@ public class Plateau extends Application{
 	
 	public void updateLabelPioche() {
 		if (joueur != null) {
-			System.out.println(joueur.getPioche().taille());
+			//System.out.println(joueur.getPioche().taille());
 			lblNbTuileDansPioche.setText("Nombre de tuiles restantes dans la pioche de " + joueur.getNom() + " : " + joueur.getPioche().taille());
 		}
 	}

@@ -44,7 +44,7 @@ public class Joueur {
 //		Position positionPose = Position.position(indiceDestination);
 		Tuile tuileAPoser = this.rack.obtenirTuile(indiceTuileRack);
 		int nbTuilesAutour = plateauDeTuiles.combienDeTuileAutour(positionDestination);
-		if (plateauDeTuiles.siTuilePosableIci(tuileAPoser, positionDestination)){
+		if (plateauDeTuiles.siTuilePosableIci(tuileAPoser, positionDestination) && this.encoreDesActions()){
 			this.nbTuilesPosees++;
 			plateauDeTuiles.poser(positionDestination, this.rack.enlever(indiceTuileRack));
 			
@@ -54,6 +54,7 @@ public class Joueur {
 			if ( nbTuilesAutour == 3) this.points = this.points + 2;
 			if ( nbTuilesAutour == 4) this.points = this.points + 4;
 			
+			this.nombreActionRestanteAJouer--;
 			return true;
 		} else { 
 			return false;
@@ -83,8 +84,7 @@ public class Joueur {
 		return true;
 	}
 	
-	public Boolean encroreDesActions() { //tous ce qu'on doit faire après qu'un joueur ait joué une action (à compléter)
-		this.nombreActionRestanteAJouer--;
+	public Boolean encoreDesActions() {
 		if (this.nombreActionRestanteAJouer == 0) {
 			return false;
 		} else {

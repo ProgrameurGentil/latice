@@ -103,7 +103,7 @@ public class Dnd {
 		        
 		        if (db.hasImage()) {
 		        	
-		        	if (plateauTuiles.siTuilePosableIci(obtenirTuileAvecUnChemin(db.getUrl().toString()), new Position(GridPane.getColumnIndex(cible), GridPane.getRowIndex(cible)))) {
+		        	if (plateauTuiles.siTuilePosableIci(obtenirTuileAvecUnChemin(db.getUrl().toString()), new Position(GridPane.getColumnIndex(cible), GridPane.getRowIndex(cible))) && joueur.encoreDesActions()) {
 			        	cible.setImage(db.getImage());
 		        	} else {
 		        		cible.setImage(new Image(getClass().getResource("/tuiles/tuile_interdite.png").toString()));
