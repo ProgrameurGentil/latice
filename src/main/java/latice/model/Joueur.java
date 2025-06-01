@@ -63,10 +63,15 @@ public class Joueur {
 	}
 	
 	public boolean echangerRack() {
-		if (this.pioche.taille()<5) return false; // TODO verifier ça fonctionne
+		if (this.pioche.taille()<5 || this.points < 2) return false; // TODO verifier ça fonctionne
 		int i;
-		for (i=0 ; i<this.pioche.taille() && i<5 ; i++) this.pioche.ajouter(this.rack.enlever(0));
-		this.rack.remplirLeRack(this.pioche);
+		Rack rackDAttente = new Rack(this.rack.tuiles);
+		this.points = this.points - 2;
+		
+		this.rack.enleverTout();
+		remplirSonRack();
+		
+		for (i=0 ; i<this.pioche.taille() && i<rackDAttente.taille() ; i++) this.pioche.ajouter(rackDAttente.enlever(0));
 		this.pioche.melanger();
 		return true;
 	}
@@ -95,6 +100,7 @@ public class Joueur {
 	}
 	
 	public void remplirSonRack() {
+		this.pioche.melanger();
 		this.rack.remplirLeRack(this.pioche);
 	}
 

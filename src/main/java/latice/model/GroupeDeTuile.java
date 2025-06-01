@@ -35,6 +35,10 @@ public class GroupeDeTuile {
 	public Integer obtenirIndiceTuile(Tuile tuile) {
 		return this.tuiles.indexOf(tuile);
 	}
+	
+	public void enleverTout() {
+		this.tuiles.clear();
+	}
 
 	@Override
 	public String toString() {

@@ -281,9 +281,11 @@ public class Plateau extends Application{
 			
 			@Override
 			public void handle(MouseEvent event) {
-				if (!(LaticeMain.getNbTours().equals(0) && joueur.getNbTuilesPosees().equals(0))) {
-					LaticeMain.joueurSuivant();
-					//System.out.println("le joueur passe son tour");
+				if (joueur != null) {
+					if (!(LaticeMain.getNbTours().equals(0) && joueur.getNbTuilesPosees().equals(0))) {
+						LaticeMain.joueurSuivant();
+						//System.out.println("le joueur passe son tour");
+					}
 				}
 			}
 		}, "Cette action va finir votre tour",menuStage);
@@ -292,7 +294,9 @@ public class Plateau extends Application{
 
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println("Le joueur a choisi d'acheter");
+				if (joueur != null) {
+					System.out.println("Le joueur a choisi d'acheter");
+				}
 				
 			}
         	
@@ -302,8 +306,18 @@ public class Plateau extends Application{
 
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println("Le joueur a échanger son rack");
-				
+				//System.out.println("Le joueur a échanger son rack");
+				if (joueur != null) {
+					if (joueur.echangerRack()) {
+						LaticeMain.joueurSuivant();
+					} else {
+						if (joueur.getPoints() < 2) {
+							showErreurPopup("Vous n'avez pas assez de points");
+						} else {
+							showErreurPopup("Vous n'avez pas assez de tuiles dans votre pioche");
+						}
+					}
+				}
 			}
         	
         }, "Cette action passera votre tour",menuStage);
@@ -356,12 +370,6 @@ public class Plateau extends Application{
         	    "-fx-background-repeat: no-repeat;" +
         	    "-fx-text-fill: lightblue;");
         
-        button.layoutBoundsProperty().addListener((obs, ancVal, nouvVal) -> {
-            Rectangle clip = new Rectangle(nouvVal.getWidth(), nouvVal.getHeight());
-            clip.setArcWidth(20);
-            clip.setArcHeight(20);
-            button.setClip(clip);
-        });
 		return button;
 		
 	}
@@ -389,7 +397,7 @@ public class Plateau extends Application{
 		Integer largeurFenetre = 400;
         Stage winnerStage = new Stage();
         winnerStage.initModality(Modality.APPLICATION_MODAL);
-        winnerStage.setTitle("Menu");
+        winnerStage.setTitle("Partie gagné par " + joueur.getNom());
         
         Label labelJoueurGagnant = new Label("Bravo !! Le joueur " + joueur.getNom() + " a gagné la partie !!");
         
@@ -397,13 +405,52 @@ public class Plateau extends Application{
         //labelJoueurGagnant.setTranslateX((largeurFenetre/2) - (largeurFenetre/6.6667));       
         
         labelJoueurGagnant.setStyle("-fx-padding: 20; -fx-alignment: center;");
-        
 
         Scene winnerScene = new Scene(vbox, largeurFenetre, 140);
 
         winnerStage.setScene(winnerScene);
         winnerStage.showAndWait();
         winnerStage.setResizable(false);
+    }
+	
+	public void showErreurPopup(String message) {
+		Integer largeurFenetre = 400;
+        Stage erreurStage = new Stage();
+        erreurStage.initModality(Modality.APPLICATION_MODAL);
+        erreurStage.setTitle("Erreur dans la transaction");
+        
+        Label labelErreur = new Label(message);
+        Button boutonQuitter = new Button("Quitter");
+        
+        boutonQuitter.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				erreurStage.close();
+				
+			}
+		});
+        
+        VBox vbox = new VBox(labelErreur, boutonQuitter);      
+        
+        labelErreur.setStyle("-fx-padding: 20; -fx-alignment: center;");
+        boutonQuitter.setStyle("-fx-background-radius: 15;" +
+        		"-fx-background-image: url('/Bouton/background_bouton.png');"+
+        	    "-fx-background-size: cover;" +
+        	    "-fx-background-size: 100% 100%;" +
+        	    "-fx-background-position: center;" +
+        	    "-fx-padding: 10 20;"+
+        	    "-fx-background-repeat: no-repeat;" +
+        	    "-fx-text-fill: lightblue;");
+
+
+        vbox.setAlignment(Pos.CENTER);
+
+        Scene erreurScene = new Scene(vbox, largeurFenetre, 140);
+
+        erreurStage.setScene(erreurScene);
+        erreurStage.showAndWait();
+        erreurStage.setResizable(false);
     }
 }
 		
