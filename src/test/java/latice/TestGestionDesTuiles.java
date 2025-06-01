@@ -1,15 +1,19 @@
 package latice;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import latice.model.*;
+import latice.model.Couleur;
+import latice.model.Forme;
+import latice.model.Joueur;
+import latice.model.MaitreDuJeu;
+import latice.model.Pioche;
+import latice.model.Tuile;
 
 public class TestGestionDesTuiles {
 	MaitreDuJeu maitre = new MaitreDuJeu();

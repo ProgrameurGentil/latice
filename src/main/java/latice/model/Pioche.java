@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pioche extends GroupeDeTuile{
-	private GroupeDeTuile tuiles;
 	
 	public Pioche(List<Tuile> touteLesTuileList) {
 		super(touteLesTuileList);

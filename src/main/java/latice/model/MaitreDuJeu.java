@@ -10,21 +10,6 @@ public class MaitreDuJeu {
 		else return false;
 	}
 	
-	public void lancerTour(List<Joueur> joueurs) {
-		Joueur joueur = new Joueur("nom");
-		while (this.gagner(joueur) != true) {	
-			joueur = joueurs.get(0);
-			while (joueur == joueurs.get(0)) {
-				joueur = joueur.jouer();
-			}
-			
-			joueur = joueurs.get(1);
-			while (joueur == joueurs.get(1)) {
-				joueur = joueurs.get(0);
-				joueur = joueur.jouer();
-			}
-		}
-	}
 	
 	public void diviseEtRepartiLesTuilesEnPioches(Pioche touteLesTuile, List<Joueur> listeJoueurs) {
  		touteLesTuile.melanger();
@@ -42,6 +27,35 @@ public class MaitreDuJeu {
 	
 	public Integer quelJoueurCommence(List<Joueur> listeJoueurs) {
 		return (int)(Math.random() * listeJoueurs.size());
+	}
+	
+	public Boolean estCeQunJoueurAPLusDeTuiles(List<Joueur> listeDeJoueurs) {
+		for (Joueur joueur : listeDeJoueurs) {
+			if (joueur.nombreDeTuilesToTal().equals(0)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Joueur quelJoueurAPlusDeTuiles(List<Joueur> listeDeJoueurs) {
+		Joueur joueurGagnant = null;
+		for (Joueur joueur : listeDeJoueurs) {
+			if (joueur.nombreDeTuilesToTal().equals(0)) {
+				joueurGagnant = joueur;
+			}
+		}
+		return joueurGagnant;
+	}
+	
+	public Joueur quelJoueurALeMoinsDeTuiles(List<Joueur> listeDeJoueurs) {
+		Joueur joueurGagnant = listeDeJoueurs.get(0);
+		for (int i = 1; i<listeDeJoueurs.size()-1 ;  i++ ) {
+			if (listeDeJoueurs.get(i).nombreDeTuilesToTal() < joueurGagnant.nombreDeTuilesToTal()) {
+				joueurGagnant = listeDeJoueurs.get(i);
+			}
+		}
+		return joueurGagnant;
 	}
 }
 
