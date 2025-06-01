@@ -26,6 +26,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -43,7 +44,8 @@ public class Plateau extends Application{
 	 private static final PlateauTuiles plateauTuile = new PlateauTuiles();
 	 private static final PlateauDeCase plateauCase = PlateauDeCase.initialisationPlateauCase();
 	 private static final Dnd dragAndDrop = new Dnd();
-	 private Label lblNbTuileDansPioche;
+	 private Label lblNbTuileDansPiochedessu;
+	 private Label lblNbTuileDansPiochedessou;
 	 private Joueur joueur = null;
 	 
 	 private HBox hbRack = new HBox();
@@ -162,15 +164,22 @@ public class Plateau extends Application{
 	        	    "-fx-text-fill: lightblue;");
 
 	        vboxbtnAction.getChildren().add(menuAction);
-	        vboxbtnAction.setStyle("-fx-border-color: green;");
+	        //vboxbtnAction.setStyle("-fx-border-color: green;");
 	        
 	        
-	        lblNbTuileDansPioche = new Label("Nombre de tuiles restantes dans\nla pioche de null : XX");
-            
+	        lblNbTuileDansPiochedessu = new Label("Nombre de tuiles restantes dans");
+	        lblNbTuileDansPiochedessou = new Label("la pioche de null : XX");
 	        
-	        lblNbTuileDansPioche.setStyle("-fx-text-fill: yellow;");
-	     
-	        vblblInforomation.getChildren().add(lblNbTuileDansPioche);
+
+	        lblNbTuileDansPiochedessou.setStyle("-fx-text-fill: yellow;");
+	        lblNbTuileDansPiochedessou.setFont(Font.font("Georgia", 13));
+	        
+	        
+	        lblNbTuileDansPiochedessu.setStyle("-fx-text-fill: yellow;");
+	        lblNbTuileDansPiochedessu.setFont(Font.font("Georgia", 13));
+	        
+	        
+	        vblblInforomation.getChildren().addAll(lblNbTuileDansPiochedessu, lblNbTuileDansPiochedessou);
 	        root.setLeft(vbInformations);
 	        
 	        
@@ -191,16 +200,23 @@ public class Plateau extends Application{
 	        
 	        vbInformations.setPrefHeight(200);
 	        vbInformations.setPrefWidth(300);
-	        vblblInforomation.setAlignment(Pos.CENTER);
-	        vbInformations.setStyle("-fx-border-color: red;");
+	        //vbInformations.setStyle("-fx-border-color: red;");
+	        
 	        
 	        root.setLeft(vbInformations);
 	        vbInformations .setAlignment(Pos.CENTER);
+	        vbInformations.setTranslateX(20);
+	        
 	        vbactInfo.getChildren().addAll(vboxbtnAction, vblblInforomation);
 	        vbInformations.getChildren().add(vbactInfo);
+	        
 	        vboxbtnAction.setAlignment(Pos.CENTER);
-	        menuAction.setTranslateY(-170);
-	        vblblInforomation.setTranslateY(-120);
+	        vboxbtnAction.setTranslateY(-170);
+	        
+	        vblblInforomation.setAlignment(Pos.CENTER);
+	        vblblInforomation.setTranslateY(-110);
+	        
+	        
 	        bottomPane.setAlignment(Pos.CENTER);
 	        bottomPane.setPrefHeight(90); 
 	        
@@ -356,16 +372,16 @@ public class Plateau extends Application{
 		this.joueur = joueur;
 		
 		if (this.joueur == null) {
-        	lblNbTuileDansPioche.setText("Nombre de tuiles restantes dans la pioche de null : XX");
+	        lblNbTuileDansPiochedessou = new Label("la pioche de null : XX");
         }else {
-        	lblNbTuileDansPioche.setText("Nombre de tuiles restantes dans la pioche de " + joueur.getNom() + " : " + joueur.getPioche().taille());
+        	lblNbTuileDansPiochedessou.setText("la pioche de " + joueur.getNom() + " : " + joueur.getPioche().taille());
         }
 	}
 	
 	public void updateLabelPioche() {
 		if (joueur != null) {
 			//System.out.println(joueur.getPioche().taille());
-			lblNbTuileDansPioche.setText("Nombre de tuiles restantes dans la pioche de " + joueur.getNom() + " : " + joueur.getPioche().taille());
+			lblNbTuileDansPiochedessou.setText("la pioche de " + joueur.getNom() + " : " + joueur.getPioche().taille());
 		}
 	}
 	
