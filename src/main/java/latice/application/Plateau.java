@@ -46,6 +46,7 @@ public class Plateau extends Application{
 	 private static final PlateauTuiles plateauTuile = new PlateauTuiles();
 	 private static final PlateauDeCase plateauCase = PlateauDeCase.initialisationPlateauCase();
 	 private static final Dnd dragAndDrop = new Dnd();
+	 private Label lblNbToursRestants;
 	 private Label lblNbTuileDansPiochedessu;
 	 private Label lblNbTuileDansPiochedessou;
 	 private Joueur joueur = null;
@@ -68,7 +69,8 @@ public class Plateau extends Application{
 	        plateau.setMaxSize(555, 555);
             
 	        VBox vbInformations = new VBox();
-	        VBox vblblInforomation = new VBox();
+	        VBox vblblNbTuile = new VBox();
+	        VBox vblblNbTours = new VBox();
 	        VBox vboxbtnAction = new VBox();
 	        VBox vbplarack = new VBox();
 	        VBox vbactInfo = new VBox();
@@ -155,6 +157,10 @@ public class Plateau extends Application{
 	        vboxbtnAction.getChildren().add(menuAction);
 	        //vboxbtnAction.setStyle("-fx-border-color: green;");
 	        
+	        lblNbToursRestants = new Label("Nombre de tours restants : XX");
+	        lblNbToursRestants.setStyle("-fx-text-fill: yellow;");
+	        lblNbToursRestants.setFont(Font.font("Georgia", 13));
+	        
 	        
 	        lblNbTuileDansPiochedessu = new Label("Nombre de tuiles restantes dans");
 	        lblNbTuileDansPiochedessou = new Label("la pioche de null : XX");
@@ -168,10 +174,12 @@ public class Plateau extends Application{
 	        lblNbTuileDansPiochedessu.setFont(Font.font("Georgia", 13));
 	        
 	        
-	        vblblInforomation.getChildren().addAll(lblNbTuileDansPiochedessu, lblNbTuileDansPiochedessou);
-	        root.setLeft(vbInformations);
+	        vblblNbTuile.getChildren().addAll(lblNbTuileDansPiochedessu, lblNbTuileDansPiochedessou);
+	        vblblNbTours.getChildren().add(lblNbToursRestants);
 	        
-	        
+	        vbInformations.getChildren().addAll(vblblNbTours, vblblNbTuile);
+	        vblblNbTours.setAlignment(Pos.CENTER);
+	        vblblNbTours.setTranslateY(-105);
 	        BackgroundImage bgImgInformations = new BackgroundImage(
 	        	    new Image(getClass().getResource("/interface/cadre.png").toExternalForm()),
 	        	    BackgroundRepeat.NO_REPEAT,
@@ -196,14 +204,14 @@ public class Plateau extends Application{
 	        vbInformations .setAlignment(Pos.CENTER);
 	        vbInformations.setTranslateX(20);
 	        
-	        vbactInfo.getChildren().addAll(vboxbtnAction, vblblInforomation);
+	        vbactInfo.getChildren().addAll(vboxbtnAction, vblblNbTuile);
 	        vbInformations.getChildren().add(vbactInfo);
 	        
 	        vboxbtnAction.setAlignment(Pos.CENTER);
 	        vboxbtnAction.setTranslateY(-170);
 	        
-	        vblblInforomation.setAlignment(Pos.CENTER);
-	        vblblInforomation.setTranslateY(-110);
+	        vblblNbTuile.setAlignment(Pos.CENTER);
+	        vblblNbTuile.setTranslateY(-110);
 	        
 	        
 	        bottomPane.setAlignment(Pos.CENTER);
