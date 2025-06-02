@@ -11,11 +11,13 @@ import javafx.scene.layout.VBox;
 import latice.application.LaticeMain;
 import latice.application.Plateau;
 import latice.model.Joueur;
+import latice.model.PlateauDeCase;
+import latice.model.PlateauTuiles;
 
 public class PopUpMenu extends PopUp {
 	private Integer btn_taille = 175;
 	VBox vbmenulbl = new VBox();
-	public PopUpMenu(Joueur joueur) {
+	public PopUpMenu(Joueur joueur, PlateauTuiles plateauTuiles) {
 		super("Menu");
 		
 		Label lblpts;
@@ -46,7 +48,14 @@ public class PopUpMenu extends PopUp {
 			@Override
 			public void handle(MouseEvent event) {
 				if (joueur != null) {
-					System.out.println("Le joueur a choisi d'acheter");
+					//System.out.println("Le joueur a choisi d'acheter");
+					if (joueur.getNombreActionRestanteAJouer() < joueur.verifierSiUnCoupEstPossible(plateauTuiles)) {
+						if (!joueur.acheterAction()) {
+							new PopUpErreur("Refus d'achat", "Vous ne pourvez pas acheter une action car \nvous n'avez pas assez de point").afficher();
+						}
+					} else {
+						new PopUpErreur("Refus d'achat", "Vous ne pourvez pas acheter une action car \nil n'y plus de possibilité de placement").afficher();
+					}
 				}
 				
 			}

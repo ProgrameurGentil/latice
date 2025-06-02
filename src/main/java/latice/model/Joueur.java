@@ -1,5 +1,8 @@
 package latice.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Joueur {
 	private final String nom;
 	private Integer points;
@@ -82,7 +85,38 @@ public class Joueur {
 		} else {
 			return true;
 		}
+	}
+	
+	public Integer verifierSiUnCoupEstPossible(PlateauTuiles plateauDeTuiles) {
+		Integer nbTuileQuiPeutEtrePose = 0;
+		Tuile tuile;
+		Integer colonne=0;
+		Integer ligne=0;
+		Boolean estPosable = false;
+		Position position;
+		List<Position> listeDesPositionsDejaPrise = new ArrayList<Position>();
 		
+		for (int iRack=0 ; iRack < this.rack.taille() ; iRack++ ) {
+			tuile = this.rack.obtenirTuile(iRack);
+			ligne = 0;
+			
+			while (ligne < 9 && !estPosable) {
+				colonne = 0;
+				
+				while (colonne < 9 && !estPosable) {
+					
+					position = new Position(colonne, ligne);
+					if (plateauDeTuiles.siTuilePosableIci(tuile, position) && !listeDesPositionsDejaPrise.contains(position)) {
+						estPosable = true;
+						listeDesPositionsDejaPrise.add(position);
+					}
+					colonne++;
+				}
+				ligne++;
+			}
+			estPosable = false;
+		}
+		return nbTuileQuiPeutEtrePose;
 	}
 	
 	public void remplirSonRack() {
