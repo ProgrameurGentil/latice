@@ -1,37 +1,20 @@
 package latice.application;
 
-import java.util.Collection;
-
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class PopUp extends Stage{
-	private final Integer largeur = 140;
-	private final Integer longueur = 410;
-	private VBox vbox = new VBox();
+	protected final Integer largeur = 140;
+	protected final Integer longueur = 410;
+	protected VBox vbox = new VBox();
 	
-	public PopUp(String titre) {
+	protected PopUp(String titre) {
 		super();
 		
 		this.initModality(Modality.APPLICATION_MODAL);
         this.setTitle(titre);
-		
-        Image imgBackground = new Image(getClass().getResourceAsStream("/interface/fondPopUp.png"));
-        BackgroundImage background = new BackgroundImage(
-        		imgBackground,
-                BackgroundRepeat.NO_REPEAT,  
-                BackgroundRepeat.NO_REPEAT,  
-                BackgroundPosition.DEFAULT,  
-                new BackgroundSize(
-                        558, 558, false, false, true, false));
         
         this.vbox.setStyle("-fx-background-radius: 15;" +
         		"-fx-background-image: url('/interface/fondPopUp.png');"+
@@ -47,28 +30,20 @@ public class PopUp extends Stage{
         this.setScene(scene);
 	}
 	
-	public void afficher() {
+	protected void afficher() {
 		this.showAndWait();
         this.setResizable(false);
 	}
 	
-	public void fermer() {
+	protected void fermer() {
 		this.close();
 	}
-	
-	public void ajouter(Node element) {
-		this.vbox.getChildren().add(element);
-	}
-	
-	public void ajouter(Collection<Node> elements) {
-		this.vbox.getChildren().addAll(elements);
-	}
 
-	public Integer getLargeur() {
+	protected Integer getLargeur() {
 		return largeur;
 	}
 
-	public Integer getLongueur() {
+	protected Integer getLongueur() {
 		return longueur;
 	}
 }
