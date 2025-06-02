@@ -74,7 +74,7 @@ public class Plateau extends Application{
 	        VBox vbactInfo = new VBox();
 	        Button menuAction = boutonEnBois("Faire une Action");
 	        
-	        menuAction.setOnMouseClicked(event -> new PopUpMenu(joueur).afficher() );
+	        menuAction.setOnMouseClicked(event -> new PopUpMenu(joueur, plateauTuile).afficher() );
             
 	        StackPane bottomPane = new StackPane(hbRack);
             
