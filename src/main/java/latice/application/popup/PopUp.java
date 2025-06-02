@@ -6,8 +6,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class PopUp extends Stage{
-	protected final Integer largeur = 140;
-	protected final Integer longueur = 410;
+	protected final Integer largeur = 180;
+	protected final Integer longueur = 430;
 	protected VBox root = new VBox();
 	
 	protected PopUp(String titre) {
@@ -23,7 +23,8 @@ public class PopUp extends Stage{
         	    "-fx-background-position: center;" +
         	    "-fx-padding: 10 20;"+
         	    "-fx-background-repeat: no-repeat;" +
-        	    "-fx-text-fill: lightblue;");
+        	    "-fx-text-fill: lightblue;" +
+        	    "-fx-font-weight: bold;");
 
         
 		Scene scene = new Scene(root, longueur, largeur);

@@ -14,7 +14,7 @@ import latice.model.Joueur;
 
 public class PopUpMenu extends PopUp {
 	private Integer btn_taille = 175;
-
+	VBox vbmenulbl = new VBox();
 	public PopUpMenu(Joueur joueur) {
 		super("Menu");
 		
@@ -25,15 +25,7 @@ public class PopUpMenu extends PopUp {
         	lblpts = Plateau.labelEnBois("Nombre de points du null : XX pnts");
         }
 		
-        lblpts.setStyle("-fx-text-fill: black;" +
-        		"-fx-background-radius: 15;" +
-        		"-fx-background-image: url('/interface/cadreLabel.png');"+
-        	    "-fx-background-size: cover;" +
-        	    "-fx-background-size: 101% 100%;" +
-        	    "-fx-background-position: center;" +
-        	    "-fx-padding: 10 20;"+
-        	    "-fx-background-repeat: no-repeat;");
-        
+
         Button btnpass = afficherbouttonDansMenu("Fin du tour", new EventHandler<MouseEvent>() {
 			
 			@Override
@@ -89,7 +81,9 @@ public class PopUpMenu extends PopUp {
 
         HBox menubouton = new HBox(15, vbBoutton1et2, vbBoutton3etfermer);
         
-        root.getChildren().addAll(lblpts, menubouton);
+        vbmenulbl.getChildren().add(lblpts);
+        vbmenulbl.setAlignment(Pos.CENTER);
+        root.getChildren().addAll(vbmenulbl, menubouton);
         
         menubouton.setStyle("-fx-padding: 20; -fx-alignment: center;");
         lblpts.setAlignment(Pos.CENTER);

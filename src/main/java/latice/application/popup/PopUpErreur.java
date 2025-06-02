@@ -26,7 +26,7 @@ public class PopUpErreur extends PopUp {
 		});
         
         labelErreur.setStyle(labelErreur.getStyle()
-        				   + "-fx-padding: 5;"
+        				   + "-fx-padding: 10;"
     					   + "-fx-alignment: center;");
         
         
