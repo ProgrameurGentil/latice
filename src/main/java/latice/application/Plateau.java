@@ -1,5 +1,7 @@
 package latice.application;
 
+import java.awt.PopupMenu;
+
 import javafx.animation.FillTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -31,6 +33,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import latice.application.popup.PopUp;
+import latice.application.popup.PopUpMenu;
 import latice.model.Joueur;
 import latice.model.PlateauDeCase;
 import latice.model.PlateauTuiles;
@@ -73,10 +76,8 @@ public class Plateau extends Application{
 	        VBox vbactInfo = new VBox();
 	        Button menuAction = boutonEnBois("Faire une Action");
 	        
-	        menuAction.setOnAction(e -> showMenuPopup());
+	        menuAction.setOnMouseClicked(event -> new PopUpMenu(joueur).afficher() );
             
-	        
-	        
 	        StackPane bottomPane = new StackPane(hbRack);
             
 	        Rectangle bg = new Rectangle(800, 600);
@@ -152,9 +153,6 @@ public class Plateau extends Application{
 	                plateau.add(imageView, col, row); 
 	            }
 	        }
-	        
-
-	        menuAction.setOnAction(e -> showMenuPopup());
 
 	        vboxbtnAction.getChildren().add(menuAction);
 	        //vboxbtnAction.setStyle("-fx-border-color: green;");
@@ -258,119 +256,6 @@ public class Plateau extends Application{
 		}
 	}
 	
-	private void showMenuPopup() {
-		Integer largeurFenetre = 410;
-        Stage menuStage = new Stage();
-        menuStage.initModality(Modality.APPLICATION_MODAL);
-        menuStage.setTitle("Menu");
-        
-        Label lblpts;
-        if (joueur != null) {
-        	lblpts = new Label("Nombre de points du " + joueur.getNom() + " : " + joueur.getPoints() + " pnts");
-        } else {
-        	lblpts = new Label("Nombre de points du null : XX pnts");
-        }
-		
-        Button btnpass = afficherbouttonDansMenu("Fin du tour", new EventHandler<MouseEvent>() {
-			
-			@Override
-			public void handle(MouseEvent event) {
-				if (joueur != null) {
-					if (!(LaticeMain.getNbTours().equals(0) && joueur.getNbTuilesPosees().equals(0))) {
-						LaticeMain.joueurSuivant();
-						//System.out.println("le joueur passe son tour");
-					} else {
-						showErreurPopup("Vous ne pouvez pas passer le tour", "Vous ne pouvez pas passer le tour.\nIl faut que vous jouez la premère tuile au centre");
-					}
-				}
-			}
-		}, "Cette action va finir votre tour",menuStage);
-        
-        Button btnacheter = afficherbouttonDansMenu("Acheter une Action (2)", new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				if (joueur != null) {
-					System.out.println("Le joueur a choisi d'acheter");
-				}
-				
-			}
-        	
-        }, "Acheter une action pour joueur à nouveau",menuStage);
-        
-        Button btnchangerRack = afficherbouttonDansMenu("Echanger son rack (2)", new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				//System.out.println("Le joueur a échanger son rack");
-				if (joueur != null) {
-					if (joueur.echangerRack()) {
-						LaticeMain.joueurSuivant();
-					} else {
-						if (joueur.getPoints() < 2) {
-							showErreurPopup("Erreur dans la transaction", "Vous n'avez pas assez de points");
-						} else {
-							showErreurPopup("Erreur dans la transaction", "Vous n'avez pas assez de tuiles dans votre pioche");
-						}
-					}
-				}
-			}
-        	
-        }, "Cette action passera votre tour",menuStage);
-        
-        Button btnfermerAction = afficherbouttonDansMenu("retour", null, null, menuStage);
-                
-        VBox vbBoutton1et2 = new VBox(10, btnacheter, btnpass);
-        VBox vbBoutton3etfermer = new VBox(10, btnchangerRack, btnfermerAction);
-        
-
-        HBox menubouton = new HBox(15, vbBoutton1et2, vbBoutton3etfermer);
-        VBox menuaction = new VBox(lblpts, menubouton);
-        lblpts.setTranslateX((largeurFenetre/2) - (largeurFenetre/4.5));       
-        
-        menubouton.setStyle("-fx-padding: 20; -fx-alignment: center;");
-        lblpts.setAlignment(Pos.CENTER);
-        
-        menuaction.setStyle("-fx-background-radius: 15;" +
-        		"-fx-background-image: url('/interface/fondPopUp.png');"+
-        	    "-fx-background-size: cover;" +
-        	    "-fx-background-size: 100% 100%;" +
-        	    "-fx-background-position: center;" +
-        	    "-fx-padding: 10 20;"+
-        	    "-fx-background-repeat: no-repeat;" +
-        	    "-fx-text-fill: lightblue;");
-        
-
-        Scene menuScene = new Scene(menuaction, largeurFenetre, 140);
-
-        menuStage.setScene(menuScene);
-        menuStage.showAndWait();
-        menuStage.setResizable(false);
-    }
-	
-	private Button afficherbouttonDansMenu(String string, EventHandler<MouseEvent> action, String descriptif, Stage stage) {
-		
-		final Button button = boutonEnBois(string);
-		if (descriptif != null) {
-			final Tooltip tooltip = new Tooltip(descriptif);
-	        Tooltip.install(button, tooltip);
-		}
-		
-		if (string != "retour") {
-			button.setOnMousePressed(action);
-			button.setOnMouseClicked(event -> {stage.close();});
-			
-		}else {
-			button.setOnAction(e -> stage.close());
-		}
-		
-		
-		button.setMaxWidth(btn_taille);
-        
-		return button;
-		
-	}
-	
 	public void setJoueur(Joueur joueur) {
 		joueur.setNombreActionRestanteAJouer(1);
 		//System.out.println("nb action : " + joueur.getNombreActionRestanteAJouer());
@@ -389,56 +274,6 @@ public class Plateau extends Application{
 			lblNbTuileDansPiochedessou.setText("la pioche de " + joueur.getNom() + " : " + joueur.getPioche().taille());
 		}
 	}
-	
-	public void showWinnerPopup(Joueur joueur) {
-        Stage winnerStage = new Stage();
-        winnerStage.initModality(Modality.APPLICATION_MODAL);
-        winnerStage.setTitle("Partie gagné par " + joueur.getNom());
-        
-        Label labelJoueurGagnant = new Label("Bravo !! Le joueur " + joueur.getNom() + " a gagné la partie !!");
-        
-        VBox vbox = new VBox(labelJoueurGagnant);
-        //labelJoueurGagnant.setTranslateX((largeurFenetre/2) - (largeurFenetre/6.6667));       
-        
-        labelJoueurGagnant.setStyle("-fx-padding: 20; -fx-alignment: center;");
-
-        Scene winnerScene = new Scene(vbox, 410, 140);
-
-        winnerStage.setScene(winnerScene);
-        winnerStage.showAndWait();
-        winnerStage.setResizable(false);
-    }
-	
-	public void showErreurPopup(String titre, String message) {
-        Stage erreurStage = new Stage();
-        erreurStage.initModality(Modality.APPLICATION_MODAL);
-        erreurStage.setTitle(titre);
-        
-        Label labelErreur = new Label(message);
-        Button boutonQuitter = boutonEnBois("Quitter");
-        
-        boutonQuitter.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				erreurStage.close();
-				
-			}
-		});
-        
-        VBox vbox = new VBox(labelErreur, boutonQuitter);      
-        
-        labelErreur.setStyle("-fx-padding: 20; -fx-alignment: center;");
-
-
-        vbox.setAlignment(Pos.CENTER);
-
-        Scene erreurScene = new Scene(vbox, 410, 140);
-
-        erreurStage.setScene(erreurScene);
-        erreurStage.showAndWait();
-        erreurStage.setResizable(false);
-    }
 	
 	public static Button boutonEnBois(String texte) {
 		Button bouton = new Button(texte);

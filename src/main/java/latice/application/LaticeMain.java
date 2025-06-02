@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import latice.application.popup.PopUpGagnant;
 import latice.model.Joueur;
 import latice.model.MaitreDuJeu;
 import latice.model.Pioche;
@@ -82,6 +83,6 @@ public class LaticeMain {
 		} else {
 			joueurQuiAGagne = maitreDuJeu.quelJoueurALeMoinsDeTuiles(listeDeJoueurs);
 		}
-		plateau.showWinnerPopup(joueurQuiAGagne);
+		new PopUpGagnant(joueurQuiAGagne).afficher();
 	}
 }

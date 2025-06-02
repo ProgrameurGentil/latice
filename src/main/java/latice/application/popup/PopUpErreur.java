@@ -23,10 +23,12 @@ public class PopUpErreur extends PopUp {
 			}
 		});
         
-        labelErreur.setStyle("-fx-padding: 20; -fx-alignment: center;");
+        labelErreur.setStyle("-fx-padding: 20;"
+    					   + "-fx-alignment: center;"
+    					   + "-fx-text-fill: yellow;");
         
-        vbox.getChildren().addAll(labelErreur, boutonQuitter);
-        vbox.setAlignment(Pos.CENTER);
+        root.getChildren().addAll(labelErreur, boutonQuitter);
+        root.setAlignment(Pos.CENTER);
         
         
 	}

@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public class PopUp extends Stage{
 	protected final Integer largeur = 140;
 	protected final Integer longueur = 410;
-	protected VBox vbox = new VBox();
+	protected VBox root = new VBox();
 	
 	protected PopUp(String titre) {
 		super();
@@ -16,7 +16,7 @@ public class PopUp extends Stage{
 		this.initModality(Modality.APPLICATION_MODAL);
         this.setTitle(titre);
         
-        this.vbox.setStyle("-fx-background-radius: 15;" +
+        this.root.setStyle("-fx-background-radius: 15;" +
         		"-fx-background-image: url('/interface/fondPopUp.png');"+
         	    "-fx-background-size: cover;" +
         	    "-fx-background-size: 100% 100%;" +
@@ -26,11 +26,11 @@ public class PopUp extends Stage{
         	    "-fx-text-fill: lightblue;");
 
         
-		Scene scene = new Scene(vbox, longueur, largeur);
+		Scene scene = new Scene(root, longueur, largeur);
         this.setScene(scene);
 	}
 	
-	protected void afficher() {
+	public void afficher() {
 		this.showAndWait();
         this.setResizable(false);
 	}

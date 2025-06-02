@@ -8,6 +8,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import latice.application.LaticeMain;
 import latice.application.Plateau;
 import latice.model.Joueur;
 
@@ -24,10 +25,27 @@ public class PopUpMenu extends PopUp {
         	lblpts = new Label("Nombre de points du null : XX pnts");
         }
 		
+        lblpts.setStyle("-fx-text-fill: black;" +
+        		"-fx-background-radius: 15;" +
+        		"-fx-background-image: url('/interface/bande.png');"+
+        	    "-fx-background-size: cover;" +
+        	    "-fx-background-size: 100% 100%;" +
+        	    "-fx-background-position: center;" +
+        	    "-fx-padding: 10 20;"+
+        	    "-fx-background-repeat: no-repeat;");
+        
         Button btnpass = afficherbouttonDansMenu("Fin du tour", new EventHandler<MouseEvent>() {
 			
 			@Override
 			public void handle(MouseEvent event) {
+				if (joueur != null) {
+					if (!(LaticeMain.getNbTours().equals(0) && joueur.getNbTuilesPosees().equals(0))) {
+						LaticeMain.joueurSuivant();
+						//System.out.println("le joueur passe son tour");
+					} else {
+						new PopUpErreur("Vous ne pouvez pas passer le tour", "Vous ne pouvez pas passer le tour.\nIl faut que vous jouez la premère tuile au centre").afficher();
+					}
+				}
 			}
 		}, "Cette action va finir votre tour");
         
@@ -35,6 +53,10 @@ public class PopUpMenu extends PopUp {
 
 			@Override
 			public void handle(MouseEvent event) {
+				if (joueur != null) {
+					System.out.println("Le joueur a choisi d'acheter");
+				}
+				
 			}
         	
         }, "Acheter une action pour joueur à nouveau");
@@ -43,6 +65,18 @@ public class PopUpMenu extends PopUp {
 
 			@Override
 			public void handle(MouseEvent event) {
+				//System.out.println("Le joueur a échanger son rack");
+				if (joueur != null) {
+					if (joueur.echangerRack()) {
+						LaticeMain.joueurSuivant();
+					} else {
+						if (joueur.getPoints() < 2) {
+							new PopUpErreur("Erreur dans la transaction", "Vous n'avez pas assez de points").afficher();
+						} else {
+							new PopUpErreur("Erreur dans la transaction", "Vous n'avez pas assez de tuiles dans votre pioche").afficher();
+						}
+					}
+				}
 			}
         	
         }, "Cette action passera votre tour");
@@ -55,7 +89,7 @@ public class PopUpMenu extends PopUp {
 
         HBox menubouton = new HBox(15, vbBoutton1et2, vbBoutton3etfermer);
         
-        vbox.getChildren().addAll(lblpts, menubouton);
+        root.getChildren().addAll(lblpts, menubouton);
         
         menubouton.setStyle("-fx-padding: 20; -fx-alignment: center;");
         lblpts.setAlignment(Pos.CENTER);
