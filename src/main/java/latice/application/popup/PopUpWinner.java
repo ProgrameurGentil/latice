@@ -1,4 +1,4 @@
-package latice.application;
+package latice.application.popup;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;

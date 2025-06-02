@@ -1,4 +1,4 @@
-package latice.application;
+package latice.application.popup;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -8,6 +8,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import latice.application.Plateau;
 import latice.model.Joueur;
 
 public class PopUpMenu extends PopUp {

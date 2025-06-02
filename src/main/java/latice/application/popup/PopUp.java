@@ -1,4 +1,4 @@
-package latice.application;
+package latice.application.popup;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;

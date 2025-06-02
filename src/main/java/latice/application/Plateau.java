@@ -30,12 +30,12 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import latice.application.popup.PopUp;
 import latice.model.Joueur;
 import latice.model.PlateauDeCase;
 import latice.model.PlateauTuiles;
 import latice.model.Rack;
 import latice.model.Tuile;
-import latice.application.PopUp;
 
 public class Plateau extends Application{
 	 private static final int colonnes = 9;

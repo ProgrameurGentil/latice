@@ -1,10 +1,11 @@
-package latice.application;
+package latice.application.popup;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import latice.application.Plateau;
 
 public class PopUpErreur extends PopUp {
 
