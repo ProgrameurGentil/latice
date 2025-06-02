@@ -19,7 +19,7 @@ public class LaticeMain {
 	private static List<Joueur> listeDeJoueurs = new ArrayList<Joueur>();
 	private static Integer indiceDuJoueurQuiJoue;
 	private static Integer nbTours = 0;
-	private static final Integer nbToursMax = 10;
+	public static final Integer nbToursMax = 10;
 	private static final MaitreDuJeu maitreDuJeu = new MaitreDuJeu();
 
 	public static void main(String[] args) {

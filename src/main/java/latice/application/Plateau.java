@@ -2,15 +2,12 @@ package latice.application;
 
 import javafx.animation.FillTransition;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -27,10 +24,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import latice.application.popup.PopUp;
 import latice.application.popup.PopUpMenu;
 import latice.model.Joueur;
 import latice.model.PlateauDeCase;
@@ -42,10 +37,10 @@ public class Plateau extends Application{
 	 private static final int colonnes = 9;
 	 private static final int lignes = 9;
 	 private static final double case_taille = 62.0;
-	 private static final int btn_taille = 175;
 	 private static final PlateauTuiles plateauTuile = new PlateauTuiles();
 	 private static final PlateauDeCase plateauCase = PlateauDeCase.initialisationPlateauCase();
 	 private static final Dnd dragAndDrop = new Dnd();
+	 private Integer nbTour = LaticeMain.nbToursMax*2;
 	 private Label lblNbToursRestants;
 	 private Label lblNbTuileDansPiochedessu;
 	 private Label lblNbTuileDansPiochedessou;
@@ -157,7 +152,7 @@ public class Plateau extends Application{
 	        vboxbtnAction.getChildren().add(menuAction);
 	        //vboxbtnAction.setStyle("-fx-border-color: green;");
 	        
-	        lblNbToursRestants = new Label("Nombre de tours restants : XX");
+	        lblNbToursRestants = new Label("Nombre de tours restants : " + this.nbTour*2);
 	        lblNbToursRestants.setStyle("-fx-text-fill: yellow;");
 	        lblNbToursRestants.setFont(Font.font("Georgia", 13));
 	        
@@ -273,6 +268,7 @@ public class Plateau extends Application{
         }else {
         	lblNbTuileDansPiochedessou.setText("la pioche de " + joueur.getNom() + " : " + joueur.getPioche().taille());
         }
+		updateNbTour();
 	}
 	
 	public void updateLabelPioche() {
@@ -280,6 +276,15 @@ public class Plateau extends Application{
 			//System.out.println(joueur.getPioche().taille());
 			lblNbTuileDansPiochedessou.setText("la pioche de " + joueur.getNom() + " : " + joueur.getPioche().taille());
 		}
+	}
+	
+	public void updateNbTour() {
+		if (this.nbTour < 10) {
+			this.lblNbToursRestants.setStyle(this.lblNbToursRestants.getStyle() + "-fx-font-weight: bold;");
+		}
+		
+		this.lblNbToursRestants.setText("Nombre de tours restants : " + this.nbTour);
+		this.nbTour--;
 	}
 	
 	public static Button boutonEnBois(String texte) {
