@@ -20,16 +20,16 @@ public class PopUpMenu extends PopUp {
 		
 		Label lblpts;
         if (joueur != null) {
-        	lblpts = new Label("Nombre de points du " + joueur.getNom() + " : " + joueur.getPoints() + " pnts");
+        	lblpts = Plateau.labelEnBois("Nombre de points du " + joueur.getNom() + " : " + joueur.getPoints() + " pnts");
         } else {
-        	lblpts = new Label("Nombre de points du null : XX pnts");
+        	lblpts = Plateau.labelEnBois("Nombre de points du null : XX pnts");
         }
 		
         lblpts.setStyle("-fx-text-fill: black;" +
         		"-fx-background-radius: 15;" +
-        		"-fx-background-image: url('/interface/bande.png');"+
+        		"-fx-background-image: url('/interface/cadreLabel.png');"+
         	    "-fx-background-size: cover;" +
-        	    "-fx-background-size: 100% 100%;" +
+        	    "-fx-background-size: 101% 100%;" +
         	    "-fx-background-position: center;" +
         	    "-fx-padding: 10 20;"+
         	    "-fx-background-repeat: no-repeat;");

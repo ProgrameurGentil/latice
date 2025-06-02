@@ -1,10 +1,12 @@
 package latice.application.popup;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import latice.application.Plateau;
 
 public class PopUpErreur extends PopUp {
@@ -12,7 +14,7 @@ public class PopUpErreur extends PopUp {
 	public PopUpErreur(String titre, String message) {
 		super(titre);
 		
-		Label labelErreur = new Label(message);
+		Label labelErreur = Plateau.labelEnBois(message);
         Button boutonQuitter = Plateau.boutonEnBois("Quitter");
         
         boutonQuitter.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -23,13 +25,14 @@ public class PopUpErreur extends PopUp {
 			}
 		});
         
-        labelErreur.setStyle("-fx-padding: 20;"
-    					   + "-fx-alignment: center;"
-    					   + "-fx-text-fill: yellow;");
+        labelErreur.setStyle(labelErreur.getStyle()
+        				   + "-fx-padding: 5;"
+    					   + "-fx-alignment: center;");
+        
         
         root.getChildren().addAll(labelErreur, boutonQuitter);
         root.setAlignment(Pos.CENTER);
-        
+        VBox.setMargin(labelErreur, new Insets(10));        
         
 	}
 

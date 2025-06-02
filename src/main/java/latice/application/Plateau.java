@@ -1,7 +1,5 @@
 package latice.application;
 
-import java.awt.PopupMenu;
-
 import javafx.animation.FillTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -286,6 +284,19 @@ public class Plateau extends Application{
         	    "-fx-background-repeat: no-repeat;" +
         	    "-fx-text-fill: lightblue;");
 		return bouton;
+	}
+	
+	public static Label labelEnBois(String texte) {
+		Label label = new Label(texte);
+		label.setStyle("-fx-text-fill: black;" +
+        		"-fx-background-radius: 15;" +
+        		"-fx-background-image: url('/interface/cadreLabel.png');"+
+        	    "-fx-background-size: cover;" +
+        	    "-fx-background-size: 101% 100%;" +
+        	    "-fx-background-position: center;" +
+        	    "-fx-padding: 10 20;"+
+        	    "-fx-background-repeat: no-repeat;");
+		return label;
 	}
 }
 		
