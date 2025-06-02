@@ -194,6 +194,7 @@ public class Plateau extends Application{
 
 	        vbInformations.setBackground(new Background(bgImgInformations));
 	        
+	        menuAction.setTranslateY(-10);
 	        
 	        vbInformations.setPrefHeight(200);
 	        vbInformations.setPrefWidth(300);

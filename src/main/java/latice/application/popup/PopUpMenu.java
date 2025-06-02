@@ -49,7 +49,9 @@ public class PopUpMenu extends PopUp {
 			public void handle(MouseEvent event) {
 				if (joueur != null) {
 					//System.out.println("Le joueur a choisi d'acheter");
+					System.out.println(joueur.verifierSiUnCoupEstPossible(plateauTuiles));
 					if (joueur.getNombreActionRestanteAJouer() < joueur.verifierSiUnCoupEstPossible(plateauTuiles)) {
+	
 						if (!joueur.acheterAction()) {
 							new PopUpErreur("Refus d'achat", "Vous ne pourvez pas acheter une action car \nvous n'avez pas assez de point").afficher();
 						}

@@ -109,6 +109,7 @@ public class Joueur {
 					if (plateauDeTuiles.siTuilePosableIci(tuile, position) && !listeDesPositionsDejaPrise.contains(position)) {
 						estPosable = true;
 						listeDesPositionsDejaPrise.add(position);
+						nbTuileQuiPeutEtrePose++;
 					}
 					colonne++;
 				}
