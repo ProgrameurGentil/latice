@@ -100,7 +100,6 @@ public class Joueur {
 	}
 	
 	public void remplirSonRack() {
-		this.pioche.melanger();
 		this.rack.remplirLeRack(this.pioche);
 	}
 
