@@ -285,6 +285,8 @@ public class Plateau extends Application{
 					if (!(LaticeMain.getNbTours().equals(0) && joueur.getNbTuilesPosees().equals(0))) {
 						LaticeMain.joueurSuivant();
 						//System.out.println("le joueur passe son tour");
+					} else {
+						showErreurPopup("Vous ne pouvez pas passer le tour", "Vous ne pouvez pas passer le tour.\nIl faut que vous jouez la premère tuile au centre");
 					}
 				}
 			}
@@ -312,9 +314,9 @@ public class Plateau extends Application{
 						LaticeMain.joueurSuivant();
 					} else {
 						if (joueur.getPoints() < 2) {
-							showErreurPopup("Vous n'avez pas assez de points");
+							showErreurPopup("Erreur dans la transaction", "Vous n'avez pas assez de points");
 						} else {
-							showErreurPopup("Vous n'avez pas assez de tuiles dans votre pioche");
+							showErreurPopup("Erreur dans la transaction", "Vous n'avez pas assez de tuiles dans votre pioche");
 						}
 					}
 				}
@@ -413,11 +415,11 @@ public class Plateau extends Application{
         winnerStage.setResizable(false);
     }
 	
-	public void showErreurPopup(String message) {
+	public void showErreurPopup(String titre, String message) {
 		Integer largeurFenetre = 400;
         Stage erreurStage = new Stage();
         erreurStage.initModality(Modality.APPLICATION_MODAL);
-        erreurStage.setTitle("Erreur dans la transaction");
+        erreurStage.setTitle(titre);
         
         Label labelErreur = new Label(message);
         Button boutonQuitter = new Button("Quitter");

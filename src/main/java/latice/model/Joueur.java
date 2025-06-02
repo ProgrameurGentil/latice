@@ -26,20 +26,6 @@ public class Joueur {
 	public Joueur(String nom) {
 		this(nom, 0, 0, 0, new Rack(), new Pioche());
 	}
-
-	/*
-	//comportement	
-	public Joueur jouer() { //TODO joueur un tour
-		boolean aJouer = false;
-		Joueur suivant;	
-		while (aJouer != true) {
-				 regarde actions
-				  lance en fonction des action 
-				  /!\ ne pas faire aJouer = this.acheterAction() 
-		}
-		//suivant = finAction();
-		return null;
-	} */
 	
 	public boolean poserTuile(int indiceTuileRack, Position positionDestination, PlateauDeCase plateauDeCases, PlateauTuiles plateauDeTuiles) {
 //		Position positionPose = Position.position(indiceDestination);
