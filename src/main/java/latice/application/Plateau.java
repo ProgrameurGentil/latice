@@ -35,6 +35,7 @@ import latice.model.PlateauDeCase;
 import latice.model.PlateauTuiles;
 import latice.model.Rack;
 import latice.model.Tuile;
+import latice.application.PopUp;
 
 public class Plateau extends Application{
 	 private static final int colonnes = 9;
@@ -70,7 +71,7 @@ public class Plateau extends Application{
 	        VBox vboxbtnAction = new VBox();
 	        VBox vbplarack = new VBox();
 	        VBox vbactInfo = new VBox();
-	        Button menuAction = new Button("Faire une Action");
+	        Button menuAction = boutonEnBois("Faire une Action");
 	        
 	        menuAction.setOnAction(e -> showMenuPopup());
             
@@ -154,14 +155,6 @@ public class Plateau extends Application{
 	        
 
 	        menuAction.setOnAction(e -> showMenuPopup());
-	        menuAction.setStyle("-fx-background-radius: 15;" +
-	        		"-fx-background-image: url('/Bouton/background_bouton.png');"+
-	        	    "-fx-background-size: cover;" +
-	        	    "-fx-background-size: 100% 100%;" +
-	        	    "-fx-background-position: center;" +
-	        	    "-fx-padding: 10 20;"+
-	        	    "-fx-background-repeat: no-repeat;" +
-	        	    "-fx-text-fill: lightblue;");
 
 	        vboxbtnAction.getChildren().add(menuAction);
 	        //vboxbtnAction.setStyle("-fx-border-color: green;");
@@ -277,6 +270,7 @@ public class Plateau extends Application{
         } else {
         	lblpts = new Label("Nombre de points du null : XX pnts");
         }
+		
         Button btnpass = afficherbouttonDansMenu("Fin du tour", new EventHandler<MouseEvent>() {
 			
 			@Override
@@ -335,6 +329,16 @@ public class Plateau extends Application{
         lblpts.setTranslateX((largeurFenetre/2) - (largeurFenetre/4.5));       
         
         menubouton.setStyle("-fx-padding: 20; -fx-alignment: center;");
+        lblpts.setAlignment(Pos.CENTER);
+        
+        menuaction.setStyle("-fx-background-radius: 15;" +
+        		"-fx-background-image: url('/interface/fondPopUp.png');"+
+        	    "-fx-background-size: cover;" +
+        	    "-fx-background-size: 100% 100%;" +
+        	    "-fx-background-position: center;" +
+        	    "-fx-padding: 10 20;"+
+        	    "-fx-background-repeat: no-repeat;" +
+        	    "-fx-text-fill: lightblue;");
         
 
         Scene menuScene = new Scene(menuaction, largeurFenetre, 140);
@@ -346,7 +350,7 @@ public class Plateau extends Application{
 	
 	private Button afficherbouttonDansMenu(String string, EventHandler<MouseEvent> action, String descriptif, Stage stage) {
 		
-		final Button button = new Button(string);
+		final Button button = boutonEnBois(string);
 		if (descriptif != null) {
 			final Tooltip tooltip = new Tooltip(descriptif);
 	        Tooltip.install(button, tooltip);
@@ -362,15 +366,6 @@ public class Plateau extends Application{
 		
 		
 		button.setMaxWidth(btn_taille);
-		
-		button.setStyle("-fx-background-radius: 15;" +
-        		"-fx-background-image: url('/Bouton/background_bouton.png');"+
-        	    "-fx-background-size: cover;" +
-        	    "-fx-background-size: 100% 100%;" +
-        	    "-fx-background-position: center;" +
-        	    "-fx-padding: 10 20;"+
-        	    "-fx-background-repeat: no-repeat;" +
-        	    "-fx-text-fill: lightblue;");
         
 		return button;
 		
@@ -396,7 +391,6 @@ public class Plateau extends Application{
 	}
 	
 	public void showWinnerPopup(Joueur joueur) {
-		Integer largeurFenetre = 400;
         Stage winnerStage = new Stage();
         winnerStage.initModality(Modality.APPLICATION_MODAL);
         winnerStage.setTitle("Partie gagné par " + joueur.getNom());
@@ -408,7 +402,7 @@ public class Plateau extends Application{
         
         labelJoueurGagnant.setStyle("-fx-padding: 20; -fx-alignment: center;");
 
-        Scene winnerScene = new Scene(vbox, largeurFenetre, 140);
+        Scene winnerScene = new Scene(vbox, 400, 140);
 
         winnerStage.setScene(winnerScene);
         winnerStage.showAndWait();
@@ -416,13 +410,12 @@ public class Plateau extends Application{
     }
 	
 	public void showErreurPopup(String titre, String message) {
-		Integer largeurFenetre = 400;
         Stage erreurStage = new Stage();
         erreurStage.initModality(Modality.APPLICATION_MODAL);
         erreurStage.setTitle(titre);
         
         Label labelErreur = new Label(message);
-        Button boutonQuitter = new Button("Quitter");
+        Button boutonQuitter = boutonEnBois("Quitter");
         
         boutonQuitter.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -436,7 +429,20 @@ public class Plateau extends Application{
         VBox vbox = new VBox(labelErreur, boutonQuitter);      
         
         labelErreur.setStyle("-fx-padding: 20; -fx-alignment: center;");
-        boutonQuitter.setStyle("-fx-background-radius: 15;" +
+
+
+        vbox.setAlignment(Pos.CENTER);
+
+        Scene erreurScene = new Scene(vbox, 400, 140);
+
+        erreurStage.setScene(erreurScene);
+        erreurStage.showAndWait();
+        erreurStage.setResizable(false);
+    }
+	
+	public static Button boutonEnBois(String texte) {
+		Button bouton = new Button(texte);
+		bouton.setStyle("-fx-background-radius: 15;" +
         		"-fx-background-image: url('/Bouton/background_bouton.png');"+
         	    "-fx-background-size: cover;" +
         	    "-fx-background-size: 100% 100%;" +
@@ -444,15 +450,7 @@ public class Plateau extends Application{
         	    "-fx-padding: 10 20;"+
         	    "-fx-background-repeat: no-repeat;" +
         	    "-fx-text-fill: lightblue;");
-
-
-        vbox.setAlignment(Pos.CENTER);
-
-        Scene erreurScene = new Scene(vbox, largeurFenetre, 140);
-
-        erreurStage.setScene(erreurScene);
-        erreurStage.showAndWait();
-        erreurStage.setResizable(false);
-    }
+		return bouton;
+	}
 }
 		
