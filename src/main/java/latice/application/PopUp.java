@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -16,7 +15,7 @@ import javafx.stage.Stage;
 
 public class PopUp extends Stage{
 	private final Integer largeur = 140;
-	private final Integer longueur = 400;
+	private final Integer longueur = 410;
 	private VBox vbox = new VBox();
 	
 	public PopUp(String titre) {
@@ -71,18 +70,5 @@ public class PopUp extends Stage{
 
 	public Integer getLongueur() {
 		return longueur;
-	}
-	
-	public Button boutonEnBois(String texte) {
-		Button bouton = new Button(texte);
-		bouton.setStyle("-fx-background-radius: 15;" +
-        		"-fx-background-image: url('/Bouton/background_bouton.png');"+
-        	    "-fx-background-size: cover;" +
-        	    "-fx-background-size: 100% 100%;" +
-        	    "-fx-background-position: center;" +
-        	    "-fx-padding: 10 20;"+
-        	    "-fx-background-repeat: no-repeat;" +
-        	    "-fx-text-fill: lightblue;");
-		return bouton;
 	}
 }

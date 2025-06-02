@@ -259,7 +259,7 @@ public class Plateau extends Application{
 	}
 	
 	private void showMenuPopup() {
-		Integer largeurFenetre = 400;
+		Integer largeurFenetre = 410;
         Stage menuStage = new Stage();
         menuStage.initModality(Modality.APPLICATION_MODAL);
         menuStage.setTitle("Menu");
@@ -402,7 +402,7 @@ public class Plateau extends Application{
         
         labelJoueurGagnant.setStyle("-fx-padding: 20; -fx-alignment: center;");
 
-        Scene winnerScene = new Scene(vbox, 400, 140);
+        Scene winnerScene = new Scene(vbox, 410, 140);
 
         winnerStage.setScene(winnerScene);
         winnerStage.showAndWait();
@@ -433,7 +433,7 @@ public class Plateau extends Application{
 
         vbox.setAlignment(Pos.CENTER);
 
-        Scene erreurScene = new Scene(vbox, 400, 140);
+        Scene erreurScene = new Scene(vbox, 410, 140);
 
         erreurStage.setScene(erreurScene);
         erreurStage.showAndWait();
