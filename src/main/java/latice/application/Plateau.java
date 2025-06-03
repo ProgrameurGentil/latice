@@ -152,7 +152,7 @@ public class Plateau extends Application{
 	        vboxbtnAction.getChildren().add(menuAction);
 	        //vboxbtnAction.setStyle("-fx-border-color: green;");
 	        
-	        lblNbToursRestants = new Label("Nombre de tours restants : " + this.nbTour*2);
+	        lblNbToursRestants = new Label("Nombre de tours restants : " + this.nbTour);
 	        lblNbToursRestants.setStyle("-fx-text-fill: yellow;");
 	        lblNbToursRestants.setFont(Font.font("Georgia", 13));
 	        

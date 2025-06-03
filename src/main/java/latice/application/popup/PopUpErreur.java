@@ -32,7 +32,7 @@ public class PopUpErreur extends PopUp {
         
         root.getChildren().addAll(labelErreur, boutonQuitter);
         root.setAlignment(Pos.CENTER);
-        VBox.setMargin(labelErreur, new Insets(10));        
+        VBox.setMargin(labelErreur, new Insets(10));    
         
 	}
 
