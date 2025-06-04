@@ -83,6 +83,8 @@ public class LaticeMain {
 		} else {
 			joueurQuiAGagne = maitreDuJeu.quelJoueurALeMoinsDeTuiles(listeDeJoueurs);
 		}
+		System.out.println(listeDeJoueurs.get(0).getNom() + " : pioche -> " + listeDeJoueurs.get(0).getPioche().taille() + " ; rack -> " + listeDeJoueurs.get(0).getRack().taille());
+		System.out.println(listeDeJoueurs.get(1).getNom() + " : pioche -> " + listeDeJoueurs.get(1).getPioche().taille() + " ; rack -> " + listeDeJoueurs.get(1).getRack().taille());
 		new PopUpGagnant(joueurQuiAGagne).afficher();
 	}
 }

@@ -85,6 +85,8 @@ public class Dnd {
 						cible.setOpacity(1);
 						success = true;
 						enleverDragAndDrop(cible);
+						Plateau plateau = Plateau.getInstance();
+						plateau.updateNbActionsRestantes();
 						//System.out.println("pnts : " + joueur.getPoints());
 					}
 		        }

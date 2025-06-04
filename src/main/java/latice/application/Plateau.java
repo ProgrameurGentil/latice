@@ -296,6 +296,8 @@ public class Plateau extends Application{
         	lblNbTuileDansPiochedessou.setText("la pioche de " + joueur.getNom() + " : " + joueur.getPioche().taille());
         }
 		updateNbTour();
+		lblJoueur.setText(joueur.getNom());
+		updateNbActionsRestantes();
 	}
 	
 	public void updateLabelPioche() {
@@ -312,6 +314,12 @@ public class Plateau extends Application{
 		
 		this.lblNbToursRestants.setText("Nombre de tours restants : " + this.nbTour);
 		this.nbTour--;
+	}
+	
+	public void updateNbActionsRestantes() {
+		if (joueur != null) {
+			this.lblNbActions.setText("Nombre d'actions restantes : " + joueur.getNombreActionRestanteAJouer());
+		}
 	}
 	
 	public static Button boutonEnBois(String texte) {
