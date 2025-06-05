@@ -11,6 +11,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import latice.model.Couleur;
+import latice.model.Forme;
 import latice.model.Joueur;
 import latice.model.MaitreDuJeu;
 import latice.model.Pioche;
@@ -66,15 +68,19 @@ public class TestMaitreDuJeu {
 	
 	@Test
 	public void leJoueur2NAPlusDeTuiles() {
-		listeDeJoueurs.get(2).setPioche(new Pioche());
-		listeDeJoueurs.get(2).setRack(new Rack());
+		listeDeJoueurs.get(1).setPioche(new Pioche());
+		listeDeJoueurs.get(1).setRack(new Rack());
 		assertEquals(maitreDuJeu.quelJoueurAPlusDeTuiles(listeDeJoueurs), listeDeJoueurs.get(2));
 	}
 	
 	@Test
 	public void toutLesJoueursOntDesTuiles() {
-		listeDeJoueurs.get(2).setPioche(new Pioche());
-		listeDeJoueurs.get(2).setRack(new Rack());
 		assertNull(maitreDuJeu.quelJoueurAPlusDeTuiles(listeDeJoueurs));
+	}
+	
+	public void leJoueur1ALeMoinsDeTuiles(List<Joueur> listedeJoueurs) {
+		
+		listeDeJoueurs.get(0).getPioche().enlever(1);
+		assertEquals(maitreDuJeu.quelJoueurALeMoinsDeTuiles(listeDeJoueurs), listeDeJoueurs.get(0));
 	}
 }
