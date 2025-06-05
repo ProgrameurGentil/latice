@@ -96,7 +96,7 @@ public class Plateau extends Application{
             */
 	        
 	        try {
-		        Media media = new Media(getClass().getResource("/video/background2.mp4").toString());
+		        Media media = new Media(getClass().getResource("/video/background.mp4").toString());
 		        MediaPlayer mediaPlayer = new MediaPlayer(media);
 		        mediaPlayer.setAutoPlay(true);
 		        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
