@@ -41,10 +41,13 @@ public class TestJoueur {
         joueur.setNombreActionRestanteAJouer(1);
 
         plateauTuiles.poser(new Position(4, 4), new Tuile(Couleur.BLEU, Forme.FLEUR));
+        assertEquals(new Tuile(Couleur.BLEU, Forme.OISEAU), joueur.getRack().obtenirTuile(0));
+        plateauTuiles.poser(new Position(3, 4), joueur.getRack().obtenirTuile(0));
 
-        boolean result = joueur.poserTuile(0, new Position(3, 4), plateauDeCase, plateauTuiles);
-        assertTrue(result);
-        assertEquals(0, joueur.getNombreActionRestanteAJouer());
+
+        Tuile tuilePosee = plateauTuiles.donnerTuilesAPosition(new Position(3, 4));
+        assertEquals(Couleur.BLEU, tuilePosee.getCouleur());
+        assertEquals(Forme.OISEAU, tuilePosee.getForme());
     }
 
     @Test
