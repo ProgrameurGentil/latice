@@ -82,18 +82,6 @@ public class Plateau extends Application{
             
 	        StackPane bottomPane = new StackPane(hbRack);
             
-	        /*
-	        Rectangle bg = new Rectangle(800, 600);
-	        bg.widthProperty().bind(root.widthProperty());
-	        bg.heightProperty().bind(root.heightProperty());
-
-	        FillTransition ft = new FillTransition(Duration.seconds(2), bg, Color.RED, Color.BLUE);
-	        ft.setAutoReverse(true);
-	        ft.setCycleCount(FillTransition.INDEFINITE);
-	        ft.play();
-
-	        root.getChildren().add(bg);
-            */
 	        
 	        try {
 		        Media media = new Media(getClass().getResource("/video/background.mp4").toString());
@@ -120,6 +108,7 @@ public class Plateau extends Application{
 
 		        root.getChildren().add(bg);
 			}
+
 	        
 	        
 	        Image imgPlateau = new Image(getClass().getResourceAsStream("/plateau/plateau.png"));
@@ -381,5 +370,6 @@ public class Plateau extends Application{
         	    "-fx-font-weight: bold;");
 		return label;
 	}
+	
 }
 		
