@@ -55,7 +55,7 @@ public class PopUpMenu extends PopUp {
 						if (!joueur.acheterAction()) {
 							new PopUpErreur("Refus d'achat", "Vous ne pourvez pas acheter une action car \nvous n'avez pas assez de point").afficher();
 						} else {
-							EffetDeSon.joueurSonAchat();
+							EffetDeSon.jouerSonAchat();
 						}
 					} else {
 						new PopUpErreur("Refus d'achat", "Vous ne pourvez pas acheter une action car \nil n'y plus de possibilité de placement").afficher();

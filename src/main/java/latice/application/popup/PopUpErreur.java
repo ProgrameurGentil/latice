@@ -39,7 +39,7 @@ public class PopUpErreur extends PopUp {
 	
 	@Override
 	public void afficher() {
-		EffetDeSon.joueurSonHaHa();
+		EffetDeSon.jouerSonHaHa();
 		super.afficher();
 	}
 

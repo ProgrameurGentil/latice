@@ -2,6 +2,7 @@ package latice.application.popup;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import latice.application.EffetDeSon;
 import latice.application.Plateau;
 import latice.model.Joueur;
 
@@ -17,6 +18,12 @@ public class PopUpGagnant extends PopUp{
 		
 		root.getChildren().add(labelJoueurGagnant);
 		root.setAlignment(Pos.CENTER);
+	}
+	
+	@Override
+	public void afficher() {
+		EffetDeSon.jouerSonVictoire();
+		super.afficher();
 	}
 	
 }

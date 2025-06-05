@@ -25,8 +25,16 @@ public class EffetDeSon {
 	    mediaPlayer.seek(Duration.ZERO);
 	    mediaPlayer.play();
 	}
+
+	private static void victoire() {
+		Media media = new Media(EffetDeSon.class.getResource("/son/victoire.mp3").toString());
+	    MediaPlayer mediaPlayer = new MediaPlayer(media);
+	    mediaPlayer.stop();
+	    mediaPlayer.seek(Duration.ZERO);
+	    mediaPlayer.play();
+	}
 	
-	public static void joueurSonAchat() {
+	public static void jouerSonAchat() {
 	    try {
 	    	 achat();
 		} catch (java.lang.IllegalAccessError e1) {
@@ -40,9 +48,23 @@ public class EffetDeSon {
 		}
 	}
 	
-	public static void joueurSonHaHa() {
+	public static void jouerSonHaHa() {
 	    try {
 	    	haha();
+		} catch (java.lang.IllegalAccessError e1) {
+			System.out.println(ERREUR_MEDIA);
+		} catch (java.lang.NoClassDefFoundError e2) {
+			System.out.println(ERREUR_MEDIA);
+		} catch (java.lang.NullPointerException e3) {
+			System.out.println(ERREUR_CHARGEMENET_MEDIA);
+		} catch (Exception e4) {
+			System.out.println(ERREUR_EXCEPTION);
+		}
+	}
+	
+	public static void jouerSonVictoire() {
+	    try {
+	    	 victoire();
 		} catch (java.lang.IllegalAccessError e1) {
 			System.out.println(ERREUR_MEDIA);
 		} catch (java.lang.NoClassDefFoundError e2) {
