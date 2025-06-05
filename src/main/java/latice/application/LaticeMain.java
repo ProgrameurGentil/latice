@@ -19,7 +19,7 @@ public class LaticeMain {
 	private static List<Joueur> listeDeJoueurs = new ArrayList<Joueur>();
 	private static Integer indiceDuJoueurQuiJoue;
 	private static Integer nbTours = 0;
-	public static final Integer nbToursMax = 10;
+	public static final Integer NB_TOURS_MAX = 10;
 	private static final MaitreDuJeu maitreDuJeu = new MaitreDuJeu();
 
 	public static void main(String[] args) {
@@ -60,7 +60,7 @@ public class LaticeMain {
 	}
 	
 	public static void joueurSuivant() {
-		if ( (!nbTours.equals(nbToursMax*listeDeJoueurs.size())) || maitreDuJeu.estCeQunJoueurAPLusDeTuiles(listeDeJoueurs)) {
+		if ( (!nbTours.equals(NB_TOURS_MAX*listeDeJoueurs.size())) || maitreDuJeu.estCeQunJoueurAPLusDeTuiles(listeDeJoueurs)) {
 			indiceDuJoueurQuiJoue = (indiceDuJoueurQuiJoue+1) % listeDeJoueurs.size();
 			Joueur joueur = listeDeJoueurs.get(indiceDuJoueurQuiJoue);
 			joueur.remplirSonRack();

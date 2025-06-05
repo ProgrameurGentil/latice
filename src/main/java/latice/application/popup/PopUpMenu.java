@@ -16,7 +16,8 @@ import latice.model.PlateauTuiles;
 
 public class PopUpMenu extends PopUp {
 	private Integer btn_taille = 175;
-	VBox vbmenulbl = new VBox();
+	private VBox vbmenulbl = new VBox();
+	
 	public PopUpMenu(Joueur joueur, PlateauTuiles plateauTuiles) {
 		super("Menu");
 		

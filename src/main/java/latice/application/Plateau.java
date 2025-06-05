@@ -1,5 +1,6 @@
 package latice.application;
 
+import javafx.animation.Animation;
 import javafx.animation.FillTransition;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -38,14 +39,14 @@ import latice.model.Rack;
 import latice.model.Tuile;
 
 public class Plateau extends Application{
-	 private static final int colonnes = 9;
-	 private static final int lignes = 9;
-	 private static final double case_taille = 62.0;
-	 private static final PlateauTuiles plateauTuile = new PlateauTuiles();
-	 private static final PlateauDeCase plateauCase = PlateauDeCase.initialisationPlateauCase();
-	 private static final Dnd dragAndDrop = new Dnd();
-	 private static final MusiqueDeFond musiqueDeFond = new MusiqueDeFond();
-	 private Integer nbTour = LaticeMain.nbToursMax*2;
+	 private static final int COLONNE = 9;
+	 private static final int LIGNE = 9;
+	 private static final double CASE_TAILLE = 62.0;
+	 private static final PlateauTuiles PLATEAU_TUILE = new PlateauTuiles();
+	 private static final PlateauDeCase PLATEAU_CASE = PlateauDeCase.initialisationPlateauCase();
+	 private static final Dnd DRAG_AND_DROP = new Dnd();
+	 private static final MusiqueDeFond MUSIQUE_DE_FOND = new MusiqueDeFond();
+	 private Integer nbTour = LaticeMain.NB_TOURS_MAX*2;
 	 private Label lblNbToursRestants;
 	 private Label lblNbTuileDansPiochedessu;
 	 private Label lblNbTuileDansPiochedessou;
@@ -55,15 +56,15 @@ public class Plateau extends Application{
 	 
 	 private HBox hbRack = new HBox();
 	 
-	 private static Plateau instance; 
-	 public static Plateau getInstance() { return instance; }
+	 private static Plateau INSTANCE; 
+	 public static Plateau getInstance() { return INSTANCE; }
 	 
 	 public static void main(String[] args) {
 	        launch(args);
 	    }
 	@Override
 	public void start(Stage primaryStage) throws Exception{
-            instance = this;
+            Plateau.INSTANCE = this;
 		
             BorderPane root = new BorderPane();
             GridPane plateau = new GridPane();
@@ -80,7 +81,7 @@ public class Plateau extends Application{
 	        VBox vblblActions = new VBox();
 	        Button menuAction = boutonEnBois("Faire une Action");
 	        
-	        menuAction.setOnMouseClicked(event -> new PopUpMenu(joueur, plateauTuile).afficher() );
+	        menuAction.setOnMouseClicked(event -> new PopUpMenu(joueur, PLATEAU_TUILE).afficher() );
             
 	        StackPane bottomPane = new StackPane(hbRack);
             
@@ -141,28 +142,28 @@ public class Plateau extends Application{
 
 			hbRack.setBackground(new Background(backgroundImage)); 
 			
-			for (int col = 0; col < colonnes; col++) {
+			for (int col = 0; col < COLONNE; col++) {
 	            ColumnConstraints colConst = new ColumnConstraints();
-	            colConst.setMinWidth(case_taille);
-	            colConst.setPrefWidth(case_taille);
+	            colConst.setMinWidth(CASE_TAILLE);
+	            colConst.setPrefWidth(CASE_TAILLE);
 	            colConst.setHgrow(Priority.NEVER);
 	            plateau.getColumnConstraints().add(colConst);
 	        }
 
-	        for (int row = 0; row < lignes; row++) {
+	        for (int row = 0; row < LIGNE; row++) {
 	            RowConstraints rowConst = new RowConstraints();
-	            rowConst.setMinHeight(case_taille);
-	            rowConst.setPrefHeight(case_taille);
+	            rowConst.setMinHeight(CASE_TAILLE);
+	            rowConst.setPrefHeight(CASE_TAILLE);
 	            rowConst.setVgrow(Priority.NEVER);
 	            plateau.getRowConstraints().add(rowConst);
 	        }
 
-	        for (int row = 0; row < lignes; row++) {
-	            for (int col = 0; col < colonnes; col++) {
+	        for (int row = 0; row < LIGNE; row++) {
+	            for (int col = 0; col < COLONNE; col++) {
 	                ImageView imageView = new ImageView();
-	                dragAndDrop.cibleDragAndDrop(imageView, plateauTuile, plateauCase);
-	                imageView.setFitHeight(case_taille);
-	                imageView.setFitWidth(case_taille);
+	                DRAG_AND_DROP.cibleDragAndDrop(imageView, PLATEAU_TUILE, PLATEAU_CASE);
+	                imageView.setFitHeight(CASE_TAILLE);
+	                imageView.setFitWidth(CASE_TAILLE);
 	                imageView.setPreserveRatio(true);
 	                imageView.setPickOnBounds(true);
 
@@ -176,26 +177,29 @@ public class Plateau extends Application{
 	        vboxbtnAction.getChildren().add(menuAction);
 	        //vboxbtnAction.setStyle("-fx-border-color: green;");
 	        
+	        String couleurText = "-fx-text-fill: yellow;";
+	        Font font = Font.font("Georgia", 13);
+	        
 	        lblNbToursRestants = new Label("Nombre de tours restants : " + this.nbTour);
-	        lblNbToursRestants.setStyle("-fx-text-fill: yellow;");
-	        lblNbToursRestants.setFont(Font.font("Georgia", 13));
+	        lblNbToursRestants.setStyle(couleurText);
+	        lblNbToursRestants.setFont(font);
 	        
 	        
 	        lblNbTuileDansPiochedessu = new Label("Nombre de tuiles restantes dans");
 	        lblNbTuileDansPiochedessou = new Label("la pioche de null : XX");
 	        
 
-	        lblNbTuileDansPiochedessou.setStyle("-fx-text-fill: yellow;");
-	        lblNbTuileDansPiochedessou.setFont(Font.font("Georgia", 13));
+	        lblNbTuileDansPiochedessou.setStyle(couleurText);
+	        lblNbTuileDansPiochedessou.setFont(font);
 	        
 	        
-	        lblNbTuileDansPiochedessu.setStyle("-fx-text-fill: yellow;");
-	        lblNbTuileDansPiochedessu.setFont(Font.font("Georgia", 13));
+	        lblNbTuileDansPiochedessu.setStyle(couleurText);
+	        lblNbTuileDansPiochedessu.setFont(font);
 	        
 	        
 	        lblNbActions = new Label("Nombre d'actions restantes : XX" );
-	        lblNbActions.setStyle("-fx-text-fill: yellow;");
-	        lblNbActions.setFont(Font.font("Georgia", 13));
+	        lblNbActions.setStyle(couleurText);
+	        lblNbActions.setFont(font);
 	        
 	        lblJoueur = new Label("XX");
 	        lblJoueur.setStyle("-fx-text-fill: yellow;" + "-fx-font-weight: bold;");
@@ -266,7 +270,7 @@ public class Plateau extends Application{
 	        vbplarack.getChildren().addAll(plateau, bottomPane);
 	        root.setRight(vbplarack);
 	        
-	        musiqueDeFond.lancerMusiqueDePartie();
+	        MUSIQUE_DE_FOND.lancerMusiqueDePartie();
 	        
 			primaryStage.setTitle("Plateau Latice");
 			Scene scene = new Scene(root, 1000, 700);
@@ -284,7 +288,7 @@ public class Plateau extends Application{
 
 		FillTransition ft = new FillTransition(Duration.seconds(2), bg, Color.RED, Color.BLUE);
 		ft.setAutoReverse(true);
-		ft.setCycleCount(FillTransition.INDEFINITE);
+		ft.setCycleCount(Animation.INDEFINITE);
 		ft.play();
 
 		root.getChildren().add(bg);
@@ -299,14 +303,14 @@ public class Plateau extends Application{
 			longueurDAffichage = tailleDuRackDuJoueur;
 		}
 		setJoueur(joueur);
-		dragAndDrop.setJoueur(joueur);
+		DRAG_AND_DROP.setJoueur(joueur);
 		for(int i=0;i<longueurDAffichage;i++) {
 			Tuile tuile = rackDuJoueur.obtenirTuile(i);
 			if (tuile != null) {
 				try {
 		            Image image = new Image(getClass().getResource(tuile.obtenirLienVersImage()).toString());
 		            ImageView imageView = new ImageView(image);
-		            dragAndDrop.sourceDragAndDrop(imageView, i);
+		            DRAG_AND_DROP.sourceDragAndDrop(imageView, i);
 		            imageView.setFitWidth(62);
 		            imageView.setFitHeight(62);
 		            imageView.setPreserveRatio(true);
@@ -343,9 +347,9 @@ public class Plateau extends Application{
 	public void updateNbTour() {
 		if (this.nbTour < 10) {
 			this.lblNbToursRestants.setStyle(this.lblNbToursRestants.getStyle() + "-fx-font-weight: bold;");
-			if (musiqueDeFond.etat() != "fin") {
-				musiqueDeFond.stop();
-				musiqueDeFond.lancerMusiqueDeFinPartie();
+			if (MUSIQUE_DE_FOND.etat() != "fin") {
+				MUSIQUE_DE_FOND.stop();
+				MUSIQUE_DE_FOND.lancerMusiqueDeFinPartie();
 			}
 		}
 		
@@ -388,7 +392,7 @@ public class Plateau extends Application{
 	}
 	
 	public static MusiqueDeFond getMusiqueDeFond() {
-		return musiqueDeFond;
+		return MUSIQUE_DE_FOND;
 	}
 	
 }
