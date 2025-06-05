@@ -9,9 +9,11 @@ public class EffetDeSon {
 	private static final String ERREUR_MEDIA = "[ERREUR][EffetDeSon] : javafx.media n'est pas dans les arguments de la VM";
 	private static final String ERREUR_EXCEPTION = "[ERREUR][EffetDeSon] : une exception a été levé";
 	private static final String ERREUR_CHARGEMENET_MEDIA = "[ERREUR][EffetDeSon] : le son n'a pas été chargé";
+	
+	private static final String DOSSIER = "/audio/son/";
 
 	private static void achat() {
-		Media media = new Media(EffetDeSon.class.getResource("/son/achat.mp3").toString());
+		Media media = new Media(EffetDeSon.class.getResource(DOSSIER + "achat.mp3").toString());
 	    MediaPlayer mediaPlayer = new MediaPlayer(media);
 	    mediaPlayer.stop();
 	    mediaPlayer.seek(Duration.ZERO);
@@ -19,7 +21,7 @@ public class EffetDeSon {
 	}
 	
 	private static void haha() {
-		Media media = new Media(EffetDeSon.class.getResource("/son/haha.mp3").toString());
+		Media media = new Media(EffetDeSon.class.getResource(DOSSIER + "haha.mp3").toString());
 	    MediaPlayer mediaPlayer = new MediaPlayer(media);
 	    mediaPlayer.stop();
 	    mediaPlayer.seek(Duration.ZERO);
@@ -27,7 +29,7 @@ public class EffetDeSon {
 	}
 
 	private static void victoire() {
-		Media media = new Media(EffetDeSon.class.getResource("/son/victoire.mp3").toString());
+		Media media = new Media(EffetDeSon.class.getResource(DOSSIER + "victoire.mp3").toString());
 	    MediaPlayer mediaPlayer = new MediaPlayer(media);
 	    mediaPlayer.stop();
 	    mediaPlayer.seek(Duration.ZERO);

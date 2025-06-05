@@ -80,11 +80,7 @@ public class Joueur {
 	}
 	
 	public Boolean encoreDesActions() {
-		if (this.nombreActionRestanteAJouer == 0) {
-			return false;
-		} else {
-			return true;
-		}
+		return this.nombreActionRestanteAJouer != 0 ;
 	}
 	
 	public Integer verifierSiUnCoupEstPossible(PlateauTuiles plateauDeTuiles) {

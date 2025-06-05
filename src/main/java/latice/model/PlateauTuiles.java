@@ -57,13 +57,7 @@ public class PlateauTuiles{
 	public boolean siTuilePosableIci(Tuile tuilePosee, Position positionPose) {
 		boolean rep = false;
 		
-		if (this.siListTuileVide()) {
-			if (positionPose.equals(Constantes.CENTRE)) {
-				return true;
-			} else {
-				return false;
-			}
-		}
+		if (this.siListTuileVide()) return positionPose.equals(Constantes.CENTRE);
 		
 		List<Position> positionAutours = positionPose.positionAutour();
 		if (this.siTuileIci(positionPose) || this.combienDeTuileAutour(positionPose) < 1 ) {

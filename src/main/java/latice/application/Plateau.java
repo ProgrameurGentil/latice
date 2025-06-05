@@ -95,18 +95,31 @@ public class Plateau extends Application{
 	        root.getChildren().add(bg);
             */
 	        
-	        
-	        Media media = new Media(getClass().getResource("/video/background2.mp4").toString());
-	        MediaPlayer mediaPlayer = new MediaPlayer(media);
-	        mediaPlayer.setAutoPlay(true);
-	        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-	        MediaView mediaView = new MediaView(mediaPlayer);
+	        try {
+		        Media media = new Media(getClass().getResource("/video/background2.mp4").toString());
+		        MediaPlayer mediaPlayer = new MediaPlayer(media);
+		        mediaPlayer.setAutoPlay(true);
+		        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+		        MediaView mediaView = new MediaView(mediaPlayer);
+	
+		        mediaView.setPreserveRatio(false);
+		        mediaView.setFitWidth(1000);
+		        mediaView.setFitHeight(700);
+	
+		        root.getChildren().add(mediaView);
+		        
+	        } catch (Exception e) {
+	        	Rectangle bg = new Rectangle(800, 600);
+		        bg.widthProperty().bind(root.widthProperty());
+		        bg.heightProperty().bind(root.heightProperty());
 
-	        mediaView.setPreserveRatio(false);
-	        mediaView.setFitWidth(1000);
-	        mediaView.setFitHeight(700);
+		        FillTransition ft = new FillTransition(Duration.seconds(2), bg, Color.RED, Color.BLUE);
+		        ft.setAutoReverse(true);
+		        ft.setCycleCount(FillTransition.INDEFINITE);
+		        ft.play();
 
-	        root.getChildren().add(mediaView);
+		        root.getChildren().add(bg);
+			}
 	        
 	        
 	        Image imgPlateau = new Image(getClass().getResourceAsStream("/plateau/plateau.png"));
