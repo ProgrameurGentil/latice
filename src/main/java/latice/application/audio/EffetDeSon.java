@@ -1,4 +1,4 @@
-package latice.application;
+package latice.application.audio;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;

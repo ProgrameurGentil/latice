@@ -8,11 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import latice.model.Couleur;
-import latice.model.Forme;
 import latice.model.Joueur;
 import latice.model.MaitreDuJeu;
 import latice.model.Pioche;
@@ -20,11 +18,10 @@ import latice.model.Rack;
 import latice.model.Tuile;
 
 public class TestMaitreDuJeu {
-	private static List<Joueur> listeDeJoueurs = new ArrayList<Joueur>();
-	public static final Integer nbToursMax = 10;
-	private static final MaitreDuJeu maitreDuJeu = new MaitreDuJeu();
+	List<Joueur> listeDeJoueurs = new ArrayList<Joueur>();
+	MaitreDuJeu maitreDuJeu = new MaitreDuJeu();
 	
-	@BeforeAll
+	@BeforeEach
 	public void initialisation() {
 		Pioche toutesLesTuiles = Tuile.initialisationTuiles();
 		listeDeJoueurs.add(new Joueur("Joueur 1"));
@@ -54,8 +51,6 @@ public class TestMaitreDuJeu {
 	
 	@Test
 	public void aucunJoueurNAPlusDeTuiles() {
-		listeDeJoueurs.get(0).setPioche(new Pioche());
-		listeDeJoueurs.get(0).setRack(new Rack());
 		assertFalse(maitreDuJeu.estCeQunJoueurAPLusDeTuiles(listeDeJoueurs));
 	}
 	
@@ -70,16 +65,16 @@ public class TestMaitreDuJeu {
 	public void leJoueur2NAPlusDeTuiles() {
 		listeDeJoueurs.get(1).setPioche(new Pioche());
 		listeDeJoueurs.get(1).setRack(new Rack());
-		assertEquals(maitreDuJeu.quelJoueurAPlusDeTuiles(listeDeJoueurs), listeDeJoueurs.get(2));
-	}
+		assertEquals(maitreDuJeu.quelJoueurAPlusDeTuiles(listeDeJoueurs), listeDeJoueurs.get(1));
+	} 
 	
 	@Test
 	public void toutLesJoueursOntDesTuiles() {
 		assertNull(maitreDuJeu.quelJoueurAPlusDeTuiles(listeDeJoueurs));
 	}
 	
-	public void leJoueur1ALeMoinsDeTuiles(List<Joueur> listedeJoueurs) {
-		
+	@Test
+	public void leJoueur1ALeMoinsDeTuiles() {
 		listeDeJoueurs.get(0).getPioche().enlever(1);
 		assertEquals(maitreDuJeu.quelJoueurALeMoinsDeTuiles(listeDeJoueurs), listeDeJoueurs.get(0));
 	}

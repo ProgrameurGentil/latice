@@ -8,9 +8,9 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import latice.application.EffetDeSon;
 import latice.application.LaticeMain;
 import latice.application.Plateau;
+import latice.application.audio.EffetDeSon;
 import latice.model.Joueur;
 import latice.model.PlateauTuiles;
 

@@ -2,8 +2,8 @@ package latice.application.popup;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import latice.application.EffetDeSon;
 import latice.application.Plateau;
+import latice.application.audio.EffetDeSon;
 import latice.model.Joueur;
 
 public class PopUpGagnant extends PopUp{

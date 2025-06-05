@@ -29,6 +29,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import latice.application.audio.MusiqueDeFond;
 import latice.application.popup.PopUpMenu;
 import latice.model.Joueur;
 import latice.model.PlateauDeCase;
@@ -43,6 +44,7 @@ public class Plateau extends Application{
 	 private static final PlateauTuiles plateauTuile = new PlateauTuiles();
 	 private static final PlateauDeCase plateauCase = PlateauDeCase.initialisationPlateauCase();
 	 private static final Dnd dragAndDrop = new Dnd();
+	 private static final MusiqueDeFond musiqueDeFond = new MusiqueDeFond();
 	 private Integer nbTour = LaticeMain.nbToursMax*2;
 	 private Label lblNbToursRestants;
 	 private Label lblNbTuileDansPiochedessu;
@@ -205,8 +207,6 @@ public class Plateau extends Application{
 	        vblblNbTuile.getChildren().addAll(lblNbTuileDansPiochedessu, lblNbTuileDansPiochedessou);
 	        vblblNbTours.getChildren().add(lblNbToursRestants);
 	        
-	 
-	        
 	        vblblJoueur.getChildren().add(lblJoueur);
 	        vblblActions.getChildren().add(lblNbActions);
 	        
@@ -214,6 +214,7 @@ public class Plateau extends Application{
 	        vbInformations.getChildren().addAll(vblblNbTours, vblblNbTuile, vblblActions, vblblJoueur);
 	        vblblNbTours.setAlignment(Pos.CENTER);
 	        vblblNbTours.setTranslateY(-85);
+	        
 	        BackgroundImage bgImgInformations = new BackgroundImage(
 	        	    new Image(getClass().getResource("/interface/cadre.png").toExternalForm()),
 	        	    BackgroundRepeat.NO_REPEAT,
@@ -268,6 +269,7 @@ public class Plateau extends Application{
 	        vbplarack.getChildren().addAll(plateau, bottomPane);
 	        root.setRight(vbplarack);
 	        
+	        musiqueDeFond.lancerMusiqueDePartie();
 	        
 			primaryStage.setTitle("Plateau Latice");
 			Scene scene = new Scene(root, 1000, 700);
@@ -331,6 +333,10 @@ public class Plateau extends Application{
 	public void updateNbTour() {
 		if (this.nbTour < 10) {
 			this.lblNbToursRestants.setStyle(this.lblNbToursRestants.getStyle() + "-fx-font-weight: bold;");
+			if (musiqueDeFond.etat() != "fin") {
+				musiqueDeFond.stop();
+				musiqueDeFond.lancerMusiqueDeFinPartie();
+			}
 		}
 		
 		this.lblNbToursRestants.setText("Nombre de tours restants : " + this.nbTour);
@@ -369,6 +375,10 @@ public class Plateau extends Application{
         	    "-fx-background-repeat: no-repeat;" +
         	    "-fx-font-weight: bold;");
 		return label;
+	}
+	
+	public static MusiqueDeFond getMusiqueDeFond() {
+		return musiqueDeFond;
 	}
 	
 }

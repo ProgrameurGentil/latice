@@ -7,8 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import latice.application.EffetDeSon;
 import latice.application.Plateau;
+import latice.application.audio.EffetDeSon;
 
 public class PopUpErreur extends PopUp {
 
