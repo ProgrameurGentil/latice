@@ -37,7 +37,7 @@ public class Position { // La postion est fait comme : Colonne ; Ligne
 //		} else ligne--;
 //		return new Position(colonne,ligne);
 //	}
-	public List<Position> caseAutour(){
+	public List<Position> positionAutour(){
 		Position positionAuDessus = null;
 		Position positionADroit = null;
 		Position positionEnBas = null;

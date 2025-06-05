@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import latice.application.EffetDeSon;
 import latice.application.Plateau;
 
 public class PopUpErreur extends PopUp {
@@ -34,6 +35,12 @@ public class PopUpErreur extends PopUp {
         root.setAlignment(Pos.CENTER);
         VBox.setMargin(labelErreur, new Insets(10));    
         
+	}
+	
+	@Override
+	public void afficher() {
+		EffetDeSon.joueurSonHaHa();
+		super.afficher();
 	}
 
 }

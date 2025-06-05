@@ -45,7 +45,7 @@ public class PlateauTuiles{
 	
 	public int combienDeTuileAutour(Position positionPose) {
 		int nbTuilesAutour=0;
-		List<Position> positionAutours = positionPose.caseAutour();
+		List<Position> positionAutours = positionPose.positionAutour();
 		for (Position positionAutour : positionAutours) {
 			if (this.siTuileIci(positionAutour)) {
 				nbTuilesAutour++;
@@ -65,7 +65,7 @@ public class PlateauTuiles{
 			}
 		}
 		
-		List<Position> positionAutours = positionPose.caseAutour();
+		List<Position> positionAutours = positionPose.positionAutour();
 		if (this.siTuileIci(positionPose) || this.combienDeTuileAutour(positionPose) < 1 ) {
 			//System.out.println("je passe ici : " + this.combienDeTuileAutour(positionPose)); //debug
 			return false;

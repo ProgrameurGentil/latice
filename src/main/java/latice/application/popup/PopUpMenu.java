@@ -8,6 +8,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import latice.application.EffetDeSon;
 import latice.application.LaticeMain;
 import latice.application.Plateau;
 import latice.model.Joueur;
@@ -53,6 +54,8 @@ public class PopUpMenu extends PopUp {
 	
 						if (!joueur.acheterAction()) {
 							new PopUpErreur("Refus d'achat", "Vous ne pourvez pas acheter une action car \nvous n'avez pas assez de point").afficher();
+						} else {
+							EffetDeSon.joueurSonAchat();
 						}
 					} else {
 						new PopUpErreur("Refus d'achat", "Vous ne pourvez pas acheter une action car \nil n'y plus de possibilité de placement").afficher();

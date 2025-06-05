@@ -35,7 +35,7 @@ public class TestPosition {
 		/* la fonction caseAutour retourne les positons comme ceci : Dessus - Droit - Bas - Gauche 
 		 * Position 1 : colonne : 5, ligne : 4*/
 		
-		List<Position> positionsAutourDePos1 = pos1.caseAutour();
+		List<Position> positionsAutourDePos1 = pos1.positionAutour();
 		
 		assertEquals(positionsAutourDePos1.get(0), new Position(5, 3));
 		assertEquals(positionsAutourDePos1.get(1), new Position(6, 4));
@@ -48,7 +48,7 @@ public class TestPosition {
 		/* la fonction caseAutour retourne les positons comme ceci : Dessus - Droit - Bas - Gauche 
 		 * Position 5 : colonne : 0, ligne : 0*/
 		
-		List<Position> positionsAutourDePos5 = pos5.caseAutour();
+		List<Position> positionsAutourDePos5 = pos5.positionAutour();
 
 		assertNull(positionsAutourDePos5.get(0));
 		assertEquals(positionsAutourDePos5.get(1), new Position(1, 0));
@@ -61,7 +61,7 @@ public class TestPosition {
 		/* la fonction caseAutour retourne les positons comme ceci : Dessus - Droit - Bas - Gauche 
 		 * Position 1 : colonne : 1, ligne : -7*/
 		
-		List<Position> positionsAutourDePos6 = pos6.caseAutour();
+		List<Position> positionsAutourDePos6 = pos6.positionAutour();
 		
 		assertNull(positionsAutourDePos6.get(0));
 		assertNull(positionsAutourDePos6.get(1));
