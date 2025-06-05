@@ -39,6 +39,10 @@ public class GroupeDeTuile {
 	public void enleverTout() {
 		this.tuiles.clear();
 	}
+	
+	public Boolean estVide() {
+		return this.tuiles.isEmpty();
+	}
 
 	@Override
 	public String toString() {

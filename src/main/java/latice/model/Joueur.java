@@ -38,8 +38,9 @@ public class Joueur {
 			this.nbTuilesPosees++;
 			plateauDeTuiles.poser(positionDestination, this.rack.enlever(indiceTuileRack));
 			
-			//System.out.println(positionDestination);
-			if (plateauDeCases.donnerLaCaseAPosition(positionDestination).equals(new Case(Type.SOLEIL))) this.points = this.points+2;
+			System.out.println(plateauDeCases.donnerLaCaseAPosition(positionDestination));
+			if (plateauDeCases.donnerLaCaseAPosition(positionDestination).equals(new Case(Type.SOLEIL))) { this.points = this.points+2; }
+			System.out.println("ok p");
 			if ( nbTuilesAutour == 2) this.points++;
 			if ( nbTuilesAutour == 3) this.points = this.points + 2;
 			if ( nbTuilesAutour == 4) this.points = this.points + 4;
@@ -54,13 +55,16 @@ public class Joueur {
 	public boolean echangerRack() {
 		if (this.pioche.taille()<5 || this.points < 2) return false;
 		int i;
-		Rack rackDAttente = new Rack(this.rack.tuiles);
+		Rack rackDAttente = new Rack(new ArrayList<Tuile>(this.rack.tuiles));
 		this.points = this.points - 2;
 		
 		this.rack.enleverTout();
 		remplirSonRack();
 		
-		for (i=0 ; i<this.pioche.taille() && i<rackDAttente.taille() ; i++) this.pioche.ajouter(rackDAttente.enlever(0));
+		while (!rackDAttente.estVide()) {
+		    this.pioche.ajouter(rackDAttente.enlever(0));
+		}
+		
 		this.pioche.melanger();
 		return true;
 	}
