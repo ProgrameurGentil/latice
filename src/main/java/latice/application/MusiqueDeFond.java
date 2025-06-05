@@ -19,4 +19,8 @@ public class MusiqueDeFond {
 	    mediaPlayer.play();
 	}
 	
+	public void stopMusique(MediaPlayer mediaPlayer) {
+		mediaPlayer.stop();
+	}
+	
 }
