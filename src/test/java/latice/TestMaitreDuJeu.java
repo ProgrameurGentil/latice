@@ -78,4 +78,15 @@ public class TestMaitreDuJeu {
 		listeDeJoueurs.get(0).getPioche().enlever(1);
 		assertEquals(maitreDuJeu.quelJoueurALeMoinsDeTuiles(listeDeJoueurs), listeDeJoueurs.get(0));
 	}
+	
+	@Test
+	public void leJoueur2ALeMoinsDeTuiles() {
+		listeDeJoueurs.get(1).getPioche().enlever(0);
+		assertEquals(maitreDuJeu.quelJoueurALeMoinsDeTuiles(listeDeJoueurs), listeDeJoueurs.get(1));
+	}
+	
+	@Test
+	public void lesDeuxJoueursOntLeMemeNombreDeTuiles() {
+		assertEquals(maitreDuJeu.quelJoueurALeMoinsDeTuiles(listeDeJoueurs), listeDeJoueurs.get(0));
+	}
 }

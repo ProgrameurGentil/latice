@@ -50,7 +50,7 @@ public class MaitreDuJeu {
 	
 	public Joueur quelJoueurALeMoinsDeTuiles(List<Joueur> listeDeJoueurs) {
 		Joueur joueurGagnant = listeDeJoueurs.get(0);
-		for (int i = 1; i<listeDeJoueurs.size()-1 ;  i++ ) {
+		for (int i = 1 ; i<listeDeJoueurs.size() ;  i++ ) {
 			if (listeDeJoueurs.get(i).nombreDeTuilesToTal() < joueurGagnant.nombreDeTuilesToTal()) {
 				joueurGagnant = listeDeJoueurs.get(i);
 			}

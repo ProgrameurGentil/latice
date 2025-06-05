@@ -98,17 +98,14 @@ public class Plateau extends Application{
 	
 		        root.getChildren().add(mediaView);
 		        
-	        } catch (Exception e) {
-	        	Rectangle bg = new Rectangle(800, 600);
-		        bg.widthProperty().bind(root.widthProperty());
-		        bg.heightProperty().bind(root.heightProperty());
-
-		        FillTransition ft = new FillTransition(Duration.seconds(2), bg, Color.RED, Color.BLUE);
-		        ft.setAutoReverse(true);
-		        ft.setCycleCount(FillTransition.INDEFINITE);
-		        ft.play();
-
-		        root.getChildren().add(bg);
+	        } catch (java.lang.IllegalAccessError e1) { // tout ces testes d'erreurs sont obligatoires sinon ça ne fonctionne pas 
+	        	backgroundRGB(root);
+			} catch (java.lang.NoClassDefFoundError e2) {
+				backgroundRGB(root);
+			} catch (java.lang.NullPointerException e3) {
+				backgroundRGB(root);
+			} catch (Exception e4) {
+				backgroundRGB(root);
 			}
 
 	        
@@ -278,6 +275,19 @@ public class Plateau extends Application{
 	        primaryStage.setResizable(false);
 	        primaryStage.show();
 		
+	}
+
+	private void backgroundRGB(BorderPane root) {
+		Rectangle bg = new Rectangle(800, 600);
+		bg.widthProperty().bind(root.widthProperty());
+		bg.heightProperty().bind(root.heightProperty());
+
+		FillTransition ft = new FillTransition(Duration.seconds(2), bg, Color.RED, Color.BLUE);
+		ft.setAutoReverse(true);
+		ft.setCycleCount(FillTransition.INDEFINITE);
+		ft.play();
+
+		root.getChildren().add(bg);
 	}
 
 	public void afficherlerackdujoueur(Joueur joueur) {
