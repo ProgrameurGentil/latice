@@ -38,9 +38,7 @@ public class Joueur {
 			this.nbTuilesPosees++;
 			plateauDeTuiles.poser(positionDestination, this.rack.enlever(indiceTuileRack));
 			
-			System.out.println(plateauDeCases.donnerLaCaseAPosition(positionDestination));
-			if (plateauDeCases.donnerLaCaseAPosition(positionDestination).equals(new Case(Type.SOLEIL))) { this.points = this.points+2; }
-			System.out.println("ok p");
+			if (plateauDeCases.donnerLaCaseAPosition(positionDestination).equals(new Case(Type.SOLEIL))) this.points = this.points+2;
 			if ( nbTuilesAutour == 2) this.points++;
 			if ( nbTuilesAutour == 3) this.points = this.points + 2;
 			if ( nbTuilesAutour == 4) this.points = this.points + 4;
