@@ -110,7 +110,6 @@ public class Plateau extends Application{
 			}
 
 	        
-	        
 	        Image imgPlateau = new Image(getClass().getResourceAsStream("/plateau/plateau.png"));
 	        BackgroundImage background = new BackgroundImage(
 	        		imgPlateau,
@@ -282,7 +281,7 @@ public class Plateau extends Application{
 	}
 
 	private void backgroundRGB(BorderPane root) {
-		Rectangle bg = new Rectangle(800, 600);
+		Rectangle bg = new Rectangle();
 		bg.widthProperty().bind(root.widthProperty());
 		bg.heightProperty().bind(root.heightProperty());
 
