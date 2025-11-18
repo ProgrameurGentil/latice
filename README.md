@@ -29,7 +29,7 @@ JavaFX
   <ul>
     <li><p><a href="https://github.com/Xulungu">Xulungu</a></p></li>
    <li><p><a href="https://github.com/ProgrameurGentil">ProgrameurGentil</a></p></li>
-    <li><p><a href="https://github.com/ahobon"</p></li>
+    <li><p><a href="https://github.com/ahobon"</p>Psychaine</li>
   </ul>
 </div>
 <div>
