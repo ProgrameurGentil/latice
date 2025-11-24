@@ -74,8 +74,8 @@ adjacente à 2 tuiles. - **Triple** : adjacente à 3 tuiles. - **Latice**
 
 ### 🎯 Actions possibles avec les points
 
-Les points permettent d'effectuer deux actions : - **Piocher 5 nouvelles
-tuiles** dans la pool\
+Les points permettent d'effectuer deux actions : 
+- **Piocher 5 nouvelles tuiles** dans la pioche
 - **Jouer un second coup**
 
 Bon jeu !
